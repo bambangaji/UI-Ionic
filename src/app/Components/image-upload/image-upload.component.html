@@ -1,0 +1,6 @@
+<div class="color-input border-light text-center pointer mb-2" [class.py-3]="!imageSrc" (click)="uploadImage()">
+  <img [src]="imageSrc || 'assets/icon/icon-upload.svg'" [class]="imageSrc?'imageCard border-radius-5 my-2':'widthLogo'">
+  <p class="text-grey" *ngIf="!imageSrc">{{label}}</p>
+  <input type="file" [readonly]="isReadonly" (change)="onChange(imageInput)" #imageInput accept="image/jpg, image/png, image/webp, image/jpeg"
+    [id]='label' hidden>
+</div>

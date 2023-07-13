@@ -1,0 +1,54 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper p-2 mx-3 mb-3">
+      <ion-row>
+        <p *ngIf="step === 0" class="h5 p-2">Pilih Layanan</p>
+        <div *ngIf="step !== 0" class="row">
+          <ion-icon name="chevron-back-outline" (click)="step=0" size="small" style="width: 20px;"
+            class="text-grey pointer"></ion-icon>
+          <p class="h5 center-center">
+            Tentukan Diskon
+          </p>
+        </div>
+        <ion-icon name="close" class="close-icon pointer" size="small" (click)="closeModal();"> </ion-icon>
+      </ion-row>
+
+      <ion-list class="ml-0 mt-2 py-0 " *ngIf="step===0" no-padding>
+        <ion-item *ngFor="let k of listData;" lines="none" class="border-light border-radius-8 mb-3 pointer"
+          (click)="selectLayanan(k)">
+          <ion-img [src]="globalService.getURLImagePartner(k.last_mile_code)" class="center-center icon-partner my-1"></ion-img>
+          <p class="bold-text h8 ml-2">{{k.last_mile_name}}</p>
+        </ion-item>
+
+      </ion-list>
+      <ion-item *ngIf="step===1" lines="none" class="border-light border-radius-8 mb-3 pointer">
+        <ion-col>
+          <ion-row>
+            <ion-img [src]="globalService.getURLImagePartner(lastMile!.last_mile_code)" class="center-center icon-partner my-1 small-icon circle"></ion-img>
+            <p class="bold-text h8 ml-2 center-center">{{lastMile?.last_mile_name!}}</p>
+
+          </ion-row>
+          <ion-row style="justify-content: space-between;">
+            <ion-row class="color-input border-light center-center pt-0 mr-2 mt-2" style="height: 40px;">
+              <ion-col size="9" class="pt-0" style="height: 0;">
+                <app-input-form [isBorder]="false" placeholder="Discount" type="number" [(ngModel)]="discount"
+                  class="mt-1 w-50 mr-2"></app-input-form>
+              </ion-col>
+              <ion-col size="3" class="pt-0" style="height: 0;">
+                <ion-select readonly="true" interface="popover" placeholder="IDR" class="custom-item-40--border"
+                  [(ngModel)]="discount_type">
+                  <ion-select-option [value]="j.value" *ngFor="let j of listTypeDiscount"
+                    (click)="discount_type=j.value.toString()">{{j.label}}</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+            <ion-button size="medium" color="blue-purple" (click)="assignLayanan()"
+              class="non-capitalize center-center mt-1" style="margin-top: 0.7rem !important;">Simpan</ion-button>
+          </ion-row>
+
+        </ion-col>
+
+      </ion-item>
+    </div>
+  </ng-template>
+</ion-modal>

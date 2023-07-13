@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" class="box-shadow-custom">
+  <ion-toolbar>
+    <ion-row slot="start" style="border-right: 1.6px solid #EAECF0;padding-right: 12px;">
+      <ion-icon name="icon-list" style="width: 50px; height: 40px;"></ion-icon>
+      <ion-img (click)="goToHome()" src="assets/icon/ax_logo.svg" style="width: 200px;"
+        class="ml-2 pointer"></ion-img>
+    </ion-row>
+    <div class="ml-2">
+      <p class="text-grey mb-0">
+        Abang Express
+      </p>
+      <p class="bold-text h7 mb-0">
+        Bandara
+      </p>
+    </div>
+    <ion-icon name="icon-troli" class="pointer mr-3" (click)="goToTroli()" style="width: 40px; 
+    height: 24px;" slot="end">
+
+    </ion-icon>
+    <div slot="end" class="pointer" id="profileUser" (mouseover)="changeMouse()">
+      <ion-img src="assets/icon/profileDummy.svg" class="mr-4 small-icon"></ion-img>
+    </div>
+  </ion-toolbar>
+  <ion-item *ngIf="mouse" (mouseleave)="changeMouse()" class="mt-3 modal-profile" lines="none">
+    <ion-list class="w-100">
+      <ion-item lines="none" button="true">
+        Profile
+      </ion-item>
+      <ion-item lines="none" button="true" (click)="logout()">
+        Keluar
+      </ion-item>
+    </ion-list>
+  </ion-item>
+</ion-header>
+<!-- <ion-router-outlet id="main-content" style="background-color: aqua;"></ion-router-outlet> -->

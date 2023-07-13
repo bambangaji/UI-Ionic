@@ -1,0 +1,201 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper p-2 ml-2">
+      <ion-row class="justify-content-between center-center align-items-center">
+        <p class="mb-0 bold-text h6">
+          Buat Jadwal
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <!-- <ion-icon name="scan" style="height: 24px; width: 24px;">
+          </ion-icon> -->
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <div class="bg-grey-blue border-light text-grey p-2" style="height: 100vh;">
+        <p class="mb-2">
+          Buat jadwal pengajuan pengiriman
+        </p>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Destinasi <span class="color-red">*</span>
+          </p>
+          <div (click)="presentPopoverCountry($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{country?country:'Pilih Destinasi'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+
+
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Jenis Pengiriman Internasional <span class="color-red">*</span>
+          </p>
+          <div (click)="presentPopoverPengiriman($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{pengiriman?pengiriman:'Pilih Pengiriman'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+
+        <ion-row class="justify-content-between mb-2">
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Pilih Agent <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverAgent($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              {{agent?agent:'Pilih Agent'}}
+              <ion-icon name="chevron-down" class="text-grey icon-medium">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="w-48 ">
+            <p class="text-dark bold-text">
+              Pilih Airlines <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverAirLine($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              {{airline?airline:'Pilih Airlines'}}
+              <ion-icon name="chevron-down" class="text-grey icon-medium">
+              </ion-icon>
+            </div>
+          </div>
+        </ion-row>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            MAWB <span class="color-red">*</span>
+          </p>
+          <app-input-form placeholder="Masukkan no MAWB" style="background: white !important;"></app-input-form>
+        </div>
+        <ion-row class="justify-content-between mb-2">
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Tanggal Departed <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverCalendar($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              <div class="row ml-2">
+                <ion-icon name="calendar" class="icon-medium"> </ion-icon>
+                {{departed?departed:'Pilih Tanggal'}}
+              </div>
+              <ion-icon name="chevron-down" class="text-grey icon-medium">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Waktu Departed <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverTime($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              <div class="row ml-2">
+                <ion-icon name="time" class="icon-medium"> </ion-icon>
+                {{departed_time?departed_time:'00:00'}}
+              </div>
+              <p>
+                WIB
+              </p>
+            </div>
+          </div>
+        </ion-row>
+        <ion-row class="justify-content-between mb-2">
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Tanggal Arival <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverArival($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              <div class="row ml-2">
+                <ion-icon name="calendar" class="icon-medium"> </ion-icon>
+                {{arival?arival:'Pilih Tanggal'}}
+              </div>
+              <ion-icon name="chevron-down" class="text-grey icon-medium">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Waktu Arival <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverArivalTime($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              <div class="row ml-2">
+                <ion-icon name="time" class="icon-medium"> </ion-icon>
+                {{arival_time?arival_time:'00:00'}}
+              </div>
+              <p>
+                WIB
+              </p>
+            </div>
+          </div>
+        </ion-row>
+        <ion-row class="justify-content-between mb-2">
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Tanggal Transit <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverTransit($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              <div class="row ml-2">
+                <ion-icon name="calendar" class="icon-medium"> </ion-icon>
+                {{transit?transit:'Pilih Tanggal'}}
+              </div>
+              <ion-icon name="chevron-down" class="text-grey icon-medium">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Waktu Transit <span class="color-red">*</span>
+            </p>
+            <div (click)="presentPopoverTransitTime($event)"
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+              <div class="row ml-2">
+                <ion-icon name="time" class="icon-medium"> </ion-icon>
+                {{transit_time?transit_time:'00:00'}}
+              </div>
+              <p>
+                WIB
+              </p>
+            </div>
+          </div>
+        </ion-row>
+        <ion-row class="justify-content-between mb-2">
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Est Berat <span class="color-red">*</span>
+            </p>
+            <app-input-form placeholder="Est Berat" style="background: white !important;"></app-input-form>
+          </div>
+          <div class="w-48">
+            <p class="text-dark bold-text">
+              Est Koli <span class="color-red">*</span>
+            </p>
+            <app-input-form placeholder="Est Koli" style="background: white !important;"></app-input-form>
+          </div>
+        </ion-row>
+      </div>
+      <div style="position: absolute;
+      bottom: 0;
+      height: 120px;
+      width: 100%;
+      background: white;
+      " class="py-2">
+        <ion-row  class="justify-content-between bg-white w-96 text-center">
+          <ion-button (click)="closeModal()" color="red-light" class="w-48">
+            <p class="color-red non-capitalize">Batal</p>
+          </ion-button>
+          <ion-button (click)="submit()" color="red" class="w-48">
+            <p class="text-white non-capitalize">Simpan</p>
+          </ion-button>
+        </ion-row>
+      </div>
+
+    </div>
+  </ng-template>
+</ion-modal>
+<!--  -->

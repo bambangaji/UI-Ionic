@@ -1,0 +1,17 @@
+ion-footer.footer-default {
+  &--borderless {
+    --border-color: transparent;
+
+    &::before {
+      background-image: unset;
+    }
+  }
+
+  &--modal {
+    z-index: -1;
+  }
+}
+
+ion-footer.footer-action {
+  padding: 0 16px;
+}

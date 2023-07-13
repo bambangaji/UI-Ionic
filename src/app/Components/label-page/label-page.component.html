@@ -1,0 +1,29 @@
+<div class="z102 position-relative w-100 bg-grey-blue" style="margin-top:3.3rem">
+  <div class="row center-center justify-content-between align-items-center ml-1 " style="height:60px">
+    <div class="row center-center py-2">
+      <p class="bold-text mb-0  ml-3 pointer" (click)="goToPage()" [class]="subTitle?'text-grey':'text-dark'">
+        {{title}}
+      </p>
+      <p *ngIf="subTitle" class="ml-2 mb-0 bold-text">
+        <span class="text-grey">
+          •
+        </span>
+        {{subTitle}}
+      </p>
+    </div>
+
+    <div *ngIf="title==='Schedule'" class="row align-items-center mr-0 justify-content-evenly">
+      <div *ngIf="!subTitle" class="ml-4 px-2 py-1 border-light row hover-light pointer " (click)="openHistory()">
+        <ion-icon name="icon-history" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
+      </div>
+      <div class="ml-4 mr-2 px-2 py-1 border-light row hover-light pointer " (click)="openFilter()">
+        <ion-icon name="icon-filter" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
+      </div>
+      <ion-button color="red" class="text-white non-capitalize mr-4" (click)="createSchedule()">
+        Buat Penjadwalan <span style="font-size: 30px;">+</span>
+      </ion-button>
+    </div>
+  </div>
+</div>
+<app-modal-schedule-create></app-modal-schedule-create>
+<app-filter></app-filter>

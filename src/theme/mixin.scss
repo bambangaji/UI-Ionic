@@ -1,0 +1,45 @@
+@mixin bg-purple {
+    background-color: #5B40F6 !important;
+}
+
+@mixin bg-purple {
+    background-color: #E52138 !important;
+}
+
+@mixin bg-purple-light {
+    background-color: #EFECFE !important;
+}
+
+@mixin bg-grey-light {
+    background-color: #F7F5FF !important;
+}
+
+@mixin bg-yellow-light {
+    background-color: #FFF9E6 !important;
+}
+
+@mixin yellow-light {
+    color: #FEC200;
+}
+
+@mixin text-shorten {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin border-radius-button-8 {
+    border-radius: 8px;
+}
+
+@mixin color-grey {
+    color: #7D76A6;
+}
+
+@mixin color-blue {
+    color: #5B40F6 !important;
+}
+
+@mixin color-red {
+    color: #E52138 !important;
+}

@@ -1,0 +1,73 @@
+<ion-content>
+  <app-dashboard-background>
+    <app-label-page></app-label-page>
+    <ion-row class="z102 position-relative w-100">
+      <ion-list class=" bg-transparent pt-0" style="max-width: 565px;">
+        <ion-card class="cardForm px-3 py-2 w-98 shadow-none">
+          <p class="bold-text text-dark mt-1">
+            Yang Perlu di tangani
+          </p>
+          <ion-row class="border-bottom-light">
+            <p class="color-red bold-text pointer">
+              Schedule
+              <span class="bg-red-light border-radius-8 font-text-normal px-1 py-1">15</span>
+            </p>
+            <p class="ml-4">
+              Manifest
+              <span>15</span>
+            </p>
+          </ion-row>
+          <ion-row class="mx-3 mt-3">
+            <div class="bg-grey-light border-radius-8 py-2 pl-3 pr-1 row mr-4 hover-red pointer">
+              <div class="col px-0">
+                <p class="mb-0 bold-text text-dark">
+                  5
+                </p>
+                <p>
+                  Jadwal Dibuat
+                </p>
+              </div>
+              <ion-icon name="chevron-forward-outline" class="center-center" size="large"></ion-icon>
+            </div>
+            <div class="bg-grey-light border-radius-8 py-2 pl-3 pr-1 row mr-4 hover-red pointer">
+              <div class="col px-0">
+                <p class="mb-0 bold-text text-dark">
+                  5
+                </p>
+                <p>
+                  Jadwal Dikonfirmasi
+                </p>
+              </div>
+              <ion-icon name="chevron-forward-outline" class="center-center" size="large"></ion-icon>
+            </div>
+            <div class="bg-grey-light border-radius-8 py-2 pl-3 pr-1 row hover-red pointer">
+              <div class="col px-0">
+                <p class="mb-0 bold-text text-dark">
+                  5
+                </p>
+                <p>
+                  Jadwal Terbang
+                </p>
+              </div>
+              <ion-icon name="chevron-forward-outline" class="center-center" size="large"></ion-icon>
+            </div>
+          </ion-row>
+        </ion-card>
+        <ion-grid class="pt-0" style="max-width: 565px;">
+          <ion-row>
+            <ion-col size="6" *ngFor="let p of listDataCard">
+              <app-card-dashboard [title]="p.title" [value]="p.value" [content]="p.content"
+                [isUp]="p.isUp"></app-card-dashboard>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+      <ion-card style="margin-right: 0;width: 40%;height: fit-content;">
+        <app-graph-dashboard></app-graph-dashboard>
+      </ion-card>
+      <ion-card class="shadow-none" style="top: -27px;border-radius: 0; right: -20px;">
+        <app-sidebar-dashboard></app-sidebar-dashboard>
+      </ion-card>
+    </ion-row>
+  </app-dashboard-background>
+</ion-content>

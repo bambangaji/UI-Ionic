@@ -1,0 +1,67 @@
+@import url('/src/theme/color.scss');
+
+ion-select .select-wrapper .native-wrapper {
+    width: 100%;
+}
+
+ion-select {
+    // --background: #F7F5FF !important;
+    --border-color: #ECEAF6;
+    --border-width: 2px;
+    --border-radius: 10px;
+    --color: white;
+    --icon-color: white;
+    --icon-background: white;
+    --padding-bottom: 0px;
+    --padding-top: -10px;
+
+    &::part(icon) {
+        // --color:white;
+        color: #FEC200;
+        width: 18px;
+        position: absolute;
+        right: 0px;
+    }
+
+    &::part(text) {
+        color: #7D76A6;
+        font-weight: 650;
+        font-size: 15px;
+        margin-left: 10px;
+    }
+
+    &::part(placeholder) {
+        color: #7D76A6;
+        font-weight: 500;
+        font-size: 15px;
+        margin-left: 10px;
+    }
+}
+
+ion-select {
+    .select-icon {
+        .select-icon-inner {
+            color: red !important;
+        }
+    }
+}
+
+#select-wrapper .native-wrapper {
+
+    width: 100%;
+}
+
+ion-select label .select-wrapper {
+    width: 1px !important;
+}
+
+.custom-select {
+    width: 100% !important;
+    max-height: 38px !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    // margin-bottom: 0px;
+}
+.op-1{
+    opacity: 1;
+}

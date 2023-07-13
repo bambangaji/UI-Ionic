@@ -1,0 +1,113 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper p-2">
+      <ion-row>
+        <p class="h5 p-2">Pilih Ekspedisi</p>
+        <ion-icon name="close" class="close-icon pointer" size="small" (click)="closeModal();"> </ion-icon>
+      </ion-row>
+      <!-- <ion-item lines="none">
+        <app-input-form placeholder="Cari Ekspedisi" class="w-100"></app-input-form>
+      </ion-item> -->
+      <ion-list class="mx-3 mt-0 py-0 " no-padding>
+        <div *ngIf="listRegular.length>0">
+          <p class="mb-4 bold-text">
+            Regular
+          </p>
+          <ion-item *ngFor="let p of listRegular" lines="none" class="border-light border-radius-8 mt-2 pointer"
+            type="button" (click)="selectItem(p,'Regular')">
+            <ion-row slot="start">
+              <img [src]="globalService.getURLImagePartner(p.last_mile_code)" class="mr-2 icon-partner">
+              <ion-col>
+                <p class="text-grey">
+                  {{p.last_mile_name}} {{p.data.sla?.sum}}
+                </p>
+                <p class="text-dark bold-text h7">
+                  {{p.data.data |currency: 'Rp. '}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+
+        <div *ngIf="listCargo.length>0">
+          <p class="mb-4 bold-text">
+            Cargo
+          </p>
+          <ion-item *ngFor="let p of listCargo" lines="none" class="border-light border-radius-8 mt-2 pointer"
+            type="button" (click)="selectItem(p,'Cargo')">
+            <ion-row slot="start">
+              <img [src]="globalService.getURLImagePartner(p.last_mile_code)" class="mr-2 icon-partner">
+              <ion-col>
+                <p class="text-grey">
+                  {{p.last_mile_name}} {{p.data.sla?.sum}}
+                </p>
+                <p class="text-dark bold-text h7">
+                  {{p.data.data |currency: 'Rp. '}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+
+        <div *ngIf="listNextday.length>0">
+          <p class="mb-4 bold-text">
+            Nextday
+          </p>
+          <ion-item *ngFor="let p of listNextday" lines="none" class="border-light border-radius-8 mt-2 pointer"
+            type="button" (click)="selectItem(p,'Nextday')">
+            <ion-row slot="start">
+              <img [src]="globalService.getURLImagePartner(p.last_mile_code)" class="mr-2 icon-partner">
+              <ion-col>
+                <p class="text-grey">
+                  {{p.last_mile_name}} {{p.data.sla?.sum}}
+                </p>
+                <p class="text-dark bold-text h7">
+                  {{p.data.data |currency: 'Rp. '}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+        <div *ngIf="listSameday.length>0">
+          <p class="mb-4 bold-text">
+            Sameday
+          </p>
+          <ion-item *ngFor="let p of listSameday" lines="none" class="border-light border-radius-8 mt-2 pointer"
+            type="button" (click)="selectItem(p,'Sameday')">
+            <ion-row slot="start">
+              <img [src]="globalService.getURLImagePartner(p.last_mile_code)" class="mr-2 icon-partner">
+              <ion-col>
+                <p class="text-grey">
+                  {{p.last_mile_name}} {{p.data.sla?.sum}}
+                </p>
+                <p class="text-dark bold-text h7">
+                  {{p.data.data |currency: 'Rp. '}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+        <div *ngIf="listDocument.length>0">
+          <p class="mb-4 bold-text">
+            Document
+          </p>
+          <ion-item *ngFor="let p of listDocument" lines="none" class="border-light border-radius-8 mt-2 pointer"
+            type="button" (click)="selectItem(p,'Document')">
+            <ion-row slot="start">
+              <img [src]="globalService.getURLImagePartner(p.last_mile_code)" class="mr-2 icon-partner">
+              <ion-col>
+                <p class="text-grey">
+                  {{p.last_mile_name}} {{p.data.sla?.sum}}
+                </p>
+                <p class="text-dark bold-text h7">
+                  {{p.data.data |currency: 'Rp. '}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </div>
+
+      </ion-list>
+    </div>
+  </ng-template>
+</ion-modal>

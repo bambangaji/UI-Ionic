@@ -1,0 +1,18 @@
+export interface ISchedule {
+    checked: boolean;
+    uuid: string;
+    image_from:string;
+    image_to:string;
+    mawb:string;
+    airlines:string;
+    agent:string;
+    date_departed:string;
+    date_arival:string;
+    country:string;
+    vendor:string;
+    weight:number;
+    collie:number;
+    status:string;
+    isStatus:boolean;
+    created_at:string;
+}

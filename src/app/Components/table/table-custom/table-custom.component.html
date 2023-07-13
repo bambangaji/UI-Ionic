@@ -1,0 +1,200 @@
+<div class="table" style="    overflow: auto;">
+  <div class="row my-3">
+    <div class="px-3 py-2 border-light row ml-4 " *ngIf="checkAll">
+      <ion-checkbox labelPlacement="end" [checked]="isCheckAll" value="isCheckAll"
+        [(ngModel)]="isCheckAll"></ion-checkbox>
+      <p class="text-grey mb-0 ml-2">Pilih Semua</p>
+    </div>
+    <form [formGroup]="formSearch">
+      <div class="row ml-1">
+        <app-input-form class="ml-3 min-width-200 bg-white" *ngIf="!isCheckAll" typeInput="search" placeholder="Cari"
+          color="white" formControlName="search" background="grey"></app-input-form>
+        <div *ngIf="export" class="ml-4 px-3 py-2 border-light row hover-light pointer" (click)="exportData()">
+          <img src="assets/icon/icon-upload.svg">
+          <p class="text-grey mb-0 ml-2">Export Data</p>
+        </div>
+        <input type="file" name="importData" id="importData" hidden>
+        <input type="file" name="exportData" id="exportData" hidden>
+        <div *ngIf="!isCheckAll && import" class="ml-4 px-3 py-2 border-light row hover-light pointer"
+          (click)="importData()">
+          <img src="assets/icon/icon-download.svg">
+          <p class="text-grey mb-0 ml-2">Import Data</p>
+        </div>
+        <div *ngIf="isCheckAll" class="ml-4 px-2 py-1 border-light row hover-light pointer bg-red-light"
+          (click)="deleteAll()">
+          <ion-icon name="trash" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
+        </div>
+        <p class="mb-0 center-center text-grey" style="position: absolute; right:10px;">
+          {{((page - 1)*show)+1}}-{{show*page}} dari {{total_data}}
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <ion-content [style]="customCssContent">
+    <ion-item lines="none" class="header-table">
+      <div class="row pl-5 bg-grey-blue py-2 w-100">
+        <div class="col" *ngFor="let p of listHeaderTabel; " [style]="widthCol(p.width)">
+          <div class="row" [class]="p.css">
+            <p class="mb-0 text-grey bold-text">
+              {{p.label}}
+            </p>
+            <div class="ml-1" *ngIf="p.sort">
+              <img src="assets/icon/sort-top-e.svg" style="position: absolute; top: 5px;" class="pointer">
+              <img src="assets/icon/sort-bottom.svg" style="position: absolute; bottom: 7px;" class="pointer">
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-list>
+      <!-- row schedule -->
+      <div *ngIf="type==='schedule'">
+        <ion-row lines="none" class="border-light mx-2 py-2 pr-0 hover-light" *ngFor="let p of dataTable">
+          <div class="row pl-3 w-100">
+            <div class="col center-center">
+              <div class="row pl-3">
+                <ion-checkbox *ngIf="dataTableSettings.checkbox" style="width: 30px;
+                align-self: center;"></ion-checkbox>
+                <div class="align-self-center">
+                  <img [src]="p.image_from" class="small-icon">
+                  <img [src]="p.image_to" class="small-icon imgNimpa">
+                </div>
+                <div>
+                  <p class="mb-0 bold-text">
+                    {{p.country}}
+                  </p>
+                  <p class="text-grey mb-0">
+                    Vendor <span class="bold-text text-dark">{{p.vendor}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col center-center">
+              <p class="text-dark">
+                {{p.mawb}}
+              </p>
+            </div>
+            <div class="col center-center">
+              <p class="text-dark">
+                {{p.airlines}}
+              </p>
+            </div>
+            <div class="col center-center" *ngIf="dataTableSettings.agent">
+              <p class="text-dark">
+                {{p.agent}}
+              </p>
+            </div>
+            <div class="col center-center" style="min-width: 300px;">
+              <p class="text-dark">
+                {{p.departed}} <span class="text-grey">Departed</span>
+              </p>
+              <p>
+                {{p.arival}} <span class="text-grey">Arival</span>
+              </p>
+            </div>
+            <div class="col center-center">
+              <p class="text-dark">
+                {{p.weight}}
+              </p>
+            </div>
+            <div class="col center-center">
+              <p class="text-dark">
+                {{p.collie}}
+              </p>
+            </div>
+            <div class="col center-center">
+              <p class="text-dark">
+                {{p.created_at}}
+              </p>
+            </div>
+            <div *ngIf="dataTableSettings.status" class="col center-center">
+              <p class="color-blue p-2 bg-blue-light pointer hover-light fit-content border-radius-8">
+                {{p.status}}
+              </p>
+            </div>
+            <div class="col center-center">
+              <p *ngIf="dataTableSettings.confirm" (click)="openAlertKonfirmasi(p)"
+                class="mb-0 py-1 px-3 pointer bg-red-light color-red border-radius-8 mr-3 bold-text"
+                style="width: fit-content; float:right;">Konfirmasi</p>
+              <ion-icon [id]="'pop-over-'+p.uuid" name="ellipsis-vertical"
+                class="border-light  p-1 right-header-table pointer hover-light" color="dark" style="position: absolute;
+            right: 0px !important; bottom: -11px;"></ion-icon>
+              <ion-popover [trigger]="'pop-over-'+p.uuid" triggerAction="click">
+                <ng-template>
+                  <ion-content class="ion-padding">
+                    <ion-row class="pointer hover-light">
+                      <ion-icon name="calendar-clear" class="text-grey center-center mr-1"></ion-icon>
+                      Ubah Jadwal
+                    </ion-row>
+                    <ion-row class="pointer hover-light">
+                      <ion-icon name="eye" class="text-grey center-center mr-1"></ion-icon>
+                      Lihat Ringkasan
+                    </ion-row>
+                    <ion-row class="pointer hover-light">
+                      <ion-icon name="trash" class="text-grey center-center mr-1"></ion-icon>
+                      Batalkan
+                    </ion-row>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+            </div>
+          </div>
+        </ion-row>
+      </div>
+
+    </ion-list>
+
+  </ion-content>
+</div>
+<div id="scheduleModal">
+
+</div>
+<ion-modal id="customModal" #scheduleModal trigger="scheduleModal">
+  <ng-template>
+    <div class="wrapper p-2">
+      <ion-row lines="full" style="align-items: center; place-content: space-between;" class="border-bottom-light">
+        <p class="text-dark bold-text p mb-0 pl-2 h6">
+          Konfirmasi Penjadwalan
+        </p>
+        <ion-icon name="close" style="width: 30px; height: 30;" class="p-0 pointer" (click)="scheduleModal.dismiss()">
+        </ion-icon>
+      </ion-row>
+
+      <p class="mb-0 p-3 text-dark">
+        Apakah anda sudah memastikan dengan <span class="bold-text text-dark">No. MWAB {{dataModalConfirm.mawb}}</span>
+        akan berangkat ke
+        destinasi tujuan?
+      </p>
+      <p class="text-grey ml-3">
+        Pilih Vendor
+      </p>
+      <ion-row *ngFor="let p of list_vendor" (click)="pilihVendor(p)" lines="none"
+        class="mt-2 center-center py-2 px-2 row justify-content-between hover-light pointer w-100 ml-auto mr-auto align-items-center"
+        [class]="vendor !== p?'border-light':'border-light-red'">
+        <div class="row center-center ml-1 align-items-center">
+          <ion-icon *ngIf="vendor !== p" name="icon-vendor-2" style="height: 30px;"></ion-icon>
+          <ion-icon *ngIf="vendor === p" name="icon-vendor-red" style="height: 30px;"></ion-icon>
+          <p class="mb-0 bold-text ml-2" [class]="vendor !== p?'text-dark':'color-red'">{{p.name}}</p>
+        </div>
+        <p class="pointer color-red bold-text">Pilih</p>
+      </ion-row>
+      <ion-row class="justify-content-between mt-2">
+        <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;"
+          (click)="konfirmasiSchedule()">
+          <p class="color-red">
+            Ya, Konfirmasi
+          </p>
+
+        </ion-button>
+        <ion-button color="red" class="text-white non-capitalize " style="width: 48%;"
+          (click)="scheduleModal.dismiss()">
+          Pastikan Kembali
+        </ion-button>
+
+      </ion-row>
+
+    </div>
+  </ng-template>
+</ion-modal>

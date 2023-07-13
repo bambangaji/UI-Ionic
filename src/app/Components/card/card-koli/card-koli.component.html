@@ -1,0 +1,107 @@
+<div class="mx-3 border-radius-8">
+  <div class="bg-grey-light" style="border-radius: 8px 8px 0 0; height: 40px;">
+    <ion-item lines="none" class="bg-transparent">
+      <ion-row slot="start" class="koli-card-header" style="border-radius: 8px 8px 0 0">
+        <!-- <p class="koli-card-header-text">
+          Koli {{('0' + indexCard).slice(-2)}}
+        </p> -->
+        <p class="koli-card-header-text">
+          Koli {{('0' + indexCard).slice(-2)}}
+        </p>
+        <ion-icon *ngIf="indexCard !== 1 && !isEditCard" name="icon-close-circle" class="icon-close-koli pointer"
+          style="z-index: 99999;" (click)="deleteKoli()">
+        </ion-icon>
+      </ion-row>
+      <p class="pattern-2">
+        ss
+      </p>
+      <p class="pattern-1">
+        ss
+      </p>
+      <p class="text-grey" slot="end">
+        <!-- Berat Bersih : <span class="bold-text" style="color: #7D76A6;">
+          8 Kg -->
+        <!-- </span> -->
+      </p>
+    </ion-item>
+  </div>
+  <div style="background: linear-gradient(180deg, #ECE8FF 0%, #F7F5FF 51%);" class="pt-3 pb-2">
+    <ion-item lines="none">
+      <ion-item slot="start" lines="none" class="border-radius-8 custom-item-40--custom w-50">
+        <ion-input [readonly]="isEditCard" class="custom w-50 input-field" placeholder="Berat" type="number"
+          [(ngModel)]="dataKoli!.weight">
+        </ion-input>
+        <p class="bold-text p-info">
+          Kg
+        </p>
+      </ion-item>
+      <ion-item slot="end" class="border-radius-8 custom-item-40">
+        <ion-input [readonly]="isEditCard" [(ngModel)]="dataKoli!.length" class="custom input-field"
+          placeholder="Panjang">
+        </ion-input>
+        <ion-input [readonly]="isEditCard" [(ngModel)]="dataKoli!.width" class="custom input-field border-left pl-2"
+          style="
+        left: 28%;" placeholder="Lebar">
+        </ion-input>
+        <ion-input [readonly]="isEditCard" [(ngModel)]="dataKoli!.height" class="custom input-field border-left pl-2"
+          style="
+        left: 56%;" placeholder="Tinggi">
+        </ion-input>
+        <p class="bold-text border-left pl-2 p-info">
+          Cm
+        </p>
+      </ion-item>
+    </ion-item>
+    <ion-item *ngIf="dataKoli!.items.length !== 0" lines="none" class="bg-purple-light m-3 border-radius-8">
+      <ion-col>
+        <ion-row>
+          <p class="h6 bold-text text-dark">
+            Daftar Barang
+          </p>
+          <p *ngIf="!isEditCard" class="ml-2 bold-text pointer text-grey hover-blue" (click)="openModalCreateItem()">
+            Tambah Barang
+          </p>
+        </ion-row>
+        <ion-list class="border-radius-8 bg-transparent">
+          <div>
+            <ion-item *ngFor="let j of dataKoli!.items;let i = index;" lines="none" class="custom-item-50 mb-2"
+              style="background: white !important;">
+              <p class="ml-2 bold-text pointer text-grey">
+                {{j.desc}}<span class="ml-2 font-weight-normal">
+                  {{j.category_detail.label}}
+                </span>
+              </p>
+              <ion-row slot="end">
+                <p class="ml-2 bold-text pointer text-grey">
+                  {{j.qty*j.value | currency: 'Rp. '}}<span class="ml-1 font-weight-normal">
+                    ({{j.qty}} {{j.unit_detail.label}} )
+                  </span>
+                </p>
+                <ion-icon *ngIf="!isEditCard" name="icon-edit-koli" style="font-size: 18px; place-self: center;"
+                  (click)="editModalCreateItem(j,i)" class="ml-2 pointer">
+                </ion-icon>
+                <ion-icon *ngIf="!isEditCard" name="icon-trash" style="font-size: 20px;" class="ml-2 pointer" (click)="deleteItem(j,i)">
+                </ion-icon>
+              </ion-row>
+            </ion-item>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-item>
+    <div *ngIf="dataKoli!.items && dataKoli!.items.length <1">
+      <ion-item lines="none" lines="none" class="bg-purple-light m-3 border-radius-8 py-2">
+        <div slot="start">
+          <p class="ml-2 bold-text pointer text-grey">
+            Koli Ini Belum ada isinya nih
+          </p>
+          <p class="ml-2 font-weight-normal"> Yuk diisi dulu dengan tombol tambah barang Sekrang</p>
+        </div>
+        <ion-button style="width: 150px !important;" slot="end" size="medium" color="blue-purple"
+          class="non-capitalize w-100 pointer w-50" (click)="openModalCreateItem()">Tambah Pesanan</ion-button>
+      </ion-item>
+    </div>
+  </div>
+</div>
+
+<app-create-item id="open-create-item" [listCategory]="listCategory" [listUnit]="listUnit"
+  (inputValueChange)="createItem($event)" idModal="open-create-item"></app-create-item>

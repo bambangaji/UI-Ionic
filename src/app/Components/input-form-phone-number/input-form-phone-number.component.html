@@ -1,0 +1,7 @@
+<ion-row class="color-input border-light p-0 m-0 mx-0 mb-2">
+  <app-dropdown-flag (valueChange)="onPhoneValueChange($event)" class="pl-3 py-2"></app-dropdown-flag>
+  <ion-col size="8" class="p-0" style="height: 0;">
+    <app-input-form placeholder="Masukkan No Telepon" [isBorder]='false' [required]="true"
+      type="number"></app-input-form>
+  </ion-col>
+</ion-row>

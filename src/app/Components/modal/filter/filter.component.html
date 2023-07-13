@@ -1,0 +1,118 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-row class="justify-content-between center-center align-items-center p-2">
+        <p class="mb-0 bold-text h6">
+          Filter
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <!-- <ion-icon name="scan" style="height: 24px; width: 24px;">
+          </ion-icon> -->
+          <p class="color-red bold-text hover-light pointer mr-1">
+            Atur Ulang
+          </p>
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <div class="border-light p-2 text-grey" style="height: 100vh;">
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Dibuat
+          </p>
+          <div (click)="presentPopoverCreate($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{created_at?created_at:'Pilih Tanggal'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Departed
+          </p>
+          <div (click)="presentPopoverDeparted($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{departed?departed:'Pilih Tanggal'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Arival
+          </p>
+          <div (click)="presentPopoverArival($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{arival?arival:'Pilih Tanggal'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Transit
+          </p>
+          <div (click)="presentPopoverTransit($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{transit?transit:'Pilih Tanggal'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Destinasi
+          </p>
+          <div (click)="presentPopoverDestinasi($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{destinasi?destinasi:'Pilih Destinasi'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Agent
+          </p>
+          <div (click)="presentPopoverAgent($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{agent?agent:'Pilih Agent'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Airlines
+          </p>
+          <div (click)="presentPopoverAirLine($event)"
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
+            {{airline?airline:'Pilih Airlines'}}
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+        </div>
+        <div class="mb-2">
+          <p class="text-dark bold-text">
+            Pengiriman Internasional
+          </p>
+          <ion-row *ngFor="let p of list_pengiriman" class="center-center mt-2">
+            <ion-checkbox [checked]="p.isChecked" [(ngModel)]="p.isChecked"></ion-checkbox>
+            <p class="mb-0 ml-2 text-center text-dark">{{p.name}}</p>
+          </ion-row>
+        </div>
+
+        <div style="position: absolute;
+        bottom: 0;
+        height: 120px;
+        background: white;
+        " class="py-2 w-96">
+          <ion-button (click)="submit()" color="red" class="w-96 mx-2">
+            <p class="text-white non-capitalize">Terapkan</p>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

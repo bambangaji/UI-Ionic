@@ -1,0 +1,90 @@
+ion-calendar.calendar-default {
+  padding: 0;
+
+  .title {
+    margin-bottom: 8px;
+
+    .switch-btn {
+      font-size: 12px !important;
+      font-weight: 500;
+      height: 24px;
+      color: var(--ion-color-gray-primary) !important;
+    }
+
+    .arrow-dropdown {
+      display: none;
+    }
+
+    .back,
+    .forward {
+      height: 16px;
+
+      ion-icon {
+        font-size: 12px;
+        color: var(--ion-color-gray-primary);
+      }
+    }
+  }
+
+  .week-toolbar {
+    --min-height: 32px;
+  }
+
+  .week-title {
+    font-weight: 500;
+    font-size: 12px !important;
+    padding: 0 !important;
+    height: unset !important;
+    color: var(--ion-color-gray-primary) !important;
+  }
+
+  .days {
+    height: 24px !important;
+
+    &-btn {
+      height: 24px !important;
+      width: 100% !important;
+
+      p {
+        font-size: 12px !important;
+      }
+
+      &.today:not(.on-selected) {
+        background: var(--ion-color-primary-100);
+
+        p {
+          font-weight: 400 !important;
+          color: var(--ion-color-black) !important;
+        }
+      }
+    }
+  }
+
+  .month-packer-item {
+    &.this-month {
+      button {
+        position: relative;
+        border: unset !important;
+
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 6px;
+          width: 6px;
+          border-radius: 50%;
+          margin-top: 6px;
+          background: var(--ion-color-primary);
+          
+        }
+      }
+    }
+
+    button {
+      font-size: 12px;
+      color: var(--ion-color-gray-lighter);
+    }
+  }
+}

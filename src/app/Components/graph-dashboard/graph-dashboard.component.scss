@@ -1,0 +1,249 @@
+.box {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .box .card-wrapper {
+    border: 0px none;
+    height: 402px;
+    width: 600px;
+  }
+  
+  .box .card {
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 402px;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 662px;
+  }
+  
+  .box .content {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .box .section-header {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    position: relative;
+  }
+  
+  .box .text-wrapper-2 {
+    color: #344054;
+    flex: 1;
+    font-family: "Poppins", Helvetica;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-top: -8px;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .box .custom-help-card-instance {
+    // border: 1px solid !important;
+    // border-color: #eaecf0 !important;
+    // border-radius: 4px !important;
+    height: 24px !important;
+    width: 24px !important;
+  }
+  
+  .box .essetional-filter {
+    height: 16px !important;
+    min-width: 16px !important;
+    position: relative !important;
+  }
+  
+  .box .line-and-bar-chart {
+    align-self: stretch;
+    flex: 1;
+    height: 346px;
+    min-width: 662px;
+    position: relative;
+  }
+  
+  .box .overlap-group {
+    height: 346px;
+    position: relative;
+    width: 662px;
+  }
+  
+  .box .axis {
+    align-items: flex-end;
+    display: flex;
+    gap: 4px;
+    height: 346px;
+    justify-content: center;
+    left: 0;
+    // position: absolute;
+    top: 0;
+    width: 662px;
+  }
+  
+  .box .content-2 {
+    align-items: flex-end;
+    align-self: stretch;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .box .legend {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    position: relative;
+  }
+  
+  .box .legend-series {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    position: relative;
+    width: fit-content;
+  }
+  
+  .box .color {
+    background-color: #a0e2c3;
+    border-radius: 4px;
+    height: 8px;
+    min-width: 8px;
+    position: relative;
+  }
+  
+  .box .text-wrapper-3 {
+    color: #475466;
+    font-family: "Poppins", Helvetica;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 20px;
+    margin-top: -1px;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .box .color-2 {
+    background-color: #f9b4af;
+    border-radius: 4px;
+    height: 8px;
+    min-width: 8px;
+    position: relative;
+  }
+  
+  .box .y-axis {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+  }
+  
+  .box .y-axis-line {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    gap: 8px;
+    height: 22px;
+    position: relative;
+  }
+  
+  .box .number {
+    color: #475466;
+    font-family: "Poppins", Helvetica;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    line-height: 14px;
+    position: relative;
+    text-align: right;
+    white-space: nowrap;
+    width: 40px;
+  }
+  
+  .box .divider {
+    flex: 1;
+    height: 1px;
+    min-width: 614px;
+    position: relative;
+  }
+  
+  .box .divider-2 {
+    height: 1px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 1px;
+    width: 614px;
+  }
+  
+  .box .x-axis {
+    align-self: stretch;
+    height: 16px;
+    min-width: 662px;
+    position: relative;
+    transform: rotate(180deg);
+  }
+  
+  .box .chart-data-instance {
+    left: 48px !important;
+    top: 108px !important;
+  }
+  
+  .box .x-axis-2 {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    // left: 48px;
+    padding: 0px 12px;
+    // position: absolute;
+    top: 305px;
+    // width: 582px;
+  }
+  
+  .box .frame-4 {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    position: relative;
+    // width: 64px;
+  }
+  
+  .box .text-wrapper-4 {
+    color: #475466;
+    font-family: "Poppins", Helvetica;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    line-height: 14px;
+    margin-top: -1px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  

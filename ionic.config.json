@@ -1,0 +1,8 @@
+{
+  "name": "baseTemplate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "innerHTMLTemplatesEnabled": true
+}

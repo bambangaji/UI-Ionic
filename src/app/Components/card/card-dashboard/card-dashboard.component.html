@@ -1,0 +1,30 @@
+<div class="bg-white border-radius-8 p-2 ">
+  <ion-row>
+    <ion-col>
+      <p class="mb-0 text-grey">
+        {{title}}<span>
+          <ion-icon name="help-circle-outline">
+          </ion-icon>
+        </span>
+      </p>
+      <p class="mb-0 bold-text h6">
+        {{content}}
+      </p>
+      <ion-row class="mt-2">
+        <div class="row bg-grey-light border-radius-8 ml-1 px-2">
+          <ion-icon [name]="isUp?'icon-up':'icon-down'" class="center-center pr-2">
+          </ion-icon>
+          <p class="mb-0 center-center bold-text" [class]="isUp?'color-green':'color-red'">
+            {{value}}%
+          </p>
+        </div>
+        <p class="mb-0 ml-4 text-grey">
+          dari kemarin
+        </p>
+      </ion-row>
+    </ion-col>
+    <div class="center-center mr-3">
+      <img src="assets/icon/icon-box-tick.svg" class=" p-2 bg-green-light border-radius-8">
+    </div>
+  </ion-row>
+</div>

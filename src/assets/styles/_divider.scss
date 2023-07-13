@@ -1,0 +1,14 @@
+hr.app-divider {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--ion-color-base-line);
+  height: 1px;
+  width: 100%;
+  margin: 0;
+  &--dashed {
+    border-top-style: dashed;
+  }
+  &--primary-900 {
+    border-top-color: var(--ion-color-primary-900);
+  }
+}

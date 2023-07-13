@@ -1,0 +1,44 @@
+<div
+  class="input-field-label input-field-label--size-{{ size }}"
+  [class.input-field-label--disabled]="disabled"
+  [class.input-field-label--bordered]="bordered"
+  [class.input-field-label--error]="isError">
+  <p
+    *ngIf="label"
+    class="input-field-label__label">
+    {{ label }}<span *ngIf="required">*</span>
+  </p>
+  <div class="input-field-label__main">
+    <div
+      class="input-field-label__left"
+      [class.input-field-label__left--show]="start.children.length">
+      <span #start>
+        <ng-content select="[left]"></ng-content>
+      </span>
+    </div>
+
+    <div class="input-field-label__field">
+      <ion-input
+        appInputRule
+        [tabIndex]="disabled ? '-1' : tabIndex"
+        [type]="type"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [readonly]="isReadonly"
+        [inputRule]="inputRule"
+        maxlength="5"
+        [(ngModel)]="value"
+        (keypress)="keypress($event)"
+        (ionFocus)="focused.emit()"
+      ></ion-input>
+    </div>
+
+    <div
+      class="input-field-label__right"
+      [class.input-field-label__right--show]="end.children.length">
+      <span #end>
+        <ng-content select="[right]"></ng-content>
+      </span>
+    </div>
+  </div>
+</div>

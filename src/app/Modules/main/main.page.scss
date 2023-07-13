@@ -1,0 +1,35 @@
+.icon {}
+
+.sub-menu {
+    margin-left: 2rem;
+}
+
+.modal-profile {
+    width: 15%;
+    position: absolute;
+    right: 10px;
+    border: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.minimize-sidebar {
+    min-width: 60px !important;
+    width: 60px;
+    transition: width 1s;
+}
+
+.sideBar {
+    min-width: 60px !important;
+    width: 60px;
+    transition: width 0.5s;
+}
+
+.sideBar:hover {
+    // min-width: 250px !important;
+    width: 250px;
+    transition: 0.5s;
+}
+
+.selected {
+    border-left: 5px solid rgb(255, 202, 67);
+}

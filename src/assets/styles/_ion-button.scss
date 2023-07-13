@@ -1,0 +1,287 @@
+@import 'src/assets/styles/_mixin.scss';
+
+ion-button {
+  --background: transparent;
+  --box-shadow: unset;
+  --padding-start: unset;
+  --padding-end: unset;
+  
+  border-radius: 8px;
+  text-transform: unset;
+  letter-spacing: 0px;
+  margin: 0;
+
+  &::part(native) {
+    box-shadow: unset;
+    border-radius: 8px;
+    @include text-shorten;
+  }
+
+  &.size-sm {
+    min-height: unset;
+    height: 32px;
+    min-width: 32px;
+    font-size: 12px;
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+ion-button.button-default {
+  --background: var(--ion-color-primary);
+  --padding-start: 16px;
+  --padding-end: 16px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  &.bg-primary {
+    --background: var(--ion-color-primary);
+    --background-hover: var(--ion-color-primary-600);
+    --background-activated: var(--ion-color-primary-400);
+    --background-focused: var(--ion-color-primary-400);
+  
+    --color: var(--ion-color-white);
+    --color-activated: var(--ion-color-white);
+    --color-focused: var(--ion-color-white);
+    --color-hover: var(--ion-color-white);
+
+    &.disabled {
+      --background: var(--ion-color-disable-dark);
+      --background-hover: var(--ion-color-disable-dark);
+      --background-activated: var(--ion-color-disable-dark);
+      --background-focused: var(--ion-color-disable-dark);
+
+      --color: var(--ion-color-disable-light);
+      --color-activated: var(--ion-color-disable-light);
+      --color-focused: var(--ion-color-disable-light);
+      --color-hover: var(--ion-color-disable-light);
+    }
+  }
+  
+  &.bg-pink {
+    --background: var(--ion-color-primary-50);
+    --background-hover: var(--ion-color-primary-100);
+    --background-activated: var(--ion-color-primary-200);
+    --background-focused: var(--ion-color-primary-200);
+  
+    --color: var(--ion-color-primary);
+    --color-activated: var(--ion-color-primary);
+    --color-focused: var(--ion-color-primary);
+    --color-hover: var(--ion-color-primary);
+
+    &.disabled {
+      --background: var(--ion-color-disable-light);
+      --background-hover: var(--ion-color-disable-light);
+      --background-activated: var(--ion-color-disable-light);
+      --background-focused: var(--ion-color-disable-light);
+
+      --color: var(--ion-color-disable-dark);
+      --color-activated: var(--ion-color-disable-dark);
+      --color-focused: var(--ion-color-disable-dark);
+      --color-hover: var(--ion-color-disable-dark);
+    }
+  }
+
+  &.bg-white {
+    --background: var(--ion-color-white);
+    --background-hover: var(--ion-color-gray-300);
+    --background-activated: var(--ion-color-gray-300);
+    --background-focused: var(--ion-color-gray-300);
+  
+    --color: var(--ion-color-gray-primary);
+    --color-activated: var(--ion-color-gray-primary);
+    --color-focused: var(--ion-color-gray-primary);
+    --color-hover: var(--ion-color-gray-primary);
+
+    &--active {
+      --background: var(--ion-color-gray-lighter-200);
+      --background-hover: var(--ion-color-gray-lighter-200);
+      --background-activated: var(--ion-color-gray-lighter-200);
+      --background-focused: var(--ion-color-gray-lighter-200);
+    
+      --color: var(--ion-color-primary);
+      --color-activated: var(--ion-color-primary);
+      --color-focused: var(--ion-color-primary);
+      --color-hover: var(--ion-color-primary);
+    }
+  }
+
+  &.bg-white-gray {
+    --background: var(--ion-color-white);
+    --background-hover: var(--ion-color-gray-300);
+    --background-activated: var(--ion-color-gray-300);
+    --background-focused: var(--ion-color-gray-300);
+  
+    --color: var(--ion-color-gray-lighter);
+    --color-activated: var(--ion-color-gray-lighter);
+    --color-focused: var(--ion-color-gray-lighter);
+    --color-hover: var(--ion-color-gray-lighter);
+
+    &--active {
+      --background: var(--ion-color-gray-lighter-200);
+      --background-hover: var(--ion-color-gray-lighter-200);
+      --background-activated: var(--ion-color-gray-lighter-200);
+      --background-focused: var(--ion-color-gray-lighter-200);
+    
+      --color: var(--ion-color-primary);
+      --color-activated: var(--ion-color-primary);
+      --color-focused: var(--ion-color-primary);
+      --color-hover: var(--ion-color-primary);
+    }
+  }
+
+  &.bg-gray {
+    --background: var(--ion-color-gray-50);
+    --background-hover: var(--ion-color-gray-200);
+    --background-activated: var(--ion-color-gray-200);
+    --background-focused: var(--ion-color-gray-200);
+  
+    --color: var(--ion-color-primary);
+    --color-activated: var(--ion-color-primary);
+    --color-focused: var(--ion-color-primary);
+    --color-hover: var(--ion-color-primary);
+
+    &--active {
+      --background: var(--ion-color-gray-300);
+      --background-hover: var(--ion-color-gray-300);
+      --background-activated: var(--ion-color-gray-300);
+      --background-focused: var(--ion-color-gray-300);
+    
+      --color: var(--ion-color-primary);
+      --color-activated: var(--ion-color-primary);
+      --color-focused: var(--ion-color-primary);
+      --color-hover: var(--ion-color-primary);
+    }
+  }
+
+  &.size-lg {
+    min-height: 40px;
+    min-width: 40px;
+    font-size: 14px;
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+
+  &.size-sm {
+    min-height: 32px;
+    min-width: 32px;
+    font-size: 12px;
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+
+  &.size-xs {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    min-height: 30px;
+    height: 30px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+
+ion-button.button-outline {
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+
+  --color: var(--ion-color-primary);
+  --color-activated: var(--ion-color-primary);
+  --color-focused: var(--ion-color-primary);
+  --color-hover: var(--ion-color-primary);
+
+  --border-radius: 8px;
+  --border-width: 1px;
+
+  &.size-small {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    font-size: 12px;
+  }
+
+  &.bg-line {
+    --border-color: var(--ion-color-base-line);
+
+    --color: var(--ion-color-gray-lighter);
+    --color-activated: var(--ion-color-gray-lighter);
+    --color-focused: var(--ion-color-gray-lighter);
+    --color-hover: var(--ion-color-gray-lighter);
+  }
+}
+
+ion-button.button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  min-width: 36px;
+  border: 1px solid var(--ion-color-gray-200);
+  margin: 0;
+  color: var(--ion-color-gray-primary);
+
+  &.size-sm {
+    height: 32px;
+    min-height: 32px;
+    min-width: 32px;
+
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+
+  &.size-lg {
+    height: 40px;
+    min-height: 40px;
+    min-width: 40px;
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+
+  ion-icon {
+    color: var(--ion-color-gray-primary);
+  }
+}
+
+ion-button.button-simple {
+  --border-radius: 0px;
+  --background: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --ripple-color: transparent;
+  --color: var(--ion-color-gray-lighter);
+  height: max-content;
+
+  &::part(native) {
+    box-shadow: unset;
+    border-radius: 0px;
+  }
+
+  &--bg-primary {
+    --color: var(--ion-color-primary);
+  }
+
+  &--bg-white {
+    --color: var(--ion-color-gray-lighter);
+    --color-hover: var(--ion-color-primary);
+  }
+  
+  &:disabled {
+    --color: var(--ion-color-primary);
+  }
+
+  &--size-sm {
+    font-size: 12px;
+    height: 15px;
+  }
+}

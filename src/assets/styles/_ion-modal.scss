@@ -1,0 +1,39 @@
+ion-modal,
+ion-modal.modal-default {
+  // for overlay modal still have backdrop
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.4) !important;
+
+  &::part(content) {
+    border-radius: 12px;
+  }
+}
+
+ion-modal.modal-full {
+  &::part(content) {
+    height: calc(100% - 48px);
+  }
+
+  &--rounded {
+    &-xl {
+      &::part(content) {
+        border-radius: 24px;
+      }
+    }
+  }
+}
+
+ion-modal.modal-hidden {
+  display: none;
+}
+
+ion-modal.modal-transparent {
+  --background: transparent;
+
+  ion-content {
+    --background: transparent;
+  }
+  // --background: transparent;
+  // &::part(background) {
+  //   background: transparent;
+  // }
+}

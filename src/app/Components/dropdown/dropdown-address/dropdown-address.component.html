@@ -1,0 +1,7 @@
+<!-- <ion-select [label]="label" [class]="selectClass" fill="outline" [(ngModel)]="value" >
+  <ion-select-option [value]="p.label" *ngFor="let p of options">{{p.label}}</ion-select-option>
+</ion-select> -->
+<ion-select readonly="true" interface="popover" [placeholder]="label" class="custom-item-40 " [class.op-1]="isLocation"
+  [(ngModel)]="value" [disabled]="disabled">
+  <ion-select-option [value]="isGetID?p:p.label" *ngFor="let p of options">{{p.label}}</ion-select-option>
+</ion-select>

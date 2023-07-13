@@ -1,0 +1,35 @@
+<ion-content class="bg-white">
+  <div class="bg-white h-100 w-100">
+    <img class="absolute-bottom ml-3 mt-3"  style="position: absolute;" src="assets/icon/ax_logo.svg">
+    <section class="form-login h-100">
+      <ion-row>
+        <ion-col class="pt-4 pl-5 bg-transparent" style="margin-top: 10%;">
+          <div class="form-input ml-5 mt-5 w-50 ml-auto mr-auto">
+            <p class="bold-text h7 mb-1">
+              Masuk
+            </p>
+            <p class="text-grey">
+              Isi Username dan Password untuk mengakses Internal System Abang Express Manifest Studio
+            </p>
+            <form [formGroup]="formGroupTemplate.loginForm">
+              <app-input-form placeholder="Masukkan Email" [required]="true" type="email"
+                formControlName="email"></app-input-form>
+              <div class="mt-3">
+                <app-input-form placeholder="Masukkan Password" type="password" [required]="true"
+                  formControlName="password"></app-input-form>
+              </div>
+              <p *ngIf="errorMsg">
+                {{errorMsg}}
+              </p>
+              <ion-button (click)="submit()" color="red" type="submit" class="mt-3 " style="width: 99%;">Masuk</ion-button>
+            </form>
+          </div>
+        </ion-col>
+        <ion-col class="p-0">
+          <img class="gambar-login" src="assets/img/image_login.svg">
+        </ion-col>
+      </ion-row>
+
+    </section>
+  </div>
+</ion-content>

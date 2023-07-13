@@ -1,0 +1,34 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper p-2">
+      <ion-row>
+        <p class="h5 p-2">Buat Barang</p>
+        <ion-icon name="close" class="close-icon pointer" size="small" (click)="closeModal();"
+          style="top:4px; right:4px;"></ion-icon>
+      </ion-row>
+      <ion-list class="mx-3">
+        <app-dropdown-address label="Kategori" selectClass="w-100 arrowRight text-grey mb-3" [options]="listCategory!"
+          [(ngModel)]="category" [isGetID]="true"></app-dropdown-address>
+        <div class="my-3">
+          <app-input-form placeholder="Nama Barang" [(ngModel)]="desc"> </app-input-form>
+        </div>
+        <div class="mb-3">
+          <app-input-form placeholder="Harga Barang" [(ngModel)]="value" type="number"> </app-input-form>
+        </div>
+        <ion-row class="color-input border-light center-center pt-0 mr-2 mt-2" style="height: 40px;">
+          <ion-col size="9" class="pt-0" style="height: 0;">
+            <app-input-form [isBorder]="false" placeholder="Kuantitas" type="number" [(ngModel)]="qty"
+              class="mt-1 w-50 mr-2"></app-input-form>
+          </ion-col>
+          <ion-col size="3" class="pt-0" style="height: 0;">
+            <ion-select placeholder="PCS" readonly="true" interface="popover" class="custom-item-40--border" [(ngModel)]="unit">
+              <ion-select-option [value]="j" *ngFor="let j of listUnit">{{j.label}}</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-button slot="end" size="medium" color="blue-purple" class="non-capitalize w-100 pointer w-50 mt-5"
+          id="open-create-item" (click)="submitForm()">Simpan</ion-button>
+      </ion-list>
+    </div>
+  </ng-template>
+</ion-modal>

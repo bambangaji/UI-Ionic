@@ -1,0 +1,57 @@
+ion-badge.badge-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+
+  &.bg-pink {
+    --background: var(--ion-color-primary-50);
+    color: var(--ion-color-primary);
+  }
+
+  &.bg-disable-light {
+    --background: var(--ion-color-disable-light);
+    color: var(--ion-color-disable-dark);
+  }
+  
+  &.bg-blue {
+    --background: var(--ion-color-blue-50);
+    color: var(--ion-color-blue-600);
+  }
+
+  &.size-sm {
+    font-size: 10px;
+  }
+}
+
+ion-badge.badge-pill {
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  --padding-end: 8px;
+  --padding-start: 8px;
+
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  @include text-shorten;
+
+  &--sm {
+    font-size: 10px;
+  }
+
+  &--yellow {
+    --background: var(--ion-color-warning-50);
+    --color: var(--ion-color-warning)
+  }
+
+  &--green {
+    --background: var(--ion-color-success-50);
+    --color: var(--ion-color-success)
+  }
+
+  &--gray400 {
+    --background: var(--ion-color-gray-400);
+    --color: var(--ion-color-black);
+  }
+
+}

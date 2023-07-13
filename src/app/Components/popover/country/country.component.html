@@ -1,0 +1,32 @@
+<ion-content class="ion-padding">
+  <app-input-form *ngIf="type!=='tanggal'" typeInput="search" placeholder="Cari Negara"></app-input-form>
+
+  <ion-list>
+    <div *ngIf="type==='normal'" class="ml-3">
+      <div *ngFor="let p of list_data" class="row hover-light pointer w-100 mt-2" (click)="selectCountry(p)">
+        <p class="mb-0 text-grey">{{p}}</p>
+      </div>
+    </div>
+    <div *ngIf="type==='inisial'" class="ml-3">
+      <div *ngFor="let p of list_data" class="row hover-light pointer w-100 mt-2" (click)="selectCountry(p)">
+        <p class="mb-0 text-grey mr-2 bold-text">{{p|inisialName}}</p>
+        <p class="mb-0 text-grey">{{p}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="type==='country'">
+      <div *ngFor="let p of list_country" class="row hover-light pointer w-100 mt-2" (click)="selectCountry(p.name)">
+        <img src="assets/icon/usa.svg" style="width: 65px;height: 25px; border-radius: 10px;">
+        <p class="mb-0 text-grey">{{p.name}}</p>
+      </div>
+    </div>
+    <div *ngIf="type==='tanggal'"  class="ml-3">
+      <div *ngFor="let p of list_tanggal" class="row hover-light pointer w-100 mt-2" (click)="selectCountry(p)">
+        <!-- <img src="assets/icon/usa.svg" style="width: 65px;height: 25px; border-radius: 10px;"> -->
+        <p class="mb-0 text-grey">{{p}}</p>
+      </div>
+    </div>
+
+  </ion-list>
+</ion-content>
+<app-modal-schedule-create></app-modal-schedule-create>

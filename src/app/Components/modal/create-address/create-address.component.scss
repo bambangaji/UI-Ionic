@@ -1,0 +1,19 @@
+ion-modal#example-modal {
+    --width: 100%;
+    --min-width: 250px;
+    --max-width: 600px;
+    --height: fit-content;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  }
+  
+  ion-modal#example-modal h1 {
+    margin: 20px 20px 10px 20px;
+  }
+  
+  ion-modal#example-modal .wrapper {
+    margin-bottom: 10px;
+  }
+  p{
+    margin-bottom: 0px !important;
+  }

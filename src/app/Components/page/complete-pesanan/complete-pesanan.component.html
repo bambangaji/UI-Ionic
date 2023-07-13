@@ -1,0 +1,128 @@
+<ion-list class=" bg-transparent z102 mt4 position-relative w-100 ">
+  <div class="cardForm ml-auto mr-auto">
+    <div class="bg-purple border-radius-8" style="min-height:350px">
+      <ion-list class="bg-transparent text-center pt-5 text-white"
+        style="position: relative;z-index: 10000; min-height: 350px;">
+        <img src="assets/icon/success.svg">
+        <p class="mt-3 h5 bold-text">
+          Pesanan Berhasil Dibuat
+        </p>
+        <p>
+          Senin, 21 Juni 2023 <span>•</span> 14:30 WIB
+        </p>
+        <!-- <ion-button color="dark-blue">
+          Print Resi
+        </ion-button> -->
+        <img src="assets/icon/image_login.svg" class="img-pakdome">
+      </ion-list>
+    </div>
+    <div style="top:-40px;    z-index: 999999;" class="position-relative mx-3">
+      <ion-card class="shadow-none ">
+        <ion-card-content>
+          <ion-item lines="none">
+            <ion-row slot="start">
+              <img src="assets/icon/delivere.svg" class="mr-2 circle">
+              <ion-col>
+                <p class="text-grey">
+                  JNE (2-3 Hari)
+                </p>
+                <p class="text-dark bold-text h7">
+                  Rp16.000
+                </p>
+              </ion-col>
+            </ion-row>
+            <ion-col slot="end" class="text-right">
+              <p class="text-grey">
+                17 May 2024
+              </p>
+              <p class="text-dark bold-text h7">
+                Rp 1.000.000
+              </p>
+            </ion-col>
+          </ion-item>
+          <!-- <div *ngFor="let p of listKoli; let i = index;" class="mb-3">
+            <app-card-koli [indexCard]="i+1" [dataKoli]="p" [listUnit]="listUnit" [listCategory]="listCategory"
+              (onDelete)="deleteKoli($event)">
+            </app-card-koli>
+          </div> -->
+        </ion-card-content>
+      </ion-card>
+      <ion-card class="shadow-none">
+        <ion-card-content>
+          <p class="p-2 bold-text bg-grey-light tag-pengirim">
+            Pengirim
+          </p>
+          <p class="text-dark bold-text h7">
+            Alzaro Alkawiri
+            <span class="bg-purple-light text-blue font-weight-normal h8 border-radius-8 py-1 px-2">
+              Utama
+            </span>
+          </p>
+          <p>
+            03849732848274824
+          </p>
+          <p>
+            Jl. Raya Condet No.27 B, RT.5/RW.3, Balekambang, Kec. Kramat jati, Kota Jakarta Timur, Daerah Khusus Ibukota
+            Jakarta 13530, Indonesia
+          </p>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class="shadow-none ">
+        <ion-card-content>
+          <p class="p-2 bold-text bg-grey-light tag-pengirim">
+            Penerima
+          </p>
+          <p class="text-dark bold-text h7">
+            Alzaro Alkawiri
+          </p>
+          <p>
+            03849732848274824
+          </p>
+          <p>
+            Jl. Raya Condet No.27 B, RT.5/RW.3, Balekambang, Kec. Kramat jati, Kota Jakarta Timur, Daerah Khusus Ibukota
+            Jakarta 13530, Indonesia
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="shadow-none ">
+        <ion-card-content>
+          <ion-grid class="text-grey">
+            <ion-row>
+              <ion-col class="text-dark">
+                <p class="bold-text h7">Total Tagihan</p>
+              </ion-col>
+              <ion-col class="text-dark text-right">
+                <p class="bold-text h7">Rp.30.000</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p>Biaya Pengiriman</p>
+              </ion-col>
+              <ion-col class="text-right">
+                <p>Rp.30.000</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p>Biaya Asuransi</p>
+              </ion-col>
+              <ion-col class="text-right">
+                <p>Rp.30.000</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p>Biaya Admin</p>
+              </ion-col>
+              <ion-col class="text-right">
+                <p>Rp.30.000</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-list>

@@ -1,0 +1,47 @@
+<div size="3" class="pointer border-right pr-1" (click)="openModal()" style="    height: 34px;">
+  <ion-row style="place-items: center;" class="pt-1">
+    <img [src]="'assets/img/flag/' + phoneCountry.code.toLowerCase() + '.svg'" style="width: 25px; padding-top:6px;">
+    <p class="text-grey m-auto bold-text mt-1 px-2 pt-1">{{phoneCountry.ext}}</p>
+    <ion-icon name="caret-down" color="medium" size="normal" style="padding-top: 6px; "></ion-icon>
+  </ion-row>
+  <div id="openModal">
+  </div>
+</div>
+
+<ion-modal id="example-modal" #modal trigger="openModal">
+  <ng-template>
+    <div class="wrapper p-2">
+      <ion-list>
+        <ion-row *ngFor="let p of listCountry;" class="pointer hover-light pl-2 my-1" (click)="selectCountry(p)">
+          <img [src]="'assets/img/flag/' + p.code.toLowerCase() + '.svg'" style="width: 25px;
+          border-radius: 0px;">
+          <p class="text-grey ml-2 mr-2 mb-0">{{p.ext}} {{p.country}}</p>
+        </ion-row>
+      </ion-list>
+    </div>
+  </ng-template>
+</ion-modal>
+<!-- <ion-popover #popover [isOpen]="openFlag" (didDismiss)="openFlag = false" mode="ios">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-row *ngFor="let p of listCountry;" class="pointer hover-light pl-2" (click)="selectCountry(p)">
+          <img [src]="'assets/img/flag/' + p.code.toLowerCase() + '.svg'" style="width: 25px;
+          border-radius: 0px;">
+          <p class="text-grey ml-2 mr-2 mb-0">{{p.ext}} {{p.country}}</p>
+        </ion-row>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover> -->
+<!-- <ion-item>
+  <ion-label class="dropdown-label" slot="start">Dropdown link</ion-label>
+  <ion-select interface="popover" [(ngModel)]="selectedOption">
+    <ion-select-option value="p" *ngFor="let p of listCountry;">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="p.img"></ion-img>
+      </ion-thumbnail>
+      Action
+    </ion-select-option>
+  </ion-select>
+</ion-item> -->

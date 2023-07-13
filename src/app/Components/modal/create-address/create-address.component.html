@@ -1,0 +1,82 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+
+    <form [formGroup]="addressForm">
+      <div class="wrapper mb-3">
+        <p class="h5 p-2">{{label}}</p>
+        <ion-item lines="none">
+          <app-input-form placeholder="Masukkan Nama Penerima" class="w-100" formControlName="name"></app-input-form>
+        </ion-item>
+        <ion-item lines="none" *ngIf="isEmail">
+          <app-input-form placeholder="Masukkan Email" class="w-100" formControlName="email"></app-input-form>
+        </ion-item>
+        <ion-row class="color-input border-light px-2 mb-2 pt-0 pb-2 mx-3">
+          <app-dropdown-flag (valueChange)="onPhoneValueChange($event)" class="pt-1"></app-dropdown-flag>
+          <ion-col size="9" class="p-1 pt-2" style="height: 0;">
+            <app-input-form placeholder="Masukkan No Telepon" [isBorder]='false' formControlName="phone"
+              [required]="true" type="number" style="position: relative; top: -4px;"></app-input-form>
+          </ion-col>
+        </ion-row>
+        <ion-row class="mx-3">
+          <ion-col class="pl-0">
+            <app-dropdown-address label="Provinsi" selectClass="w-100 arrowRight text-grey mb-3" [disabled]="true"
+              [isLocation]="true" formControlName="province" [options]="listProvince"
+              (click)="getDataLocation('province','open-pick-address-location-province')"></app-dropdown-address>
+          </ion-col>
+          <ion-col>
+            <app-dropdown-address label="Kota" selectClass="pl-2 p1-2 w-100 arrowRight text-grey mb-3"
+              formControlName="city" [options]="listCity" [disabled]="true"
+              [isLocation]="addressForm.value['province']?true:false"
+              (click)="getDataLocation('city','open-pick-address-location-city')"></app-dropdown-address>
+          </ion-col>
+        </ion-row>
+        <ion-row class="mx-3">
+          <ion-col class="pl-0">
+            <app-dropdown-address label="Kecamatan" selectClass="w-100 arrowRight text-grey" formControlName="district"
+              [options]="listDistrict" [disabled]="true" [isLocation]="addressForm.value['city']?true:false"
+              (click)="getDataLocation('district','open-pick-address-location-district')"></app-dropdown-address>
+          </ion-col>
+          <ion-col>
+            <app-dropdown-address label="Kelurahan" selectClass="pl-2 w-100 arrowRight text-grey mb-3"
+              formControlName="subdistrict" [options]="listSubDistrict" [disabled]="true"
+              [isLocation]="addressForm.value['district']?true:false"
+              (click)="getDataLocation('subdistrict','open-pick-address-location-subdistrict')"></app-dropdown-address>
+          </ion-col>
+        </ion-row>
+
+        <ion-item lines="none" class="mt-2">
+          <app-input-form placeholder="Kode Pos" class="w-100" formControlName="postal"></app-input-form>
+        </ion-item>
+        <ion-textarea formControlName="address1" placeholder="Masukkan Alamat"
+          class="color-input border-light pl-3 w-96 pr-3 text-grey font-weight-normal mx-3"
+          style="height:100px; width:94%;"></ion-textarea>
+        <div *ngIf="isPassword" class="mx-3">
+          <p class="h5 p-2">Password</p>
+          <div class="mb-3">
+            <app-input-form placeholder="Password" type="password" formControlName="password"
+              class="w-100"></app-input-form>
+          </div>
+          <app-input-form placeholder="Password" type="password" formControlName="repassword"
+            class="w-100"></app-input-form>
+        </div>
+        <ion-button slot="end" size="medium" color="blue-purple" (click)="submit()"
+          class="mt-5 w-94 ml-3 mr-3 non-capitalize">Simpan</ion-button>
+      </div>
+    </form>
+    <app-pick-administrative id="open-pick-address-location-province"
+      (inputValueChange)="onAddressLocationValueChange($event)" idModal="openModalAddress"
+      [currentData]="addressForm.value['province']"></app-pick-administrative>
+
+    <!-- <app-pick-administrative id="open-pick-address-location-city"
+      (inputValueChange)="onAddressLocationValueChange($event)" idModal="open-pick-address-location-city"
+      [currentData]="addressForm.value['city']"></app-pick-administrative>
+
+    <app-pick-administrative id="open-pick-address-location-administrative"
+      (inputValueChange)="onAddressLocationValueChange($event)" idModal="open-pick-address-location-district"
+      [currentData]="addressForm.value['district']"></app-pick-administrative>
+
+    <app-pick-administrative id="open-pick-address-location-subdistrict"
+      (inputValueChange)="onAddressLocationValueChange($event)" idModal="open-pick-address-location-subdistrict"
+      [currentData]="addressForm.value['subdistrict']"></app-pick-administrative> -->
+  </ng-template>
+</ion-modal>

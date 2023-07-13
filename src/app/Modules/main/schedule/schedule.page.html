@@ -1,0 +1,15 @@
+<ion-content [fullscreen]="true">
+  <app-dashboard-background>
+    <app-label-page title="Schedule"></app-label-page>
+    <ion-card class="z102 position-relative mr-4 ml-4">
+      <div class="row bg-grey-blue2 pl-3">
+        <div (click)="changeTab(p)" class="pointer" *ngFor="let p of listTab" style="border-top-right-radius: 10px; border-top-left-radius: 10px;" [class]="currentTab===p?'bg-white':'text-grey'">
+          <p class="mb-0  px-3 py-2 bold-text" [class]="currentTab===p?'color-red':'text-grey'">
+            {{p}}
+          </p>
+        </div>
+      </div>
+      <app-table-custom></app-table-custom>
+    </ion-card>
+  </app-dashboard-background>
+</ion-content>

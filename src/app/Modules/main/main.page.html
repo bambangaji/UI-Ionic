@@ -1,0 +1,39 @@
+<app-header></app-header>
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay" style="max-width: 200px !important;" class="sideBar"
+    (mouseleave)="changeSideMenu(false)" (mouseover)="changeSideMenu(true)">
+    <ion-content>
+      <ion-list id="inbox-list" class="mt-5">
+        <app-input-form class="mx-2 max-width-250" typeInput="search" placeholder="Cari"
+          background="grey"></app-input-form>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <div>
+            <ion-item button=" true" (click)="changeMenu(p);" lines="none" detail="false"
+              [class.selected]="p.isOpen || currentUrl.includes(p.url)" class="pointer hover-light"
+              [routerLink]="[p.url]">
+              <ion-icon *ngIf="p.isOpen || currentUrl.includes(p.url)" [name]="p.icon"
+                class="icon my-2 ml-0 mr-3" style="min-width: 24px; min-height: 24px;"></ion-icon>
+              <ion-icon *ngIf="!p.isOpen && !currentUrl.includes(p.url)" [name]="p.icon" color="red"
+                class="icon my-2 ml-0 mr-3" style="min-width: 24px; min-height: 24px;">
+              </ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+            <div *ngIf="p.isOpen && p.children.length !== 0">
+              <ion-menu-toggle auto-hide="false" *ngFor="let c of p.children; let j = index">
+                <ion-list lines="none" class="p-0">
+                  <ion-item menuclose class="sub-menu p-0" (click)="currentUrl = c.url" routerDirection="root"
+                    [routerLink]="[c.url]">
+                    <ion-icon name="ellipse" slot="start" [color]="currentUrl === c.url ? 'warning' : 'medium'"
+                      size="small"></ion-icon>
+                    {{c.title}}
+                  </ion-item>
+                </ion-list>
+              </ion-menu-toggle>
+            </div>
+          </div>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

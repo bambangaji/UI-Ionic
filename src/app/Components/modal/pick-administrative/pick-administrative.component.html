@@ -1,0 +1,31 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper p-2">
+      <ion-row>
+        <p class="h5 p-2">Daftar {{type}}</p>
+        <ion-icon name="close" class="close-icon pointer" size="small" (click)="closeModal();"></ion-icon>
+      </ion-row>
+      <ion-item lines="none">
+        <ion-input [placeholder]="'Cari ' + type" (ngModelChange)="onValueChange($event)"
+          class="custom w-100 input-field border-input" [(ngModel)]="value" (keypress)="keypress($event)"
+          [clearInput]="true"></ion-input>
+      </ion-item>
+      <ion-list class="mx-3">
+        <ion-radio-group [value]="currentData">
+          <div *ngFor="let d of listData" class="border-light border-radius-8 p-3 mb-3 hover-light pointer"
+            (click)="onChangeValue(d)">
+            <ion-row>
+              <p class="bold-text text-dark mb-0" *ngIf="type==='province'">{{d['provinsi']}}</p>
+              <p class="bold-text text-dark mb-0" *ngIf="type==='district'">{{d['kecamatan']}}</p>
+              <p class="bold-text text-dark mb-0" *ngIf="type==='city'">{{d['kabupaten']}}</p>
+              <p class="bold-text text-dark mb-0" *ngIf="type==='subdistrict'">{{d['kelurahan']}}</p>
+              <ion-radio aria-label="Custom checkbox" class="radio-button"></ion-radio>
+            </ion-row>
+
+          </div>
+        </ion-radio-group>
+
+      </ion-list>
+    </div>
+  </ng-template>
+</ion-modal>
