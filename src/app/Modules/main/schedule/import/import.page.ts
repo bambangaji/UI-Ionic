@@ -3,11 +3,11 @@ import { TableCustomComponent } from 'src/app/Components/table/table-custom/tabl
 import { ISchedule } from 'src/app/Interfaces/schedule.interface';
 
 @Component({
-  selector: 'app-log',
-  templateUrl: './log.page.html',
-  styleUrls: ['./log.page.scss'],
+  selector: 'app-import',
+  templateUrl: './import.page.html',
+  styleUrls: ['./import.page.scss'],
 })
-export class LogPage implements OnInit {
+export class ImportPage implements OnInit {
   @ViewChild(TableCustomComponent) tableComponent?: TableCustomComponent;
 
   dataheader = [
@@ -51,11 +51,6 @@ export class LogPage implements OnInit {
     {
       css: '',
       label: 'DIBUAT',
-      sort: true,
-    },
-    {
-      css: '',
-      label: 'STATUS',
       sort: true,
     },
     {
@@ -224,13 +219,15 @@ export class LogPage implements OnInit {
   }
   setTable() {
     this.tableComponent?.setData(this.dataheader, this.dataTable, {
-      status: true,
-      detail: true,
+      // status: true,
+      detail: false,
       confirm: false,
       checkboxAll: false,
       importData: false,
       exportData: false,
       checkbox: false,
-    })
+      option: false,
+      trash: true
+    }, 'schedule-import')
   }
 }

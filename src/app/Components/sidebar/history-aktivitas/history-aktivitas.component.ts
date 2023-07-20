@@ -1,15 +1,11 @@
-import { Component, OnInit,Input,ViewChild, ChangeDetectorRef } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'app-sidebar-dashboard',
-  templateUrl: './sidebar-dashboard.component.html',
-  styleUrls: ['./sidebar-dashboard.component.scss'],
+  selector: 'app-history-aktivitas',
+  templateUrl: './history-aktivitas.component.html',
+  styleUrls: ['./history-aktivitas.component.scss'],
 })
-export class SidebarDashboardComponent  implements OnInit {
-  @Input() idModal: string = ''
-  @ViewChild(IonModal) modal?: IonModal;
-  
+export class HistoryAktivitasComponent implements OnInit {
   @Input() data: any[] = [
     {
       date: '18-07-2023 13:45',

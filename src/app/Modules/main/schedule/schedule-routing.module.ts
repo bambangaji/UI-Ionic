@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'log',
     loadChildren: () => import('../../../Modules/main/schedule/log/log.module').then( m => m.LogPageModule)
+  },
+  {
+    path: 'import',
+    loadChildren: () => import('../../../Modules/main/schedule/import/import.module').then( m => m.ImportPageModule)
   }
 ];
 

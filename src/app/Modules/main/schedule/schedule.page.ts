@@ -144,9 +144,35 @@ export class SchedulePage implements OnInit {
     this.setTable();
   }
   changeTab(tab: string) {
+
     this.currentTab = tab;
+    this.setTable();
   }
   setTable() {
-    this.tableComponent?.setData(this.dataheader, this.dataTable)
+    console.log(this.currentTab);
+
+    // this.tableComponent?.setSettingsTable()
+    if (this.currentTab === 'Dikonfirmasi') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+    }
+    if (this.currentTab === 'Siap Diangkut') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+    }
+    if (this.currentTab === 'Menuju Bandara') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+    }
+    if (this.currentTab === 'Dibandara') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+    }
+    if (this.currentTab === 'Berangkat') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { complete: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+    }
+    if (this.currentTab === 'Sampai') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+    }
+    if (this.currentTab === 'Dibatalkan') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: false, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
+    }
+    return this.tableComponent?.setData(this.dataheader, this.dataTable, { confirm: true, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
   }
 }

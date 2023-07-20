@@ -1,0 +1,105 @@
+<ion-modal class="customModal" #modal [trigger]="idModal"> <ng-template>
+    <div *ngIf="type==='vendor'" class="wrapper p-2">
+      <ion-row lines="full" style="align-items: center; place-content: space-between;" class="border-bottom-light">
+        <p class="text-dark bold-text p mb-0 pl-2 h6">
+          Konfirmasi Penjadwalan
+        </p>
+        <ion-icon name="close" style="width: 30px; height: 30;" class="p-0 pointer" (click)="closeAllModal()">
+        </ion-icon>
+      </ion-row>
+
+      <p class="mb-0 p-3 text-dark">
+        Apakah anda sudah memastikan dengan <span class="bold-text text-dark">No. MWAB {{dataModal.mawb}}</span>
+        akan berangkat ke
+        destinasi tujuan?
+      </p>
+      <p class="text-grey ml-3">
+        Pilih Vendor
+      </p>
+      <ion-row *ngFor="let p of list_vendor" (click)="pilihVendor(p)" lines="none"
+        class="mt-2 center-center py-2 px-2 row justify-content-between hover-light pointer w-100 ml-auto mr-auto align-items-center"
+        [class]="vendor !== p?'border-light':'border-light-red'">
+        <div class="row center-center ml-1 align-items-center">
+          <ion-icon *ngIf="vendor !== p" name="icon-vendor-2" style="height: 30px;"></ion-icon>
+          <ion-icon *ngIf="vendor === p" name="icon-vendor-red" style="height: 30px;"></ion-icon>
+          <p class="mb-0 bold-text ml-2" [class]="vendor !== p?'text-dark':'color-red'">{{p.name}}</p>
+        </div>
+        <p class="pointer color-red bold-text">Pilih</p>
+      </ion-row>
+      <ion-row class="justify-content-between mt-2">
+        <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;"
+          (click)="konfirmasiSchedule()">
+          <p class="color-red mb-0">
+            Ya, Konfirmasi
+          </p>
+        </ion-button>
+        <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="closeAllModal()">
+          Pastikan Kembali
+        </ion-button>
+      </ion-row>
+    </div>
+    <div *ngIf="type==='trash'" class="wrapper p-2 ">
+      <ion-row lines="full" style="align-items: center; place-content: space-between;" class="border-bottom-light">
+        <p class="text-dark bold-text p mb-0 pl-2 h6">
+          Hapus jadwal Import
+        </p>
+        <ion-icon name="close" style="width: 30px; height: 30;" class="p-0 pointer" (click)="closeAllModal()">
+        </ion-icon>
+      </ion-row>
+      <p>
+        Apakah anda yakin
+      </p>
+      <ion-row class="justify-content-between mt-2">
+        <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;" (click)="deleteSchedule()">
+          <p class="color-red">
+            Ya, Hapus
+          </p>
+        </ion-button>
+        <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="closeAllModal()">
+          Batal
+        </ion-button>
+      </ion-row>
+    </div>
+    <div *ngIf="type==='delete'" class="wrapper p-2 text-center center-center">
+      <img src="assets/icon/sampah.svg" class="m-2">
+      <p class="text-dark bold-text p mb-0 pl-2 h6">
+        Apakah Kamu Ingin menghapus Jadwal?
+      </p>
+      <ion-row class="justify-content-between mt-2">
+        <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;" (click)="deleteSchedule()">
+          <p class="color-red">
+            Ya, Hapus
+          </p>
+        </ion-button>
+        <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="closeAllModal()">
+          Batal
+        </ion-button>
+      </ion-row>
+    </div>
+    <div *ngIf="type==='sampai'" class="wrapper p-2">
+      <ion-row lines="full" style="align-items: center; place-content: space-between;" class="border-bottom-light">
+        <p class="text-dark bold-text p mb-0 pl-2 h6">
+          Konfirmasi Sampai
+        </p>
+        <ion-icon name="close" style="width: 30px; height: 30;" class="p-0 pointer" (click)="closeAllModal()">
+        </ion-icon>
+      </ion-row>
+      <p class="mb-0 p-3 text-dark">
+        Apakah anda sudah memastikan dengan <span class="bold-text text-dark">No. MWAB {{dataModalConfirm.mawb}}</span>
+        telah tiba di
+        destinasi tujuan?
+      </p>
+      <ion-row class="justify-content-between mt-2">
+        <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;"
+          (click)="konfirmasiSchedule()">
+          <p class="color-red">
+            Ya, Sampai
+          </p>
+        </ion-button>
+        <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="closeAllModal()">
+          Batal
+        </ion-button>
+      </ion-row>
+    </div>
+  </ng-template>
+</ion-modal>

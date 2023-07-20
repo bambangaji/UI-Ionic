@@ -32,6 +32,11 @@ import { DropdownCustomComponent } from './popover/country/country.component';
 import { CalendarComponent } from './popover/calendar/calendar.component';
 import { TimeComponent } from './popover/time/time.component';
 import { FilterComponent } from './modal/filter/filter.component';
+import { DetailScheduleComponent } from './modal/detail-schedule/detail-schedule.component';
+import { LabelStatusComponent } from './label/label-status/label-status.component';
+import { HistoryAktivitasComponent } from './sidebar/history-aktivitas/history-aktivitas.component';
+import { ModalScheduleComponent } from './modal/modal-schedule/modal-schedule.component';
+import { ChartDashboardComponent } from './chart/chart-dashboard/chart-dashboard.component';
 
 
 @NgModule({
@@ -63,7 +68,12 @@ import { FilterComponent } from './modal/filter/filter.component';
     DropdownCustomComponent,
     CalendarComponent,
     TimeComponent,
-    FilterComponent
+    FilterComponent,
+    DetailScheduleComponent,
+    LabelStatusComponent,
+    HistoryAktivitasComponent,
+    ModalScheduleComponent,
+    ChartDashboardComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -104,7 +114,12 @@ import { FilterComponent } from './modal/filter/filter.component';
     DropdownCustomComponent,
     CalendarComponent,
     TimeComponent,
-    FilterComponent
+    FilterComponent,
+    DetailScheduleComponent,
+    LabelStatusComponent,
+    HistoryAktivitasComponent,
+    ModalScheduleComponent,
+    ChartDashboardComponent
   ]
 })
 export class ComponentsModule { }

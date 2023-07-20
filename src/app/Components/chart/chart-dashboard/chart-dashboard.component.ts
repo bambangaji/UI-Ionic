@@ -6,7 +6,7 @@ import { Chart, registerables } from 'chart.js';
   templateUrl: './chart-dashboard.component.html',
   styleUrls: ['./chart-dashboard.component.scss'],
 })
-export class ChartDashboardComponent  implements OnInit {
+export class ChartDashboardComponent implements OnInit {
   @ViewChild('dynamicChart', { static: false }) dynamicChart: ElementRef | undefined;
 
   value1: number = 10;
@@ -40,17 +40,36 @@ export class ChartDashboardComponent  implements OnInit {
             data: [this.value1, this.value2, this.value3],
             backgroundColor: [
               'rgba(255, 99, 132, 0.5)',
-              'rgba(54, 162, 235, 0.5)',
-              'rgba(75, 192, 192, 0.5)'
+              'rgba(255, 99, 132, 0.5)',
+              'rgba(255, 99, 132, 0.5)',
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 99, 132, 1)',
+            ],
+            borderRadius: 100,
+            barThickness: 10,
+            borderWidth: 1,
+            stack: 'stack 0'
+          },
+          {
+            label: 'Berangkat',
+            data: [40, this.value2, this.value3],
+            backgroundColor: [
+              'rgba(75, 192, 192, 0.5)',
+              'rgba(75, 192, 192, 0.5)',
+              'rgba(75, 192, 192, 0.5)'
+            ],
+            borderColor: [
+              'rgba(75, 192, 192, 1)',
+              'rgba(75, 192, 192, 1)',
               'rgba(75, 192, 192, 1)'
             ],
-            borderRadius:100,
+            borderRadius: 100,
+            barThickness: 10,
             borderWidth: 1,
-            stack:'stack 0'
+            stack: 'stack 0'
           }
         ]
       },
@@ -69,6 +88,18 @@ export class ChartDashboardComponent  implements OnInit {
                 return index % 2 === 0 ? this.getLabelForValue(parseInt(val.toString())) : '';
               },
             }
+          },
+          x: {
+            stacked: true,
+            // type: 'linear',
+            // beginAtZero: true,
+            // ticks: {
+            //   callback: function (val, index) {
+            //     // Hide every 2nd tick label
+            //     console.log(val);
+            //     return index % 2 === 0 ? this.getLabelForValue(parseInt(val.toString())) : '';
+            //   },
+            // }
           }
         }
       },

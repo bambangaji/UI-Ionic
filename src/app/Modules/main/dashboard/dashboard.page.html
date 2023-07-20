@@ -1,8 +1,8 @@
 <ion-content>
   <app-dashboard-background>
     <app-label-page></app-label-page>
-    <ion-row class="z102 position-relative w-100">
-      <ion-list class=" bg-transparent pt-0" style="max-width: 565px;">
+    <ion-row class="z102 position-relative w-100 ">
+      <ion-list class=" bg-transparent pt-0 ml-auto" style="max-width: 565px;">
         <ion-card class="cardForm px-3 py-2 w-98 shadow-none">
           <p class="bold-text text-dark mt-1">
             Yang Perlu di tangani
@@ -62,12 +62,10 @@
           </ion-row>
         </ion-grid>
       </ion-list>
-      <ion-card style="margin-right: 0;width: 40%;height: fit-content;">
-        <app-graph-dashboard></app-graph-dashboard>
-      </ion-card>
-      <ion-card class="shadow-none" style="top: -27px;border-radius: 0; right: -20px;">
-        <app-sidebar-dashboard></app-sidebar-dashboard>
+      <ion-card class="mr-auto" style="margin-right: 0;width: 40%;height:500px;">
+        <app-chart-dashboard></app-chart-dashboard>
       </ion-card>
     </ion-row>
   </app-dashboard-background>
 </ion-content>
+<app-sidebar-dashboard hidden></app-sidebar-dashboard>

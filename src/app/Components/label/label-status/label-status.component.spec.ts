@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CreateKoliComponent } from './create-koli.component';
+import { LabelStatusComponent } from './label-status.component';
 
-describe('CreateKoliComponent', () => {
-  let component: CreateKoliComponent;
-  let fixture: ComponentFixture<CreateKoliComponent>;
+describe('LabelStatusComponent', () => {
+  let component: LabelStatusComponent;
+  let fixture: ComponentFixture<LabelStatusComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateKoliComponent ],
+      declarations: [ LabelStatusComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CreateKoliComponent);
+    fixture = TestBed.createComponent(LabelStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

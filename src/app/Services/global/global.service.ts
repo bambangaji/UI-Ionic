@@ -50,6 +50,12 @@ export class GlobalService {
   todo() {
     this.showToast('Feature Coming Soon!', 'secondary')
   }
+  async closePopover() {
+    if (!this.popoverController) {
+      return
+    }
+    this.popoverController.dismiss();
+  }
   async presentPopover(e: Event, data: any, type: countryType): Promise<any> {
     this.dataSubject.next({
       data: data,

@@ -1,0 +1,117 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-row class="justify-content-between center-center align-items-center p-2">
+        <p class="mb-0 bold-text h6">
+          Filter
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <div class="border-light p-2 text-grey bg-white with-overflow" style="height: 100vh;">
+        <div class="row justify-content-between mx-3 center-center align-items-center">
+          <div class="row pl-3">
+            <div class="align-self-center">
+              <img src="assets/icon/profileDummy.svg" class="small-icon">
+              <img src="assets/icon/profileDummy.svg" class="small-icon imgNimpa">
+            </div>
+            <div>
+              <p class="mb-0 bold-text">
+                Taiwan
+              </p>
+              <p class="text-grey mb-0">
+                Vendor <span class="bold-text text-dark">HD</span>
+              </p>
+            </div>
+          </div>
+          <app-label-status [status]="data.status"></app-label-status>
+        </div>
+        <div class="row justify-content-between center-center align-items-center ml-2">
+          <div class="col p-0">
+            <p>
+              MWAB
+            </p>
+            <p class="text-dark bold-text">816-00420092</p>
+          </div>
+          <div class="col">
+            <p>
+              Airlines
+            </p>
+            <p class="text-dark bold-text">Agent Airlines</p>
+          </div>
+          <div class="col">
+            <p>
+              Agent
+            </p>
+            <p class="text-dark bold-text">Agent</p>
+          </div>
+          <div class="col">
+            <p>
+              Ditangani Oleh
+            </p>
+            <p class="text-dark bold-text">nama PIC</p>
+          </div>
+        </div>
+        <ion-row class="border-bottom-light mt-2">
+          <p (click)="changeTab(p)" *ngFor="let p of listTab"
+            class="w-25 text-center bold-text mr-3 pointer hover-light"
+            [class]="currentTab===p?'border-bottom-red color-red':''">
+            {{p}}
+          </p>
+        </ion-row>
+        <div *ngIf="currentTab==='Detail'">
+          <div class="row pl-2 py-3 bg-grey-blue justify-content-between">
+            <p class="text-dark ml-3  bold-text">
+              Informasi Jadwal
+            </p>
+            <ion-icon (click)="isJadwal=!isJadwal" [name]="isJadwal?'chevron-down':'chevron-up'" color="grey"
+              class="icon-medium-24 mr-4 pointer">
+            </ion-icon>
+          </div>
+          <div *ngIf="isJadwal">
+            <div *ngFor="let p of listDetail" class="mb-2 mx-3 py-2 border-bottom-light">
+              <div class="row">
+                <p class="col">
+                  {{p.name}}
+                </p>
+                <p class="col text-dark bold-text">
+                  {{p.value}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row pl-2 py-3 bg-grey-blue justify-content-between">
+            <p class="text-dark ml-3  bold-text">
+              Informasi Project
+            </p>
+            <ion-icon (click)="isProject=!isProject" [name]="isProject?'chevron-down':'chevron-up'" color="grey"
+              class="icon-medium-24 mr-4 pointer">
+            </ion-icon>
+          </div>
+          <div *ngIf="isProject">
+            <div *ngFor="let p of listDetailProject" class="mb-2 mx-3 py-2 border-bottom-light">
+              <div class="row">
+                <p class="col">
+                  {{p.name}}
+                </p>
+                <p class="col text-dark bold-text" [class]="p.class">
+                  {{p.value}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentTab===listTab[1]">
+          <app-history-aktivitas></app-history-aktivitas>
+        </div>
+        <div class="mb-5">
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+<app-history-aktivitas [height_garis]="setHeight(4)"></app-history-aktivitas>

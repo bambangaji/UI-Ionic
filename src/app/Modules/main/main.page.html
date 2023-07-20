@@ -4,7 +4,7 @@
     (mouseleave)="changeSideMenu(false)" (mouseover)="changeSideMenu(true)">
     <ion-content>
       <ion-list id="inbox-list" class="mt-5">
-        <app-input-form class="mx-2 max-width-250" typeInput="search" placeholder="Cari"
+        <app-input-form class="mx-2 " typeInput="search" placeholder="Cari" style="width: 90% !important;"
           background="grey"></app-input-form>
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
           <div>

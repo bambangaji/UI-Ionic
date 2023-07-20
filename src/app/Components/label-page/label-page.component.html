@@ -1,10 +1,10 @@
 <div class="z102 position-relative w-100 bg-grey-blue" style="margin-top:3.3rem">
   <div class="row center-center justify-content-between align-items-center ml-1 " style="height:60px">
     <div class="row center-center py-2">
-      <p class="bold-text mb-0  ml-3 pointer" (click)="goToPage()" [class]="subTitle?'text-grey':'text-dark'">
+      <p class="bold-text mb-0  ml-3 pointer" (click)="goToTitlePage()" [class]="subTitle?'text-grey':'text-dark'">
         {{title}}
       </p>
-      <p *ngIf="subTitle" class="ml-2 mb-0 bold-text">
+      <p *ngIf="subTitle" (click)="goToSubTitlePage()" class="ml-2 mb-0 bold-text">
         <span class="text-grey">
           •
         </span>
@@ -23,7 +23,13 @@
         Buat Penjadwalan <span style="font-size: 30px;">+</span>
       </ion-button>
     </div>
+    <div *ngIf="title==='Dashboard'" class="row align-items-center mr-0 justify-content-evenly">
+      <div class="ml-4 mr-4 px-2 py-1 border-light row hover-light pointer " (click)="openLogHistory()">
+        <ion-icon name="icon-filter" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
+      </div>
+    </div>
   </div>
 </div>
 <app-modal-schedule-create></app-modal-schedule-create>
+<app-sidebar-dashboard></app-sidebar-dashboard>
 <app-filter></app-filter>

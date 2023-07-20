@@ -10,7 +10,7 @@
 <p *ngIf="errorText">
   {{helperText}}
 </p>
-<ion-item *ngIf="typeInput==='money'" lines="none" [color]="color"
+<ion-item *ngIf="typeInput==='money'" lines="none" [color]="color" [style]="style"
   class="border-input border-light custom-item-40"> <ion-input [placeholder]="placeholder" class=" mb-0 text-grey"
     [type]="type==='number'?'text':type" [required]="required" [maxlength]="maxLength" [disabled]="disabled"
     [readonly]="isReadonly" (keypress)="keypress($event)" (ionFocus)="focused.emit()" [(ngModel)]="value"
@@ -19,7 +19,7 @@
   </ion-input>
   <p slot="start" class=" mr-2 text-grey mb-2 pb-1 h7"> Rp </p>
 </ion-item>
-<ion-item *ngIf="typeInput==='search'" lines="none" [color]="color"
+<ion-item *ngIf="typeInput==='search'" lines="none" [color]="color" [style]="style"
   [class]="inputClass()">
   <ion-input [placeholder]="placeholder" class=" mb-0 text-grey" [type]="type==='number'?'text':type"
     [required]="required" [maxlength]="maxLength" [disabled]="disabled" [readonly]="isReadonly"

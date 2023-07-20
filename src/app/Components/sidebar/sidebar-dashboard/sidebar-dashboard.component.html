@@ -1,238 +1,108 @@
-<div class="box">
-  <div class="frame-wrapper-2">
-    <div class="frame-13">
-      <div class="frame-14">
-        <div class="table-editor">
-          <div class="frame-15">
-            <div class="text-wrapper-2">Aktifitas</div>
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="box">
+      <div class="frame-wrapper-2">
+        <div class="row justify-content-between mx-3 mt-3 border-bottom-light">
+          <p class="mb-0 bold-text h6">
+            Aktifitas
+          </p>
+          <div class="row">
+            <ion-icon name="chevron-back" class="icon-medium pointer">
+  
+            </ion-icon>
+            <ion-icon name="chevron-forward" class="icon-medium pointer">
+  
+            </ion-icon>
           </div>
-          <div class="frame-16">
-            <!-- <ArrowChevronLeft2 class="arrow-chevron-left" color="#667085" />
-            <ArrowChevronLeft1 class="arrow-chevron-left" /> -->
-          </div>
-        </div>
-        <div class="frame-17">
-          <div class="frame-18">
-            <div class="frame-19">
-              <div class="frame-20">
-                <!-- <Timeline class="timeline-instance" property1="frame-39384" text="Hari Ini" /> -->
-                <div class="timeline-2">
-                  <div class="frame-21">
-                    <div class="frame-21">
-                      <img
-                        class="line-2"
-                        alt="Line"
-                        src="https://generation-sessions.s3.amazonaws.com/1075c06679171c0fde41f07acf3909c2/img/line-3-7.svg"
-                      />
-                    </div>
-                    <div class="frame-22">
-                      <div class="frame-23">
-                        <!-- <DeliveryBoxTick class="icon-instance-node" /> -->
-                      </div>
-                    </div>
+        </div>  
+        <div class="frame-13">
+          <div class="frame-14">
+            <div class="frame-17">
+              <div class="frame-18">
+                <div class="frame-19">
+                  <div class="position-absolute garis-timeline" [style]="height_garis">
                   </div>
-                  <div class="frame-24">
-                    <div class="frame-25">
-                      <div class="frame-26">
-                        <div class="frame-27">
-                          <div class="text-wrapper-3">26 May 2023</div>
-                          <div class="text-wrapper-4">10:00 WIB</div>
+                  <div class="col mt-4" style="    z-index: 1000;">
+                    <div *ngFor="let p of formattedData">
+                      <div class="row w-100 mt-3">
+                        <div class="icon-timeline col-4">
+                          <div class="dot-icon mb-3">
+                            <img class="line-2 icon-medium center-center align-items-center" alt="Line"
+                              src="assets/icon/icon-dot.svg" />
+                          </div>
                         </div>
-                        <div class="placeholder-2">Memproses manifest studio.</div>
-                      </div>
-                      <div class="frame-28">
-                        <div class="frame-29">
-                          <div class="text-wrapper-5">Diperbarui</div>
-                          <div class="bambang-laskito-2">Ahmad</div>
+                        <div class="col-8">
+                          <div class="frame-32">
+                            <div class="text-wrapper-6">{{p.date}}</div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-3">
-                  <div class="frame-30">
-                    <div class="frame-31">
-                      <img
-                        class="line-3"
-                        alt="Line"
-                        src="https://generation-sessions.s3.amazonaws.com/1075c06679171c0fde41f07acf3909c2/img/line-3-8.svg"
-                      />
-                      <div class="ellipse-3" >
+                      <div *ngFor="let q of p.data" class="row w-100 mt-3">
+                        <div class="icon-timeline col-4">
+                          <div class="frame-23">
+                            <img class="line-2 icon-medium center-center align-items-center" alt="Line"
+                              src="assets/icon/icon-edit.svg" />
+                          </div>
                         </div>
-
-                    </div>
-                    <div class="frame-32">
-                      <div class="text-wrapper-6">25 May</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-2">
-                  <div class="frame-21">
-                    <div class="frame-21">
-                      <img
-                        class="line-4"
-                        alt="Line"
-                        src="https://generation-sessions.s3.amazonaws.com/1075c06679171c0fde41f07acf3909c2/img/line-3-3.svg"
-                      />
-                    </div>
-                    <div class="frame-22">
-                      <div class="frame-23">
-                        <!-- <TransportAirplane class="icon-instance-node" /> -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-24">
-                    <div class="frame-25">
-                      <div class="frame-26">
-                        <div class="frame-27">
-                          <div class="text-wrapper-3">25 May 2023</div>
-                          <div class="text-wrapper-4">10:00 WIB</div>
-                        </div>
-                        <p class="p">
-                          <span class="span">Membuat Jadwal Keberangkatan dengan Airlane </span>
-                          <span class="text-wrapper-7">Interlink Airplanes</span>
-                        </p>
-                      </div>
-                      <div class="frame-28">
-                        <div class="frame-29">
-                          <div class="text-wrapper-5">Diperbarui</div>
-                          <div class="bambang-laskito-2">Ahmad</div>
+                        <div class="col-8 ">
+                          <div class="frame-25">
+                            <div class="frame-26">
+                              <div class="frame-27">
+                                <div class="text-wrapper-3">26 May 2023</div>
+                                <div class="text-wrapper-4">10:00 WIB</div>
+                              </div>
+                              <div class="placeholder-2">Memproses manifest studio.</div>
+                            </div>
+                            <div class="frame-28">
+                              <div class="frame-29">
+                                <div class="text-wrapper-5">Diperbarui</div>
+                                <div class="bambang-laskito-2">Ahmad</div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="timeline-2">
-                  <div class="frame-21">
-                    <div class="frame-21">
-                      <img
-                        class="line-4"
-                        alt="Line"
-                        src="https://generation-sessions.s3.amazonaws.com/1075c06679171c0fde41f07acf3909c2/img/line-3-3.svg"
-                      />
-                    </div>
-                    <div class="frame-22">
-                      <div class="frame-23">
-                        <!-- <TransportAirplane class="icon-instance-node" /> -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-24">
-                    <div class="frame-25">
-                      <div class="frame-26">
-                        <div class="frame-27">
-                          <div class="text-wrapper-3">25 May 2023</div>
-                          <div class="text-wrapper-4">10:00 WIB</div>
-                        </div>
-                        <p class="p">
-                          <span class="span">Membuat Jadwal Keberangkatan dengan Airlane </span>
-                          <span class="text-wrapper-7">Interlink Airplanes</span>
-                        </p>
-                      </div>
-                      <div class="frame-28">
-                        <div class="frame-29">
-                          <div class="text-wrapper-5">Diperbarui</div>
-                          <div class="bambang-laskito-2">Ahmad</div>
+    
+                    <!-- <div class="row w-100 mt-3">
+                      <div class="icon-timeline col-4">
+                        <div class="dot-icon mb-3">
+                          <img class="line-2 icon-medium center-center align-items-center" alt="Line"
+                            src="assets/icon/icon-dot.svg" />
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="timeline-2">
-                  <div class="frame-21">
-                    <div class="frame-21">
-                      <img
-                        class="line-4"
-                        alt="Line"
-                        src="https://generation-sessions.s3.amazonaws.com/1075c06679171c0fde41f07acf3909c2/img/line-3-3.svg"
-                      />
-                    </div>
-                    <div class="frame-22">
-                      <div class="frame-23">
-                        <!-- <TransportAirplane class="icon-instance-node" /> -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-24">
-                    <div class="frame-25">
-                      <div class="frame-26">
-                        <div class="frame-27">
-                          <div class="text-wrapper-3">25 May 2023</div>
-                          <div class="text-wrapper-4">10:00 WIB</div>
-                        </div>
-                        <p class="p">
-                          <span class="span">Membuat Jadwal Keberangkatan dengan Airlane </span>
-                          <span class="text-wrapper-7">Interlink Airplanes</span>
-                        </p>
-                      </div>
-                      <div class="frame-28">
-                        <div class="frame-29">
-                          <div class="text-wrapper-5">Diperbarui</div>
-                          <div class="bambang-laskito-2">Ahmad</div>
+                      <div class="col-8 ">
+                        <div class="frame-32">
+                          <div class="text-wrapper-6">25 May</div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
-                </div>
-                <div class="timeline-2">
-                  <div class="frame-21">
-                    <div class="frame-21">
-                      <img
-                        class="line-4"
-                        alt="Line"
-                        src="https://generation-sessions.s3.amazonaws.com/1075c06679171c0fde41f07acf3909c2/img/line-3-3.svg"
-                      />
-                    </div>
-                    <div class="frame-22">
-                      <div class="frame-23">
-                        <!-- <TransportAirplane class="icon-instance-node" /> -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="frame-24">
-                    <div class="frame-25">
-                      <div class="frame-26">
-                        <div class="frame-27">
-                          <div class="text-wrapper-3">25 May 2023</div>
-                          <div class="text-wrapper-4">10:00 WIB</div>
-                        </div>
-                        <p class="p">
-                          <span class="span">Membuat Jadwal Keberangkatan dengan Airlane </span>
-                          <span class="text-wrapper-7">Interlink Airplanes</span>
-                        </p>
-                      </div>
-                      <div class="frame-28">
-                        <div class="frame-29">
-                          <div class="text-wrapper-5">Diperbarui</div>
-                          <div class="bambang-laskito-2">Ahmad</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="table-editor-2">
-          <div class="frame-33">
-            <!-- <Sort
-              class="sort-instance"
-              hasFrame={false}
-              property1="default"
-              sortclass="design-component-instance-node"
-            /> -->
-            <div class="frame-16">
-              <div class="arrow-chevron-left-wrapper">
-                <!-- <ArrowChevronLeft2 class="arrow-chevron-left" color="#667085" /> -->
-              </div>
-              <div class="arrow-chevron-left-wrapper">
-                <!-- <ArrowChevronLeft1 class="arrow-chevron-left" /> -->
+            <div class="table-editor-2">
+              <div class="frame-33">
+                <!-- <Sort
+                  class="sort-instance"
+                  hasFrame={false}
+                  property1="default"
+                  sortclass="design-component-instance-node"
+                /> -->
+                <div class="frame-16">
+                  <div class="arrow-chevron-left-wrapper">
+                    <!-- <ArrowChevronLeft2 class="arrow-chevron-left" color="#667085" /> -->
+                  </div>
+                  <div class="arrow-chevron-left-wrapper">
+                    <!-- <ArrowChevronLeft1 class="arrow-chevron-left" /> -->
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </ng-template>
+</ion-modal>

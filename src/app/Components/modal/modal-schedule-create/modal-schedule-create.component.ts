@@ -103,6 +103,7 @@ export class ModalScheduleCreateComponent implements OnInit {
     await this.presentPopover(e, [], 'inisial', 'transit_time', TimeComponent, 'auto');
   }
   closeModal(){
+    this.globalService.closePopover();
     this.modal?.dismiss();
   }
   submit(){
