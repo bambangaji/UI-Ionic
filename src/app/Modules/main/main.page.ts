@@ -11,14 +11,14 @@ export class MainPage implements OnInit {
     { title: 'Dashboard', url: 'home', icon: 'icon-dashboard', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
     { title: 'Schedule', url: ERoutePath.SCHEDULE, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
     {
-      title: 'Manifest Studio', url: ERoutePath.SCHEDULE, icon: 'icon-bagging', iconSelected: 'assets/icon/icon-user-selected.svg', isOpen: false, children: [
-        { title: 'Daftar Bag', url: ERoutePath.SCHEDULE },
-        { title: 'Siap diJadwalkan', url: ERoutePath.LOGIN },
-        { title: 'Riwayat', url: ERoutePath.DASHBOARD }
+      title: 'Manifest Studio', url: ERoutePath.MANIFEST_BAG, icon: 'icon-bagging', iconSelected: 'assets/icon/icon-user-selected.svg', isOpen: false, children: [
+        { title: 'Daftar Bag', url: ERoutePath.MANIFEST_BAG },
+        { title: 'Siap diJadwalkan', url: ERoutePath.MANIFEST_SCHEDULED },
+        { title: 'Riwayat', url: ERoutePath.MANIFEST_HISTORY }
       ]
     },
     { title: 'Regulasi', url: 'regulasi', icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
-   
+
   ];
   public currentUrl: string = ERoutePath.DASHBOARD;
   constructor(public navigationService: NavigationService) { }
@@ -42,7 +42,7 @@ export class MainPage implements OnInit {
     data.isOpen = true;
     this.currentUrl = data.url;
   }
-  currentRoute(){
+  currentRoute() {
     console.log(this.navigationService.currentRoute);
     return this.navigationService.currentRoute
   }

@@ -1,0 +1,174 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-row class="justify-content-between center-center align-items-center p-2">
+        <p class="mb-0 bold-text h6">
+          Pilih Daftar Bag
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <ion-row class="justify-content-between px-2 bg-grey-blue p-1 text-grey">
+        <p>Diperbarui</p>
+        <p class="bold-text">
+          {{today|timeFormatted:'true'}}
+        </p>
+      </ion-row>
+      <div class="border-light p-2 text-grey bg-white with-overflow" style="height: 100vh;">
+        <div class="row justify-content-between mx-3 center-center align-items-center">
+          <div class="row pl-3">
+            <div class="align-self-center">
+              <img src="assets/icon/profileDummy.svg" class="small-icon">
+              <img src="assets/icon/profileDummy.svg" class="small-icon imgNimpa">
+            </div>
+            <div>
+              <p class="mb-0 bold-text">
+                Taiwan
+              </p>
+              <p class="text-grey mb-0">
+                Vendor <span class="bold-text text-dark">HD</span>
+              </p>
+            </div>
+          </div>
+          <!-- <app-label-status [status]="data.status"></app-label-status> -->
+        </div>
+        <ion-row class="justify-content-between px-2 bg-grey-blue p-1 text-grey">
+          <p>Ditangani Oleh</p>
+          <p class="bold-text">
+            Toha
+          </p>
+        </ion-row>
+        <ion-row class="justify-content-between mx-2 border-light p-1 text-grey px-2">
+          <p>Total</p>
+          <p class="bold-text text-dark">
+            {{backupData.length}} Bag
+            <span class="ml-2 bg-grey-blue2 border-radius-8 pb-1 pl-1">
+              {{totalResi}} Resi
+            </span>
+            <span class="ml-2 bg-grey-blue2 border-radius-8 pb-1 pl-1">
+              {{totalWeight}} Kg
+            </span>
+          </p>
+        </ion-row>
+        <ion-row class="justify-content-between mx-2 p-1 text-grey px-2 mt-2">
+          <p class="border-light p-2"><span>
+              <ion-checkbox [checked]="checkAll" (click)="checkAllData()" [(ngModel)]="checkAll"
+                style="position: relative;top: 3px;"></ion-checkbox>
+            </span> Pilih Semua</p>
+          <ion-row class="border-light p-2">
+            <p class="mr-2">
+              Terpilih
+            </p>
+            <ion-row>
+              <ion-icon (click)="editFrom()" [name]="isEditFrom?'checkmark-circle-outline':'icon-edit'"
+                class="icon-medium color-grey pointer hover-light border-radius-8" color="grey"></ion-icon>
+              <p class="ml-1" *ngIf="!isEditFrom">{{filterFrom}}</p>
+              <app-input-form *ngIf="isEditFrom" type="number" [(ngModel)]="filterFrom" typeInput="small"
+                [isBorder]="true" style="width: 80px !important; background: transparent !important;"
+                color="transparent"></app-input-form>
+            </ion-row>
+            <p class="mx-1">-</p>
+            <ion-row>
+              <ion-icon (click)="editTo()" [name]="isEditTo?'checkmark-circle-outline':'icon-edit'"
+                class="icon-medium color-grey pointer hover-light border-radius-8" color="grey"></ion-icon>
+              <p class="ml-1" *ngIf="!isEditTo">{{filterTo}}</p>
+              <app-input-form *ngIf="isEditTo" type="number" [(ngModel)]="filterTo" typeInput="small" [isBorder]="true"
+                style="width: 80px !important; background: transparent !important;"
+                color="transparent"></app-input-form>
+            </ion-row>
+
+          </ion-row>
+        </ion-row>
+        <ion-row class="justify-content-between px-2 bg-grey-blue p-1 text-grey">
+          <app-input-form typeInput="search" [isBorder]="false"
+            style="width: 260px !important; background: transparent !important; border:none !important"
+            color="transparent"></app-input-form>
+          <p class="bold-text center-center">
+            Dari Total {{backupData.length}} Bag
+          </p>
+        </ion-row>
+        <ion-content style="    height: 50vh;">
+          <ion-list>
+            <ion-col *ngFor="let p of backupData; let i = index;">
+              <ion-row class="w-100 justify-content-between border-bottom-light text-grey">
+                <p class=" p-2">
+                  <span class="mr-2">
+                    {{i+1}}
+                  </span><span>
+                    <ion-checkbox [checked]="p.isChecked" [(ngModel)]="p.isChecked"
+                      style="position: relative;top: 3px;"></ion-checkbox>
+                  </span> {{p.name}}
+                </p>
+                <ion-row class="justify-content-between mx-2 p-1 text-grey px-2">
+                  <p class="bold-text text-dark">
+                    <span class="ml-2 bg-grey-blue2 border-radius-8 p-1">
+                      {{p.resi.length}} Resi
+                    </span>
+                    <span class="ml-2 bg-grey-blue2 border-radius-8 p-1">
+                      {{p.total_weight}} Kg
+                    </span>
+                  </p>
+                  <ion-icon (click)="p.isExpanded=true" *ngIf="!p.isExpanded" name="chevron-down"
+                    class="pointer hover-light icon-medium ml-2" color="grey">
+
+                  </ion-icon>
+                  <ion-icon (click)="p.isExpanded=false" *ngIf="p.isExpanded" name="chevron-up"
+                    class="pointer hover-light icon-medium ml-2" color="grey">
+
+                  </ion-icon>
+                </ion-row>
+              </ion-row>
+              <div *ngIf="p.isExpanded">
+                <ion-row *ngFor="let q of p.resi"
+                  class="w-100 justify-content-between border-bottom-light text-grey bg-grey-blue">
+                  <p class=" p-2 ml-2">
+                    <span class="mr-2">
+                      •
+                    </span><span>
+                      <ion-checkbox [checked]="q.isChecked" [(ngModel)]="q.isChecked"
+                        style="position: relative;top: 3px;"></ion-checkbox>
+                    </span> {{p.name}}
+                  </p>
+                  <ion-row class="justify-content-between mx-2 p-1 text-grey px-2">
+                    <p class="bold-text text-dark">
+                      <span class="ml-2 bg-grey-blue2 border-radius-8 p-1">
+                        {{q.weight}} Kg
+                      </span>
+                    </p>
+                  </ion-row>
+                </ion-row>
+              </div>
+
+            </ion-col>
+
+          </ion-list>
+          <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-content>
+        <div class="mb-2 bold-text">
+          <p>
+            YANG DIAMBIL
+          </p>
+          <ion-row class="justify-content-between mx-2 border-light p-1 text-grey px-2">
+            <p>Total <span class="ml-2 bold-text"> {{getCheckItemsBag()}} Bag</span> </p>
+            <p class="bold-text text-dark">
+              <span class="ml-2 border-radius-8 pb-1 pl-1">
+                {{getCheckItemsResi()}} Resi
+              </span>
+              <span class="ml-2 border-radius-8 pb-1 pl-1">
+                {{getCheckItemsBerat()}} Kg
+              </span>
+            </p>
+          </ion-row>
+          <ion-button (click)="goToTable()" expand="block" color="grey" class="text-white">
+            Terapkan
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

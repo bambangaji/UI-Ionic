@@ -21,6 +21,28 @@ const routes: Routes = [
         path: 'schedule',
         loadChildren: () => import('./schedule/schedule.module').then(m => m.SchedulePageModule)
       },
+      {
+        path: 'manifest',
+        children: [
+          {
+            path: 'bag',
+            loadChildren: () => import('./manifest/daftar-bag/daftar-bag.module').then(m => m.DaftarBagPageModule)
+          },
+          {
+            path: 'scheduled',
+            loadChildren: () => import('./manifest/riwayat/riwayat.module').then(m => m.RiwayatPageModule)
+          },
+          {
+            path: 'history',
+            loadChildren: () => import('./manifest/riwayat/riwayat.module').then(m => m.RiwayatPageModule)
+          },
+          {
+            path: '',
+            redirectTo: '/main/dashboard/manifest/bag',
+            pathMatch: 'full',
+          },
+        ]
+      },
       // Define additional child routes here
     ]
   },
@@ -28,10 +50,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/main/dashboard',
     pathMatch: 'full',
-  },
-  {
-    path: 'schedule',
-    loadChildren: () => import('../../Modules/main/schedule/schedule.module').then(m => m.SchedulePageModule)
   }
 ]
 @NgModule({

@@ -1,0 +1,89 @@
+<ion-header [translucent]="true" class="shadow-none">
+  <form [formGroup]="formSearch">
+
+  <ion-toolbar class="shadow-none border-bottom-light-2">
+    <ion-row slot="start">
+      <ion-img (click)="goToHome()" src="assets/icon/ax_logo.svg" style="width: 200px;" class="ml-2 pointer"></ion-img>
+    </ion-row>
+    <div class="row center-center py-2 ml-2">
+      <p class="bold-text mb-0  ml-3 pointer text-grey" (click)="goToTitlePage()">
+        <span class="text-grey">
+          •
+        </span>
+        Manifest Studio
+      </p>
+      <p (click)="goToSubTitlePage()" class="ml-2 mb-0 bold-text">
+        <span class="text-grey">
+          •
+        </span>
+        Daftar Bag
+      </p>
+    </div>
+  
+      <div slot="end" class="pointer row w-50" id="profileUser">
+        <div class="row text-grey center-center" style="justify-content: right; width: 70%;">
+          <p class="mb-0 align-items-center" style="    align-self: center;">
+            Lama Pemrosesan
+          </p>
+          <p class="bold-text mb-0 mx-2 align-self-center">
+            00 : 00 : 00
+          </p>
+          <app-input-form typeInput="search" style="width: 46%;"></app-input-form>
+        </div>
+        <ion-img src="assets/icon/profileDummy.svg" class="ml-4 mr-2 small-icon"></ion-img>
+        <ion-button class="text-white" color="red">
+          Simpan Draft
+        </ion-button>
+      </div>
+    
+  </ion-toolbar>
+</form>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="text-grey">
+  <ion-row
+    class="m-2 text-center center-center align-items-center text-grey border-bottom-light-2 pb-2 justify-content-between">
+    <ion-row class="text-center center-center align-items-center">
+      <p class="border-light p-2"><span>
+          <ion-checkbox [checked]="checkAll" (click)="checkAllData()" [(ngModel)]="checkAll"
+            style="position: relative;top: 3px;"></ion-checkbox>
+        </span> Pilih Semua</p>
+
+      <ion-icon name="arrow-undo-outline" class="border-light p-1 icon-medium-24 ml-2" color="grey">
+      </ion-icon>
+      <ion-icon name="arrow-redo-outline" class="border-light p-1 icon-medium-24 ml-2" color="grey">
+      </ion-icon>
+      <ion-img src="assets/icon/profileDummy.svg" class="ml-2 mr-2 icon-medium-24"></ion-img>
+      <p class="text-grey">
+        HD
+      </p>
+      <p class="bold-text text-dark ml-1 mr-2">
+        Taiwan
+      </p>
+      <p>
+        Bag Range <span class="bold-text">757G22005 - 757G22100</span>
+      </p>
+      <p class="ml-3">
+        Total Bag <span class="bold-text text-dark">100</span>
+      </p>
+      <span class="ml-2 bg-grey-blue2 border-radius-8 p-1 text-dark bold-text mr-3">
+        100Kg
+      </span>
+      <p>
+        Total Paket <span class="bold-text text-dark">100</span>
+      </p>
+    </ion-row>
+
+    <ion-row class="text-center center-center align-items-center">
+      <p class="p-2 border-radius-8 bg-red-light color-red">Tambah</p>
+      <ion-icon name="refresh-outline" class="border-light p-1 icon-medium-24 ml-2 " color="grey">
+      </ion-icon>
+      <p>1 - 15 dari 100</p>
+      <ion-icon name="chevron-back" class="border-light p-1 icon-medium-24 ml-2 " color="grey">
+      </ion-icon>
+      <ion-icon name="chevron-forward" class="border-light p-1 icon-medium-24 ml-2 " color="grey">
+      </ion-icon>
+    </ion-row>
+  </ion-row>
+  <app-table-excel></app-table-excel>
+</ion-content>

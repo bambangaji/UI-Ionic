@@ -342,6 +342,42 @@
     --ion-color-tint: var(--ion-color-blue-light-tint);
 }
 
+:root {
+	--ion-color-transparent: #7d76a600;;
+	--ion-color-transparent-rgb: 118,166,0;
+	--ion-color-transparent-contrast: #000000;
+	--ion-color-transparent-contrast-rgb: 0,0,0;
+	--ion-color-transparent-shade: #689200;
+	--ion-color-transparent-tint: #84af1a;
+}
+
+.ion-color-transparent {
+	--ion-color-base: var(--ion-color-transparent);
+	--ion-color-base-rgb: var(--ion-color-transparent-rgb);
+	--ion-color-contrast: var(--ion-color-transparent-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-transparent-contrast-rgb);
+	--ion-color-shade: var(--ion-color-transparent-shade);
+	--ion-color-tint: var(--ion-color-transparent-tint);
+}
+
+:root {
+	--ion-color-grey: #667085;
+	--ion-color-grey-rgb: 102,112,133;
+	--ion-color-grey-contrast: #ffffff;
+	--ion-color-grey-contrast-rgb: 255,255,255;
+	--ion-color-grey-shade: #5a6375;
+	--ion-color-grey-tint: #757e91;
+}
+
+.ion-color-grey {
+	--ion-color-base: var(--ion-color-grey);
+	--ion-color-base-rgb: var(--ion-color-grey-rgb);
+	--ion-color-contrast: var(--ion-color-grey-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-grey-contrast-rgb);
+	--ion-color-shade: var(--ion-color-grey-shade);
+	--ion-color-tint: var(--ion-color-grey-tint);
+}
+
 .bg-grey-blue {
     background: #F8FBFF;
 }
@@ -362,6 +398,9 @@
     color: #EFF8FF;
 }
 
+.color-grey{
+    color: #667085;
+}
 .color-blue {
     color: #1570EF;
 }
@@ -381,10 +420,37 @@ ion-card {
 .bg-orange-light {
     background: #FEF6EE;
 }
+.border-bottom-light-2
+{
+    border-bottom: 1px solid #b2aec691 !important;;
+}
+.border-radius-0{
+    border-radius: 0 !important;
+}
+.border-light-2
+{
+    border: 1px solid #b2aec691 !important;;
+}
 .color-green {
     color: #039855;
 }
+:root {
+	--ion-color-green: #039855;
+	--ion-color-green-rgb: 3,152,85;
+	--ion-color-green-contrast: #ffffff;
+	--ion-color-green-contrast-rgb: 255,255,255;
+	--ion-color-green-shade: #03864b;
+	--ion-color-green-tint: #1ca266;
+}
 
+.ion-color-green {
+	--ion-color-base: var(--ion-color-green);
+	--ion-color-base-rgb: var(--ion-color-green-rgb);
+	--ion-color-contrast: var(--ion-color-green-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-green-contrast-rgb);
+	--ion-color-shade: var(--ion-color-green-shade);
+	--ion-color-tint: var(--ion-color-green-tint);
+}
 .bg-green-light {
     background: #ECFDF3;
 }

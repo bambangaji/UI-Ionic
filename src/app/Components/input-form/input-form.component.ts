@@ -57,6 +57,11 @@ export class InputFormComponent implements ControlValueAccessor {
 
   @Input()
   bordered: boolean = true;
+
+  @Input()
+  closeButton: boolean = false;
+  @Input()
+  applyButton: boolean = false;
   @Input()
   clearInput: boolean = true;
 
@@ -107,7 +112,7 @@ export class InputFormComponent implements ControlValueAccessor {
     this.value = value;
   }
   inputClass(): string {
-    return "border-input border-light custom-item-40 "+this.class;
+    return "border-input border-light custom-item-40 " + this.class;
   }
   keypress(event: KeyboardEvent) {
     if (this.type === 'number') {

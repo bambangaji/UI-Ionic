@@ -37,6 +37,8 @@ import { LabelStatusComponent } from './label/label-status/label-status.componen
 import { HistoryAktivitasComponent } from './sidebar/history-aktivitas/history-aktivitas.component';
 import { ModalScheduleComponent } from './modal/modal-schedule/modal-schedule.component';
 import { ChartDashboardComponent } from './chart/chart-dashboard/chart-dashboard.component';
+import { ProcessBagComponent } from './modal/process-bag/process-bag.component';
+import { TableExcelComponent } from './table/table-excel/table-excel.component';
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { ChartDashboardComponent } from './chart/chart-dashboard/chart-dashboard
     LabelStatusComponent,
     HistoryAktivitasComponent,
     ModalScheduleComponent,
-    ChartDashboardComponent
+    ChartDashboardComponent,
+    ProcessBagComponent,
+    TableExcelComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -119,7 +123,9 @@ import { ChartDashboardComponent } from './chart/chart-dashboard/chart-dashboard
     LabelStatusComponent,
     HistoryAktivitasComponent,
     ModalScheduleComponent,
-    ChartDashboardComponent
+    ChartDashboardComponent,
+    ProcessBagComponent,
+    TableExcelComponent
   ]
 })
 export class ComponentsModule { }

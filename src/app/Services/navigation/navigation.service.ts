@@ -19,6 +19,12 @@ export enum ERoutePath {
   SCHEDULE_LOG = '/main/dashboard/schedule/log',
   SCHEDULE_IMPORT = '/main/dashboard/schedule/import',
 
+  //MANIFEST
+  MANIFEST = '/main/dashboard/manifest',
+  MANIFEST_BAG = '/main/dashboard/manifest/bag',
+  MANIFEST_SCHEDULED = '/main/dashboard/manifest/scheduled',
+  MANIFEST_HISTORY = '/main/dashboard/manifest/history',
+  MANIFEST_TABLE = '/table'
 }
 
 @Injectable({
@@ -68,8 +74,21 @@ export class NavigationService {
   toScheduleLogPage() {
     this.setRoot(ERoutePath.SCHEDULE_LOG, undefined, undefined, true);
   }
+
   toScheduleImportPage() {
     this.setRoot(ERoutePath.SCHEDULE_IMPORT, undefined, undefined, true);
+  }
+  toManifestBagPage() {
+    this.setRoot(ERoutePath.MANIFEST_BAG, undefined, undefined, true);
+  }
+  toManifestScheduledPage() {
+    this.setRoot(ERoutePath.MANIFEST_SCHEDULED, undefined, undefined, true);
+  }
+  toManifestHistoryPage() {
+    this.setRoot(ERoutePath.MANIFEST_HISTORY, undefined, undefined, true);
+  }
+  toTablePage() {
+    this.setRoot(ERoutePath.MANIFEST_TABLE, undefined, undefined, true);
   }
 
   async toPage(path: string): Promise<void> {

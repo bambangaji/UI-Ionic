@@ -25,7 +25,12 @@
     </div>
     <div *ngIf="title==='Dashboard'" class="row align-items-center mr-0 justify-content-evenly">
       <div class="ml-4 mr-4 px-2 py-1 border-light row hover-light pointer " (click)="openLogHistory()">
-        <ion-icon name="icon-filter" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
+        <ion-icon name="icon-history" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
+      </div>
+    </div>
+    <div *ngIf="title==='Manifest'" class="row align-items-center mr-0 justify-content-evenly">
+      <div class="ml-4 mr-4 px-2 py-1 border-light row hover-light pointer " (click)="openLogHistory()">
+        <ion-icon name="icon-history" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
       </div>
     </div>
   </div>

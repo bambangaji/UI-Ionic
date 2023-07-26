@@ -84,7 +84,6 @@ export class ChartDashboardComponent implements OnInit {
             ticks: {
               callback: function (val, index) {
                 // Hide every 2nd tick label
-                console.log(val);
                 return index % 2 === 0 ? this.getLabelForValue(parseInt(val.toString())) : '';
               },
             }

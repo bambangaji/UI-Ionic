@@ -1,0 +1,199 @@
+<ion-content [fullscreen]="true">
+  <app-dashboard-background>
+    <app-label-page title="Manifest" subTitle="Daftar Bag"></app-label-page>
+    <ion-col class="z102 position-relative mr-4 ml-4">
+      <ion-row class="justify-content-between w-100 border-bottom-light-2">
+        <ion-row size="6" class="w-50">
+          <p (click)="currentTab=p" *ngFor="let p of listTab"
+            [class]="p===currentTab?'color-red border-bottom-red bold-text':''"
+            class="col-4 pb-2 text-center  hover-light pointer">
+            {{p}}
+          </p>
+
+        </ion-row>
+        <ion-row size="6" class="w-50 text-right pr-3 center-center" style="justify-content: right !important;">
+          <p class="text-grey center-center">
+            <span>
+              <ion-icon (click)="layout = !layout" [name]="layout? 'icon-vertical':'icon-horizontal'" class="pointer"
+                style="position: relative;top: 2px;"></ion-icon>
+            </span>
+            Tampilan
+          </p>
+          <p class="ml-2 text-grey center-center">
+            <span>
+              <ion-icon name="time-outline" style="position: relative;top: 2px;"></ion-icon>
+            </span>
+            {{today|timeFormatted}}
+          </p>
+          <app-input-form typeInput="search" style="width: 160px !important; background: transparent !important;"
+            color="transparent"></app-input-form>
+        </ion-row>
+      </ion-row>
+      <ion-row class="mt-3 w-96 bg-orange-light border-radius-8 justify-content-between color-orange mx-3 p-2">
+        <p class="color-orange">
+          <span>
+            <ion-icon style="position: relative;top: 2px;" name="information-circle">
+            </ion-icon>
+          </span>
+          Kamu memiliki <span class="bold-text"> 1 Draft Data Manifest</span> yang belum diproses untuk dijadwalkan
+        </p>
+        <p class="bold-text">
+          Lihat Sekarang
+          <span>
+            <ion-icon style="position: relative;top: 2px;" name="arrow-forward">
+            </ion-icon>
+          </span>
+        </p>
+      </ion-row>
+      <ion-content style="height: 600px;" class="bg-grey-blue2 ml-auto mr-auto overflow-hidden">
+        <ion-grid *ngIf="layout">
+          <ion-row>
+            <ion-col *ngFor="let p of listData" size="3" class="">
+              <ion-card class="p-0 m-0">
+                <div class="p-2 ml-2">
+                  <div class="row pl-2">
+                    <div class="align-self-center">
+                      <img src="assets/icon/profileDummy.svg" class="small-icon">
+                      <img src="assets/icon/profileDummy.svg" class="small-icon imgNimpa">
+                    </div>
+                    <div>
+                      <p class="mb-0 bold-text text-dark">
+                        Taiwan
+                      </p>
+                      <p class="text-grey mb-0">
+                        Vendor <span class="bold-text text-dark">HD</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-grey mt-2">
+                    Bag Range
+                  </p>
+                  <p class="bold-text">
+                    757G22005 - 757G22100
+                  </p>
+                  <ion-row class="justify-content-between my-2">
+                    <ion-col>
+                      <p class="text-grey">
+                        Total Bag
+                      </p>
+                      <p class="bold-text text-dark mt-1">
+                        10000
+                        <span class="ml-2 bg-grey-blue2 border-radius-8 p-1">
+                          100Kg
+                        </span>
+                      </p>
+                    </ion-col>
+                    <ion-col>
+                      <p class="text-grey">
+                        Total Paket
+                      </p>
+                      <p class="bold-text text-dark mt-1">
+                        100000
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row class="my-3 text-center center-center justify-content-center">
+                    <div class="ml-1 mr-2 px-2 py-1 border-light row hover-light pointer ">
+                      <ion-icon name="icon-filter" class="p-0 center-center color-red"
+                        style="width: 24px; height: 24px;"></ion-icon>
+                    </div>
+                    <ion-button (click)="openBag()" color="red" class="text-white"> <ion-icon name="icon-download-white"
+                        class="text-white mr-2">
+                      </ion-icon>Process Bag</ion-button>
+                  </ion-row>
+                </div>
+
+                <ion-row class="bg-grey-light w-100 p-2">
+                  <p>
+                    Ditangani <span class="bold-text">
+                      Toha
+                    </span>
+                    {{today | timeFormatted}} WIB
+                  </p>
+                </ion-row>
+              </ion-card>
+            </ion-col>
+
+          </ion-row>
+
+          <!-- Your grid content goes here -->
+        </ion-grid>
+        <ion-list *ngIf="!layout" class="bg-transparent mx-3">
+          <ion-col *ngFor="let p of listData" class="">
+            <ion-card class="p-0 m-0">
+              <div class="row justify-content-between p-2 ml-2">
+                <div class="row pl-2 col-6">
+                  <div class="align-self-center">
+                    <img src="assets/icon/profileDummy.svg" class="small-icon">
+                    <img src="assets/icon/profileDummy.svg" class="small-icon imgNimpa">
+                  </div>
+                  <div class="center-center align-self-center">
+                    <p class="mb-0 bold-text text-dark">
+                      Taiwan
+                    </p>
+                    <p class="text-grey mb-0">
+                      Vendor <span class="bold-text text-dark">HD</span>
+                    </p>
+                  </div>
+                </div>
+
+                <ion-row class="justify-content-between my-2 col-6">
+                  <ion-col>
+                    <p class="text-grey">
+                      Bag Range
+                    </p>
+                    <p class="bold-text">
+                      757G22005 - 757G22100
+                    </p>
+                  </ion-col>
+                  <ion-col>
+                    <p class="text-grey">
+                      Total Bag
+                    </p>
+                    <p class="bold-text text-dark mt-1">
+                      10000
+                      <span class="ml-2 bg-grey-blue2 border-radius-8 p-1">
+                        100Kg
+                      </span>
+                    </p>
+                  </ion-col>
+                  <ion-col>
+                    <p class="text-grey">
+                      Total Paket
+                    </p>
+                    <p class="bold-text text-dark mt-1">
+                      100000
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </div>
+
+              <ion-row class="bg-grey-light w-100 px-2 justify-content-between">
+                <p class="center-center">
+                  Ditangani <span class="bold-text">
+                    Toha
+                  </span>
+                  {{today | timeFormatted}} WIB
+                </p>
+                <ion-row class="my-3 text-center center-center justify-content-center">
+                  <div class="ml-1 mr-2 px-2 py-1 border-light row hover-light pointer ">
+                    <ion-icon name="icon-filter" class="p-0 center-center color-red"
+                      style="width: 24px; height: 24px;"></ion-icon>
+                  </div>
+                  <ion-button (click)="openBag()" color="red" class="text-white"> <ion-icon name="icon-download-white"
+                      class="text-white mr-2">
+                    </ion-icon>Process Bag</ion-button>
+                </ion-row>
+              </ion-row>
+            </ion-card>
+          </ion-col>
+        </ion-list>
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-content>
+    </ion-col>
+  </app-dashboard-background>
+</ion-content>
+<app-process-bag hidden></app-process-bag>
