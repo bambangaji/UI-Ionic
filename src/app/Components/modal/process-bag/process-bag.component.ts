@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { IonModal, PopoverController } from '@ionic/angular';
 import { HistoryAktivitasComponent } from '../../sidebar/history-aktivitas/history-aktivitas.component';
 import { ISchedule } from 'src/app/Interfaces/schedule.interface';
 import { GlobalService } from 'src/app/Services/global/global.service';
 import { NavigationService } from 'src/app/Services/navigation/navigation.service';
+
+
 
 @Component({
   selector: 'app-process-bag',
@@ -12,6 +14,8 @@ import { NavigationService } from 'src/app/Services/navigation/navigation.servic
 })
 export class ProcessBagComponent implements OnInit {
   @Input() idModal: string = '';
+  @Input() type: string = 'table';
+  @Output() myEvent = new EventEmitter<any>();
   @ViewChild(IonModal) modal?: IonModal;
   @ViewChild(HistoryAktivitasComponent) historyComponent?: HistoryAktivitasComponent;
   [key: string]: any;
@@ -529,7 +533,7 @@ export class ProcessBagComponent implements OnInit {
   constructor(
     public popoverController: PopoverController, public globalService: GlobalService,
     public navService: NavigationService
-    ) { }
+  ) { }
   ngOnInit(): void {
     this.getCurrentDateTime();
     this.getTotalBag();
@@ -585,7 +589,6 @@ export class ProcessBagComponent implements OnInit {
   editTo() {
     this.applyFilterTo();
     this.isEditTo = !this.isEditTo;
-
   }
   applyFilterFrom() {
     console.log(this.listData);
@@ -662,6 +665,37 @@ export class ProcessBagComponent implements OnInit {
   }
   goToTable() {
     this.modal?.dismiss();
+    console.log(this.type);
+    
+    if (this.type === 'table') {
+      let dataChecklist = this.listData.map((item) => ({
+        ...item,
+        resi: item.resi.filter((itemChild) => itemChild.isChecked)
+      }));
+      
+      dataChecklist = dataChecklist.filter((item) => item.isChecked || item.resi.length > 0);
+      return this.myEvent.emit(dataChecklist)
+    }
     this.navService.toTablePage();
+  }
+  checkItem(item: any, j: any = '0') {
+    if (item.resi) {
+      for (let i of item.resi) {
+        i.isChecked = !item.isChecked;
+      }
+    } else {
+      let countChecked = 0;
+      for (let i of this.listData[j].resi) {
+        if (i.isChecked) {
+          countChecked++;
+        }
+      }
+      if (countChecked === this.listData[j].resi.length) {
+        this.listData[j].isChecked = true;
+      } else {
+        this.listData[j].isChecked = false;
+      }
+      item.isChecked = !item.isChecked;
+    }
   }
 }

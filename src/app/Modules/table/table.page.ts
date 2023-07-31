@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ProcessBagComponent } from 'src/app/Components/modal/process-bag/process-bag.component';
 import { TableExcelComponent } from 'src/app/Components/table/table-excel/table-excel.component';
+import { GlobalService } from 'src/app/Services/global/global.service';
 import { NavigationService } from 'src/app/Services/navigation/navigation.service';
 
 @Component({
@@ -9,115 +11,191 @@ import { NavigationService } from 'src/app/Services/navigation/navigation.servic
   styleUrls: ['./table.page.scss'],
 })
 export class TablePage implements OnInit {
+  @ViewChild(ProcessBagComponent) processBagComponent: ProcessBagComponent;
   @ViewChild(TableExcelComponent) tableComponent: TableExcelComponent;
   checkAll: boolean = false;
+  showDelete: boolean = false;
+  listDataDelete: any;
   formSearch: FormGroup = new FormGroup({
     search: new FormControl('')
   });
-  data: any = [
+  inputArray: any;
+  data: any =
     {
       header: [
-        { title: 'No', column_key: 'no' },
-        { title: 'No Bag', column_key: 'no_bag' },
-        { title: 'Berat Bag', column_key: 'berat_bag' },
-        { title: 'Resi Vendor', column_key: 'resi_vendor' },
+        { title: 'No', column_key: 'no', edit_able: false },
+        { title: 'No Bag', column_key: 'no_bag', edit_able: false },
+        { title: 'Berat Bag', column_key: 'berat_bag', edit_able: false },
+        { title: 'Resi Vendor', column_key: 'resi_vendor', edit_able: false },
+        { title: 'Tutup Semua Bag', column_key: 'tutup_semua_bag', edit_able: false },
+        { title: 'Berat Resi', column_key: 'berat_resi', edit_able: true },
+        { title: 'Desc', column_key: 'desc', edit_able: true },
+        { title: 'Translated Desc', column_key: 'translated_desc', edit_able: true },
+        { title: 'CTN', column_key: 'ctn', edit_able: false },
+        { title: 'UNIT', column_key: 'unit', edit_able: true },
+        { title: 'CUSTOME VALUE', column_key: 'custom_value', edit_able: true },
+        { title: 'PENGIRIM', column_key: 'pengirim', edit_able: true },
+        { title: 'PENERIMA', column_key: 'penerima', edit_able: true },
+        { title: 'NO.ARC', column_key: 'no_arc', edit_able: true },
+        { title: 'NO.TELP', column_key: 'no_telp', edit_able: true },
+        { title: 'ALAMAT PENERIMA', column_key: 'alamat_penerima', edit_able: true },
+        { title: 'TRANSLATE ALAMAT PENERIMA', column_key: 'translate_alamat_penerima', edit_able: true },
 
       ],
       data: [
         {
-          no: 'No 1',
-          no_bag: '3247326473',
+          uid: '123',
+          no: '01',
+          no_bag: '100001',
           resi_vendor: 'Total 2 Resi',
           berat_bag: '100 Kg',
+          tutup_semua_bag: 'QTY/RESI',
           data_expand: [
             {
-              no: '1',
-              no_bag: '223',
+              uid: '12345',
               resi_vendor: '2322344',
-              berat_bag: '',
+              tutup_semua_bag: '1',
+              berat_resi: '1',
+              desc: '1',
+              translated_desc: '1',
+              ctn: '1',
+              unit: 'Pack',
+              custom_value: 'Pack',
+              pengirim: 'Pack',
+              penerima: 'Pack',
+              no_arc: 'Pack',
+              no_telp: 'Pack',
+              alamat_penerima: 'Pack',
+              translated_penerima: 'Pack',
             },
             {
-              no: '2',
-              no_bag: '',
-              resi_vendor: '22002344',
-              berat_bag: '',
+              uid: '12346',
+              resi_vendor: '2322345',
+              tutup_semua_bag: '1',
+              berat_resi: '1',
+              desc: '1',
+              translated_desc: '1',
+              ctn: '1',
+              unit: 'Pack',
+              custom_value: 'Pack',
+              pengirim: 'Pack',
+              penerima: 'Pack',
+              no_arc: 'Pack',
+              no_telp: 'Pack',
+              alamat_penerima: 'Pack',
+              translated_penerima: 'Pack',
+            },
+            {
+              uid: '12347',
+              resi_vendor: '2322346',
+              tutup_semua_bag: '1',
+              berat_resi: '1',
+              desc: '1',
+              translated_desc: '1',
+              ctn: '1',
+              unit: 'Pack',
+              custom_value: 'Pack',
+              pengirim: 'Pack',
+              penerima: 'Pack',
+              no_arc: 'Pack',
+              no_telp: 'Pack',
+              alamat_penerima: 'Pack',
+              translated_penerima: 'Pack',
             },
           ]
         },
         {
-          no: 'No 2',
-          no_bag: '3247326473',
-          resi_vendor: 'Total 3 Resi',
-          berat_bag: '1002 Kg',
+          uid: '124',
+          no: '02',
+          no_bag: '100002',
+          resi_vendor: 'Total 2 Resi',
+          berat_bag: '100 Kg',
+          tutup_semua_bag: 'QTY/RESI',
           data_expand: [
             {
-              no: '3',
-              no_bag: '2',
-              resi_vendor: '2000299344',
-              berat_bag: '',
+              uid: '12349',
+              resi_vendor: '2322344',
+              tutup_semua_bag: '1',
+              berat_resi: '1',
+              desc: '1',
+              translated_desc: '1',
+              ctn: '1',
+              unit: 'Pack',
+              custom_value: 'Pack',
+              pengirim: 'Pack',
+              penerima: 'Pack',
+              no_arc: 'Pack',
+              no_telp: 'Pack',
+              alamat_penerima: 'Pack',
+              translated_penerima: 'Pack',
             },
             {
-              no: '4',
-              no_bag: '2',
-              resi_vendor: '2000299343',
-              berat_bag: '',
-            },
-            {
-              no: '5',
-              no_bag: '2',
-              resi_vendor: '2000299345',
-              berat_bag: '',
+              uid: '12350',
+              resi_vendor: '2322345',
+              tutup_semua_bag: '1',
+              berat_resi: '1',
+              desc: '1',
+              translated_desc: '1',
+              ctn: '1',
+              unit: 'Pack',
+              custom_value: 'Pack',
+              pengirim: 'Pack',
+              penerima: 'Pack',
+              no_arc: 'Pack',
+              no_telp: 'Pack',
+              alamat_penerima: 'Pack',
+              translated_penerima: 'Pack',
             },
           ]
         },
 
+
       ]
     }
-  ]
 
-  processNestedData(baseData: any, data: any, indexCol: string = '0', indexRow: string = '0') {
-    console.log('dataExpanddd', data);
-    console.log('baseData', baseData);
-    console.log('index', indexCol);
-    console.log(this.data);
-    console.log('sss', this.data[0].data[indexCol].data_expand)
-    let transformedData: any = [];
-    for (let i in this.data[0].data[indexCol].data_expand) {
-      const headerMap = baseData.reduce((map: any, item: any) => {
-        map[item.column_key] = "";
-        return map;
-      }, {});
-      transformedData.push(headerMap);
-      console.log('ss', transformedData);
-
+  // processNestedData(baseData: any, data: any, indexCol: string = '0', indexRow: string = '0') {
+  //   console.log('dataExpanddd', data);
+  //   console.log('baseData', baseData);
+  //   console.log('index', indexCol);
+  //   console.log(this.data);
+  //   console.log('sss', this.data[0].data[indexCol].data_expand)
+  //   let transformedData: any = [];
+  //   for (let i in this.data[0].data[indexCol].data_expand) {
+  //     const headerMap = baseData.reduce((map: any, item: any) => {
+  //       map[item.column_key] = "";
+  //       return map;
+  //     }, {});
+  //     transformedData.push(headerMap);
+  //     console.log('ss', transformedData);
 
 
-      // console.log('headerMap', headerMap);
-    }
-    for (let i in transformedData) {
-      for (let j of baseData) {
-        console.log('data', j.data);
-        // console.log('dataExpand', j.data[i].dataExpand);
-        const headerMap = baseData.reduce((map: any, item: any) => {
-          map[item.column_key] = "";
-          return map;
-        }, {});
-        for (let k of j.data[indexCol].dataExpand) {
-          console.log('sdsad', k);
 
-          headerMap[j.column_key] = k.name;
+  //     // console.log('headerMap', headerMap);
+  //   }
+  //   for (let i in transformedData) {
+  //     for (let j of baseData) {
+  //       console.log('data', j.data);
+  //       // console.log('dataExpand', j.data[i].dataExpand);
+  //       const headerMap = baseData.reduce((map: any, item: any) => {
+  //         map[item.column_key] = "";
+  //         return map;
+  //       }, {});
+  //       for (let k of j.data[indexCol].dataExpand) {
+  //         console.log('sdsad', k);
 
-        }
-        console.log('asdsad',headerMap);
-        
-        transformedData[i][j.column_key]=headerMap[j.column_key];
-      }
-    }
+  //         headerMap[j.column_key] = k.name;
 
-    console.log('transformed Data', transformedData);
-    return transformedData;
-  }
-  constructor(public navService: NavigationService) {
+  //       }
+  //       console.log('asdsad', headerMap);
+
+  //       transformedData[i][j.column_key] = headerMap[j.column_key];
+  //     }
+  //   }
+
+  //   console.log('transformed Data', transformedData);
+  //   return transformedData;
+  // }
+  constructor(public navService: NavigationService, public globalService: GlobalService) {
     this.formSearch.get('search')!.valueChanges.subscribe((value) => {
       // Handle the value change
       this.resetData();
@@ -128,47 +206,131 @@ export class TablePage implements OnInit {
   ngOnInit() {
 
   }
-  ngAfterViewInit() {
-
-    let row: any[] = [];
-
-    let inputArray = this.data.map((item: any) => {
-      // Map over each header item and return a new object for each
-      let headerItems = item.header.map((headerItem: any) => ({
-        label: headerItem.title,
-        freeze: true,
-        width: 100, // Change this value as needed
-        css: 'text-grey', // Change this value as needed
-        expand: false,
-        column_key: headerItem.column_key,
-        data: item.data.map((dataItem: any) => ({
-          name: dataItem[headerItem.column_key],
-          css: 'text-grey', // Change this value as needed
-          isChecked: false,
-          isEmpty: false,
-          isEdit: false,
-          id: '1', // Change this value as needed
-          typeInput: 'text', // Change this value as needed
-          isExpand: false,
-          isReadOnly: true,
-          dataExpand: dataItem.data_expand.map((expandItem: any) => ({
-            name: expandItem[headerItem.column_key],
-            css: 'text-grey', // Change this value as needed
-            isChecked: false,
-            isEmpty: false,
-            isEdit: false,
-            id: '1', // Change this value as needed
-            typeInput: 'text', // Change this value as needed
-            isExpand: false,
-            isReadOnly: true,
-          }))
-        }))
-      }));
-
-      return headerItems;
+  flattenData(data: any, parentKey: string = ''): any[] {
+    const newData: any[] = [];
+    data.forEach((item: any) => {
+      item.parent_key = '';
+      item.data_expand.forEach((data_expand: any) => {
+        data_expand.parent_key = item.no_bag;
+        newData.push(data_expand);
+      })
+      newData.push(item);
+      // delete item.data_expand;
     });
-    console.log(inputArray[0]);
-    console.log(this.data);
+    return newData;
+  }
+
+  unflattenData(flattenedData: any[]): any[] {
+    const nestedData: any[] = [];
+
+    // Group the flattened data by their parent_key
+    const dataByParentKey: { [key: string]: any[] } = {};
+    flattenedData.forEach((item: any) => {
+      const parentKey = item.parent_key || '';
+      if (!dataByParentKey[parentKey]) {
+        dataByParentKey[parentKey] = [];
+      }
+      dataByParentKey[parentKey].push(item);
+    });
+
+    // Reconstruct the nested structure
+    dataByParentKey[''].forEach((item: any) => {
+      const newItem: any = { ...item };
+      newItem.data_expand = dataByParentKey[item.no_bag] || [];
+      nestedData.push(newItem);
+    });
+    nestedData.map((item: any) => {
+      delete item.parent_key;
+      delete item.key_parent;
+    })
+    return nestedData;
+  }
+  transformedData(data: any) {
+    let transformedData: any = [];
+    console.log(this.inputArray);
+
+    for (let i in data) {
+      const headerMap = this.inputArray.reduce((map: any, item: any) => {
+        map[item.column_key] = "";
+        return map;
+      }, {});
+      for (let j of this.inputArray) {
+        headerMap[j.column_key] = j.data[i].name;
+        headerMap.parent_key = j.data[i].parent_key;
+        headerMap.key_parent = j.data[i].key_parent;
+        headerMap.edit_able = j.data[i].edit_able;
+        headerMap.uid = j.data[i].uid;
+      }
+      transformedData.push(headerMap);
+    }
+    return transformedData;
+  }
+  convertBack() {
+    // let transformedData: any = [];
+    // for (let i in this.inputArray[0].data) {
+    //   const headerMap = this.inputArray.reduce((map: any, item: any) => {
+    //     map[item.column_key] = "";
+    //     return map;
+    //   }, {});
+    //   for (let j of this.inputArray) {
+    //     headerMap[j.column_key] = j.data[i].name;
+    //     headerMap.parent_key = j.data[i].parent_key;
+    //     headerMap.key_parent = j.data[i].key_parent;
+    //     headerMap.edit_able = j.data[i].edit_able;
+    //     // headerMap.dataExpand = this.processNestedData(inputArray[0], j.data[i].dataExpand,i,j.column_key);
+    //   }
+    //   transformedData.push(headerMap);
+    // }
+    let transformedData: any = this.transformedData(this.inputArray.data);
+    const originalData = this.unflattenData(transformedData);
+    this.data = originalData;
+    console.log('originalData', originalData);
+  }
+  setData() {
+    let flattenedData: any = {}
+    const newHeader = this.data.header.map((headerItem: any) => ({ ...headerItem, name: headerItem.title }));
+    const newData = this.flattenData(this.data.data);
+    flattenedData = { header: newHeader, data: newData };
+
+    // let inputArray: any = {}
+    // Map over each header item and return a new object for each
+    this.inputArray = flattenedData.header.map((headerItem: any) => ({
+      label: headerItem.title,
+      freeze: false,
+      width: 100, // Change this value as needed
+      css: 'text-grey', // Change this value as needed
+      expand: false,
+      column_key: headerItem.column_key,
+      uid: headerItem.uid,
+      data: flattenedData.data.map((dataItem: any) => ({
+        edit_able: headerItem.edit_able && dataItem[headerItem.column_key] ? headerItem.edit_able : false,
+        parent_key: dataItem.parent_key || '',
+        key_parent: dataItem.no_bag || '',
+        name: dataItem[headerItem.column_key] || '',
+        tempData: dataItem[headerItem.column_key],
+        uid: dataItem.uid,
+        css: 'text-grey', // Change this value as needed
+        isChecked: false,
+        isEmpty: false,
+        open_edit: false,
+        id: '1', // Change this value as needed
+        typeInput: 'text', // Change this value as needed
+        isExpand: false,
+        isReadOnly: true,
+        // dataExpand: dataItem.data_expand.map((expandItem: any) => ({
+        //   name: expandItem[headerItem.column_key],
+        //   css: 'text-grey', // Change this value as needed
+        //   isChecked: false,
+        //   isEmpty: false,
+        //   isEdit: false,
+        //   id: '1', // Change this value as needed
+        //   typeInput: 'text', // Change this value as needed
+        //   isExpand: false,
+        //   isReadOnly: true,
+        // }))
+      }))
+    }));
+
     // Initialize the result object
     const result: any = {
       header: [],
@@ -176,130 +338,35 @@ export class TablePage implements OnInit {
     };
 
     // Convert header information
-    const headerInfo = inputArray[0].map((item: any) => ({
+    const headerInfo = this.inputArray.map((item: any) => ({
       title: item.label,
       column_key: item.column_key,
     }));
-
-    let transformedData: any = [];
-
-    // const headerMap = inputArray[0].reduce((map: any, item: any) => {
-    //   map[item.column_key] = '';
-    //   return map;
-    // }, {});
-    // headerMap.dataExpand = [];
-    // console.log(headerMap);
-    for (let i in inputArray[0][0].data) {
-      const headerMap = inputArray[0].reduce((map: any, item: any) => {
-        map[item.column_key] = "";
-        return map;
-      }, {});
-      let dataExpand: any;
-      for (let j of inputArray[0]) {
-        headerMap[j.column_key] = j.data[i].name;
-        // headerMap.dataExpand = this.processNestedData(inputArray[0], j.data[i].dataExpand,i,j.column_key);
-      }
-      headerMap.dataExpand = this.processNestedData(inputArray[0], inputArray[0][0].data, i);
-
-      transformedData.push(headerMap);
-    }
-    // transformedData.map((item: any, i: any) => {
-    //   item.dataExpand = this.processNestedData(inputArray[0], inputArray[0][2]);
-    // })
-
-    console.log(transformedData);
-    // Output the converted result
-    // console.log(JSON.stringify(result, null, 2));
-    result.header = headerInfo;
-    result.data = transformedData;
-    console.log(result);
     console.log(this.data);
+    // let transformedData: any = [];
+    // for (let i in inputArray[0].data) {
+    //   const headerMap = inputArray.reduce((map: any, item: any) => {
+    //     map[item.column_key] = "";
+    //     return map;
+    //   }, {});
+    //   for (let j of inputArray) {
+    //     headerMap[j.column_key] = j.data[i].name;
+    //     headerMap.parent_key = j.data[i].parent_key;
+    //     headerMap.key_parent = j.data[i].key_parent;
+    //     headerMap.edit_able = j.data[i].edit_able;
+    //     // headerMap.dataExpand = this.processNestedData(inputArray[0], j.data[i].dataExpand,i,j.column_key);
+    //   }
+    //   transformedData.push(headerMap);
+    // }
+    // const originalData = this.unflattenData(transformedData);
+    // console.log('originalData', originalData);
 
-
-    this.tableComponent?.setData([
-      {
-        label: 'Berat Bersih',
-        css: 'text-grey',
-        freeze: false,
-        width: 200,
-        function: false,
-
-      },
-      {
-        label: 'DESC',
-        css: 'text-grey',
-        freeze: false,
-        width: 400,
-        function: false,
-
-      },
-      {
-        label: 'TRANSLATED DESC',
-        css: 'text-grey',
-        freeze: false,
-        width: 400,
-        function: false,
-
-      },
-      {
-        label: 'CTN',
-        css: 'text-grey',
-        freeze: false,
-        width: 100,
-        function: false,
-
-      },
-      {
-        label: 'UNIT',
-        css: 'text-grey',
-        freeze: false,
-        width: 200,
-        function: false,
-
-      },
-      {
-        label: 'CUSTOM VALUE',
-        css: 'text-grey',
-        freeze: false,
-        width: 200,
-        function: false,
-      },
-      {
-        label: 'PENERIMA',
-        css: 'text-grey',
-        freeze: false,
-        width: 200,
-        function: false,
-      },
-      {
-        label: 'NO. ARC',
-        css: 'text-grey',
-        freeze: false,
-        width: 200,
-        function: false,
-      },
-      {
-        label: 'NO. TELP',
-        css: 'text-grey',
-        freeze: false,
-        width: 200,
-        function: false,
-      },
-      {
-        label: 'ALAMAT PENERIMA',
-        css: 'text-grey',
-        freeze: false,
-        width: 400,
-        function: false,
-      },
-      {
-        label: 'TRANSLATE ALAMAT PENERIMA',
-        css: 'text-grey',
-        freeze: false,
-        width: 400,
-        function: false,
-      },
-    ], [])
+    result.header = headerInfo;
+    result.data = this.inputArray;
+    this.tableComponent?.setData(result)
+  }
+  ngAfterViewInit() {
+    this.setData()
   }
   goToHome() {
     this.navService.toDashboardPage();
@@ -316,13 +383,81 @@ export class TablePage implements OnInit {
 
   }
   checkAllData() {
-    this.tableComponent.listData.map((data) => {
-      data.data?.map((data2) => {
-        data2.isChecked = !this.checkAll;
-        data2.dataExpand.map((data3: any) => {
-          data3.isChecked = !this.checkAll
-        })
-      })
+    this.tableComponent.listDataTable[0].data.map((data: any) => {
+      data.isChecked = !this.checkAll;
     })
+  }
+  addData() {
+    this.processBagComponent?.modal?.present();
+  }
+  addDataTable(val: any) {
+    this.data.data.push({
+      uid: '12345',
+      no: '03',
+      no_bag: '100003',
+      resi_vendor: 'Total 2 Resi',
+      berat_bag: '100 Kg',
+      tutup_semua_bag: 'QTY/RESI',
+      data_expand: [
+        {
+          uid: '12352',
+          resi_vendor: '2322344',
+          tutup_semua_bag: '1',
+          berat_resi: '1',
+          desc: '1',
+          translated_desc: '1',
+          ctn: '1',
+          unit: 'Pack',
+          custom_value: 'Pack',
+          pengirim: 'Pack',
+          penerima: 'Pack',
+          no_arc: 'Pack',
+          no_telp: 'Pack',
+          alamat_penerima: 'Pack',
+          translated_penerima: 'Pack',
+        },
+        {
+          uid: '12351',
+          resi_vendor: '2322345',
+          tutup_semua_bag: '1',
+          berat_resi: '1',
+          desc: '1',
+          translated_desc: '1',
+          ctn: '1',
+          unit: 'Pack',
+          custom_value: 'Pack',
+          pengirim: 'Pack',
+          penerima: 'Pack',
+          no_arc: 'Pack',
+          no_telp: 'Pack',
+          alamat_penerima: 'Pack',
+          translated_penerima: 'Pack',
+        },
+      ]
+    },)
+    this.setData()
+    this.globalService.showToast('Data berhasil ditambah', 'success')
+  }
+  showDeleteButton(data: any) {
+    const dataChecklist = data.filter((item: any) =>
+      item.isChecked
+    )
+    this.listDataDelete = dataChecklist;
+    if (dataChecklist.length > 0) {
+      return this.showDelete = true
+    }
+    return this.showDelete = false;
+  }
+  deleteData() {
+    let listData: any = [this.data.data];
+    this.listDataDelete.map((item: any) => {
+      this.data.data.map((item2: any) => {
+        item2.data_expand = item2.data_expand.filter((itemChild: any) => !this.listDataDelete.some((deleteItem: any) => deleteItem.uid === itemChild.uid));
+        return item2;
+      });
+      this.data.data = this.data.data.filter((data: any) => data.uid !== item.uid && data.data_expand.length > 0);
+    });
+    this.setData()
+    this.globalService.showToast('Berhasil hapus data', 'danger')
   }
 }

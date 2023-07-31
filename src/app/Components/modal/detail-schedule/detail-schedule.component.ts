@@ -12,14 +12,15 @@ import { GlobalService } from 'src/app/Services/global/global.service';
 })
 export class DetailScheduleComponent implements OnInit {
   @Input() idModal: string = '';
+  @Input() type: string = 'schedule';
   @ViewChild(IonModal) modal?: IonModal;
   @ViewChild(HistoryAktivitasComponent) historyComponent?: HistoryAktivitasComponent;
   [key: string]: any;
   isJadwal = true;
   isProject = true;
-  data: ISchedule;
+  data: any;
   listTab = ['Detail', 'Log Aktivitas'];
-  listDetail = [
+  @Input() listDetail = [
     {
       name: 'Airlines',
       value: 'Maslindo Airways'
@@ -112,7 +113,7 @@ export class DetailScheduleComponent implements OnInit {
     return `height:${total_height}px;`;
   }
   closeModal() {
-    this.globalService.closePopover();
+    // this.globalService.closePopover();
     this.modal?.dismiss()
   }
 }

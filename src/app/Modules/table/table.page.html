@@ -75,8 +75,10 @@
     </ion-row>
 
     <ion-row class="text-center center-center align-items-center">
-      <p class="p-2 border-radius-8 bg-red-light color-red">Tambah</p>
-      <ion-icon name="refresh-outline" class="border-light p-1 icon-medium-24 ml-2 " color="grey">
+      
+      <p *ngIf="showDelete" class="p-2 border-radius-8 bold-text color-red pointer" (click)="deleteData()">Hapus</p>
+      <p class="p-2 border-radius-8 bg-red-light color-red pointer" (click)="addData()">Tambah</p>
+      <ion-icon name="icon-history" class="border-light p-1 icon-medium-24 ml-2 " color="grey">
       </ion-icon>
       <p>1 - 15 dari 100</p>
       <ion-icon name="chevron-back" class="border-light p-1 icon-medium-24 ml-2 " color="grey">
@@ -85,5 +87,6 @@
       </ion-icon>
     </ion-row>
   </ion-row>
-  <app-table-excel></app-table-excel>
+  <app-table-excel (myEvent)="showDeleteButton($event)" (getDataOriginal)="transformedData($event)"></app-table-excel>
 </ion-content>
+<app-process-bag (myEvent)="addDataTable($event)" hidden></app-process-bag>  

@@ -97,7 +97,7 @@
                   <span class="mr-2">
                     {{i+1}}
                   </span><span>
-                    <ion-checkbox [checked]="p.isChecked" [(ngModel)]="p.isChecked"
+                    <ion-checkbox [checked]="p.isChecked" [(ngModel)]="p.isChecked" (click)="checkItem(p)"
                       style="position: relative;top: 3px;"></ion-checkbox>
                   </span> {{p.name}}
                 </p>
@@ -127,7 +127,7 @@
                     <span class="mr-2">
                       •
                     </span><span>
-                      <ion-checkbox [checked]="q.isChecked" [(ngModel)]="q.isChecked"
+                      <ion-checkbox [checked]="q.isChecked" [(ngModel)]="q.isChecked" (click)="checkItem(q,i)"
                         style="position: relative;top: 3px;"></ion-checkbox>
                     </span> {{p.name}}
                   </p>
