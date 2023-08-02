@@ -24,7 +24,11 @@ export enum ERoutePath {
   MANIFEST_BAG = '/main/dashboard/manifest/bag',
   MANIFEST_SCHEDULED = '/main/dashboard/manifest/scheduled',
   MANIFEST_HISTORY = '/main/dashboard/manifest/history',
-  MANIFEST_TABLE = '/table'
+  MANIFEST_TABLE = '/table',
+
+  //regulasi
+  REGULASI = '/main/dashboard/regulasi',
+
 }
 
 @Injectable({
@@ -87,8 +91,11 @@ export class NavigationService {
   toManifestHistoryPage() {
     this.setRoot(ERoutePath.MANIFEST_HISTORY, undefined, undefined, true);
   }
-  toTablePage() {
-    this.setRoot(ERoutePath.MANIFEST_TABLE, undefined, undefined, true);
+  toTablePage(type: string, uuid: string) {
+    this.push(ERoutePath.MANIFEST_TABLE, undefined, { type: type, uuid: uuid }, true);
+  }
+  toRegulasiPage() {
+    this.setRoot(ERoutePath.REGULASI, undefined, undefined, true);
   }
 
   async toPage(path: string): Promise<void> {

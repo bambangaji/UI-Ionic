@@ -7,7 +7,6 @@
         <ion-icon name="close" style="width: 30px; height: 30;" class="p-0 pointer" (click)="closeAllModal()">
         </ion-icon>
       </ion-row>
-
       <p class="mb-0 p-3 text-dark">
         Apakah anda sudah memastikan dengan <span class="bold-text text-dark">No. MWAB {{dataModal.mawb}}</span>
         akan berangkat ke
@@ -85,7 +84,7 @@
         </ion-icon>
       </ion-row>
       <p class="mb-0 p-3 text-dark">
-        Apakah anda sudah memastikan dengan <span class="bold-text text-dark">No. MWAB {{dataModalConfirm.mawb}}</span>
+        Apakah anda sudah memastikan dengan <span class="bold-text text-dark">No. MWAB {{dataModal.mawb}}</span>
         telah tiba di
         destinasi tujuan?
       </p>
@@ -98,6 +97,30 @@
         </ion-button>
         <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="closeAllModal()">
           Batal
+        </ion-button>
+      </ion-row>
+    </div>
+    <div *ngIf="type==='save-table'" class="wrapper p-2">
+      <ion-row lines="full" style="align-items: center; place-content: space-between;" class="border-bottom-light">
+        <p class="text-dark bold-text p mb-0 pl-2 h6">
+          Simpan Manifest
+        </p>
+        <ion-icon name="close" style="width: 30px; height: 30;" class="p-0 pointer" (click)="closeAllModal()">
+        </ion-icon>
+      </ion-row>
+      <p class="mb-0 p-3 text-dark">
+        Apakah data manifest sudah bisa untuk dijadwalkan ? jika sudah tekan Simpan untuk Dijadwalkan atau simpan draft
+        jika belum yakin.
+      </p>
+      <ion-row class="justify-content-between mt-2">
+        <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;"
+          (click)="konfirmasiSchedule()">
+          <p class="color-red">
+           Simpan Draft
+          </p>
+        </ion-button>
+        <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="closeAllModal()">
+          Simpan & Jadwalkan
         </ion-button>
       </ion-row>
     </div>

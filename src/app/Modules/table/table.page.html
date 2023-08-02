@@ -31,8 +31,8 @@
           <app-input-form typeInput="search" style="width: 46%;"></app-input-form>
         </div>
         <ion-img src="assets/icon/profileDummy.svg" class="ml-4 mr-2 small-icon"></ion-img>
-        <ion-button class="text-white" color="red">
-          Simpan Draft
+        <ion-button class="text-white" color="red" (click)="simpan()">
+          Simpan
         </ion-button>
       </div>
     
@@ -87,6 +87,7 @@
       </ion-icon>
     </ion-row>
   </ion-row>
-  <app-table-excel (myEvent)="showDeleteButton($event)" (getDataOriginal)="transformedData($event)"></app-table-excel>
+  <app-table-excel (myEvent)="showDeleteButton($event)" (getDataOriginal)="transformedData($event)" (type)="type"></app-table-excel>
 </ion-content>
 <app-process-bag (myEvent)="addDataTable($event)" hidden></app-process-bag>  
+<app-modal-schedule (ok)="save()" (cancel)="saveDraft()"></app-modal-schedule>

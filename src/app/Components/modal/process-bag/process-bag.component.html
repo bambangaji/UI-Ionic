@@ -164,9 +164,20 @@
               </span>
             </p>
           </ion-row>
-          <ion-button (click)="goToTable()" expand="block" color="grey" class="text-white">
+          <ion-button *ngIf="type !== 'schedule'" (click)="goToTable()" expand="block" color="grey" class="text-white">
             Terapkan
           </ion-button>
+          <ion-row *ngIf="type === 'schedule'" class="justify-content-between mt-2 mb-2 entah">
+            <ion-button color="red-light" class="color-red non-capitalize " style="width: 48%;"
+              (click)="closeModal()">
+              <p class="color-red">
+                Batal
+              </p>
+            </ion-button>
+            <ion-button color="red" class="text-white non-capitalize " style="width: 48%;" (click)="goToTable()">
+              Simpan
+            </ion-button>
+          </ion-row>
         </div>
       </div>
     </div>

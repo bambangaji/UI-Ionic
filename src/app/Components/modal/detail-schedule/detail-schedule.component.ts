@@ -1,6 +1,6 @@
 import { Component, Injectable, Input, OnInit, Type, ViewChild } from '@angular/core';
 
-import { IonModal, PopoverController } from '@ionic/angular';
+import { IonModal } from '@ionic/angular';
 import { ISchedule } from 'src/app/Interfaces/schedule.interface';
 import { HistoryAktivitasComponent } from '../../sidebar/history-aktivitas/history-aktivitas.component';
 import { GlobalService } from 'src/app/Services/global/global.service';
@@ -83,7 +83,7 @@ export class DetailScheduleComponent implements OnInit {
     },
   ]
   currentTab: string = 'Detail';
-  constructor(public popoverController: PopoverController, public globalService: GlobalService) { }
+  constructor( public globalService: GlobalService) { }
 
   ngOnInit() {
     console.log(this.listTab);

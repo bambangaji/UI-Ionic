@@ -57,4 +57,7 @@ export class DaftarBagPage implements OnInit {
     console.log(this.processBagComponent);
     this.processBagComponent?.modal?.present();
   }
+  openHistory(){
+    
+  }
 }

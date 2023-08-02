@@ -578,7 +578,6 @@ export class ProcessBagComponent implements OnInit {
     return `height:${total_height}px;`;
   }
   closeModal() {
-    this.globalService.closePopover();
     this.modal?.dismiss()
   }
   editFrom() {
@@ -591,7 +590,6 @@ export class ProcessBagComponent implements OnInit {
     this.isEditTo = !this.isEditTo;
   }
   applyFilterFrom() {
-    console.log(this.listData);
     if (this.isEditFrom) {
       let data = [...this.listData];;
       for (let i = data.length - 1; i > this.filterTo; i--) {
@@ -603,13 +601,8 @@ export class ProcessBagComponent implements OnInit {
       }
       this.backupData = data;
     }
-
-    console.log(this.listData);
-
   }
   applyFilterTo() {
-    console.log(this.listData);
-
     if (this.isEditTo) {
       let data = [...this.listData];;
       for (let i = data.length - 1; i > this.filterTo; i--) {
@@ -665,18 +658,16 @@ export class ProcessBagComponent implements OnInit {
   }
   goToTable() {
     this.modal?.dismiss();
-    console.log(this.type);
-    
     if (this.type === 'table') {
       let dataChecklist = this.listData.map((item) => ({
         ...item,
         resi: item.resi.filter((itemChild) => itemChild.isChecked)
       }));
-      
+
       dataChecklist = dataChecklist.filter((item) => item.isChecked || item.resi.length > 0);
       return this.myEvent.emit(dataChecklist)
     }
-    this.navService.toTablePage();
+    this.navService.toTablePage('manifest', '');
   }
   checkItem(item: any, j: any = '0') {
     if (item.resi) {

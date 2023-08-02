@@ -1,10 +1,13 @@
 <div class="table">
   <div lines="none" class="pr-2 row header-table overflow-auto" style="padding-left: 10px;;">
-    <div class="row bg-grey-blue py-2 l-4 w-100" [style]="getWidthRow">
-      <div class="col pl-3 border-radius-0" *ngFor="let p of headers;let i = index" [style]="widthCol(p.width,i)"
+    <div class="row bg-grey-blue py-2 l-4 w-100 max-1000" [style]="getWidthRow">
+      <div class="col pl-3 border-radius-0 " *ngFor="let p of headers;let i = index" [style]="widthCol(p.width,i)"
         [class]="p.freeze?'border-light-2 sticky-column bg-grey-blue':'border-light-2 bg-white'">
-        <div class="row p-2 border-bottom-light-2 bg-grey-blue2" [class]="p.css">
-          <p class="mb-0 bold-text" (click)="expandColumn(p)" [class.pointer]="p.freeze && i === total_freeze_col - 1">
+        <div class=" sticky-header row p-2 border-bottom-light-2 bg-grey-blue2" [class]="p.css">
+          <p class="mb-0 " (click)="expandColumn(p)" [class.pointer]="p.freeze && i === total_freeze_col - 1">
+            <span *ngIf="i>=2 && type==='regulasi'" (click)="hideColumn(p)" style="position: relative;top:2px; z-index: 99999999 !important;">
+              <ion-icon [name]="!p.isShow?'eye-outline':'eye-off-outline'" class="icon-medium-20 text-grey pointer" [class]="!p.isShow?'color-grey':'color-red'"></ion-icon>
+            </span>
             {{p.label.toUpperCase()}}
             <span *ngIf="p.freeze && i === total_freeze_col - 1">
               <ion-icon name="chevron-back-circle" class="icon-medium-24 text-grey pointer" style="    position: absolute;
@@ -13,14 +16,15 @@
               z-index: 9999;
           "></ion-icon>
             </span>
+
           </p>
         </div>
         <div *ngFor="let q of p.data; let j = index" class="col">
           <div *ngIf="q.key_parent" class="p-2 row h-40 text-grey">
             <div class="divider border-bottom-light-2" [style]="getWidth(p.width)">
             </div>
-            <ion-checkbox *ngIf="i===0" [(ngModel)]="q.isChecked" (ionChange)="checkboxExpand(q,j,i,$event)" class="mr-1"
-              style="position: relative; top: 3px;"></ion-checkbox>
+            <ion-checkbox *ngIf="i===0" [(ngModel)]="q.isChecked" (ionChange)="checkboxExpand(q,j,i,$event)"
+              class="mr-1" style="position: relative; top: 3px;"></ion-checkbox>
             <p [style]="q.style">
               {{q.name}}
             </p>
@@ -30,20 +34,23 @@
               <div *ngIf="r.parent_key===q.key_parent && q.key_parent" class="p-2 row h-40" [class]="r.css">
                 <div class="divider border-bottom-light-2" [style]="getWidth(p.width)">
                 </div>
-                <ion-icon *ngIf="!r.openEdit && r.edit_able && r.name !== r.tempData"  name="information-outline" color="red" class="bg-red-light p-1" style="border-radius: 100px; right: 0; position: absolute;"></ion-icon>
-                
+                <ion-icon *ngIf="!r.openEdit && r.edit_able && r.name !== r.tempData" name="information-outline"
+                  color="red" class="bg-red-light p-1"
+                  style="border-radius: 100px; right: 0; position: absolute;"></ion-icon>
                 <div *ngIf="!r.openEdit" class="row" style="position: relative; z-index: 99999;">
                   <ion-checkbox *ngIf="i===0" [(ngModel)]="r.isChecked" class="mr-1 ml-4"
-                  (ionChange)="checkboxExpand(r,j,i,$event)" style="position: relative; top: 3px;"></ion-checkbox>
+                    (ionChange)="checkboxExpand(r,j,i,$event)" style="position: relative; top: 3px;"></ion-checkbox>
                   <ion-icon name="icon-edit" *ngIf="r.edit_able" class="icon-medium-24 mr-2 pointer hover-light"
                     (click)="openEdit(r)"></ion-icon>
-                  <p *ngIf="p.columnKey!=='resi_vendor'" [style]="q.style" [class]="p.columnKey==='resi_vendor'?'color-red bold-text pointer':''">
+                  <p *ngIf="p.columnKey!=='resi_vendor'" [style]="q.style"
+                    [class]="p.columnKey==='resi_vendor'?'color-red bold-text pointer':''">
                     {{r.name}}
                   </p>
-                  <p *ngIf="p.columnKey==='resi_vendor'" [style]="q.style" [class]="p.columnKey==='resi_vendor'?'color-red bold-text pointer':''" (click)="openDetail(r)">
+                  <p *ngIf="p.columnKey==='resi_vendor'" [style]="q.style"
+                    [class]="p.columnKey==='resi_vendor'?'color-red bold-text pointer':''" (click)="openDetail(r)">
                     {{r.name}}
                   </p>
-                 </div>
+                </div>
                 <div class="row border-bottom-red" *ngIf="r.openEdit"
                   style="align-items: center; position: relative; top: -6px; z-index: 99999; ">
                   <app-input-form typeInput="small"

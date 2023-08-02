@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { GlobalService } from 'src/app/Services/global/global.service';
 import { IonModal, ModalController, PopoverController } from '@ionic/angular';
 import { IVendor } from 'src/app/Interfaces/vendor.intereface';
@@ -11,6 +11,8 @@ import { IVendor } from 'src/app/Interfaces/vendor.intereface';
 export class ModalScheduleComponent implements OnInit {
   @Input() idModal: string = ''
   @ViewChild(IonModal) modal?: IonModal;
+  @Output() ok = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<any>();
   dataModal: any = {};
   type: string = ''
   public list_vendor?: IVendor[] = [{ icon: '', name: 'HD', uuid: '50' }, { icon: '', name: 'MINA', uuid: '10' }];
@@ -37,7 +39,11 @@ export class ModalScheduleComponent implements OnInit {
   }
 
   closeAllModal() {
+    this.cancel.emit();
     this.modalController?.dismiss();
-    this.popoverController?.dismiss();
+  }
+  konfirmasiSchedule(){
+    this.ok.emit();
+    this.modalController?.dismiss();
   }
 }

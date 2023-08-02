@@ -11,55 +11,64 @@ import { ISchedule } from 'src/app/Interfaces/schedule.interface';
 export class SchedulePage implements OnInit {
   @ViewChild(TableCustomComponent) tableComponent?: TableCustomComponent;
 
-  listTab = ["Daftar Jadwal", "Dikonfirmasi", "Siap Diangkut", "Menuju Bandara", "Dibandara", "Berangkat", "Sampai", "Dibatalkan"]
+  listTab = ["Daftar Jadwal", "Dalam Proses", "Berangkat", "Sampai", "Dibatalkan"]
   currentTab = "Daftar Jadwal";
   dataheader = [
     {
       css: '',
       label: 'Destinasi',
       sort: true,
+      sortASC: true,
     },
     {
       css: '',
       label: 'MAWB',
       sort: true,
+      sortASC: true,
     },
     {
       css: '',
       label: 'AIRLINES',
       sort: true,
+      sortASC: true,
     },
     {
       css: '',
       label: 'AGENT',
       sort: true,
+      sortASC: true,
     },
     {
       css: '',
       label: 'SCHEDULE',
       sort: true,
-      width: 300
+      width: 300,
+      sortASC: true,
     },
     {
       css: '',
       label: 'EST.WEIGHT',
       sort: true,
+      sortASC: true,
     },
     {
       css: '',
       label: 'EST.COLLIE',
       sort: true,
+      sortASC: true,
     }
     ,
     {
       css: '',
       label: 'DIBUAT',
       sort: true,
+      sortASC: true,
     },
     {
       css: 'right-header-table',
       label: 'AKSI',
       sort: false,
+      sortASC: true,
     }
   ]
   dataTable: ISchedule[] =
@@ -152,8 +161,8 @@ export class SchedulePage implements OnInit {
     console.log(this.currentTab);
 
     // this.tableComponent?.setSettingsTable()
-    if (this.currentTab === 'Dikonfirmasi') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+    if (this.currentTab === 'Daftar Jadwal') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: true, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
     }
     if (this.currentTab === 'Siap Diangkut') {
       return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
@@ -171,8 +180,8 @@ export class SchedulePage implements OnInit {
       return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Dibatalkan') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: false, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
     }
-    return this.tableComponent?.setData(this.dataheader, this.dataTable, { confirm: true, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+    return this.tableComponent?.setData(this.dataheader, this.dataTable, { confirm: true, importData: false, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
   }
 }

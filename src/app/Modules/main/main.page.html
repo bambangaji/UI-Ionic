@@ -21,10 +21,10 @@
             <div *ngIf="p.isOpen && p.children.length !== 0">
               <ion-menu-toggle auto-hide="false" *ngFor="let c of p.children; let j = index">
                 <ion-list lines="none" class="p-0">
-                  <ion-item menuclose class="sub-menu p-0" (click)="currentUrl = c.url" routerDirection="root"
+                  <ion-item menuclose class="sub-menu p-0 ml-2" (click)="currentUrl = c.url" routerDirection="root"
                     [routerLink]="[c.url]">
                     <ion-icon name="ellipse" slot="start" [color]="currentUrl === c.url ? 'warning' : 'medium'"
-                      size="small"></ion-icon>
+                      size="small" class="mr-1"></ion-icon>
                     {{c.title}}
                   </ion-item>
                 </ion-list>

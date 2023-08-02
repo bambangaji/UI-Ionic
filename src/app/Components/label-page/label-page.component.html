@@ -13,12 +13,12 @@
     </div>
 
     <div *ngIf="title==='Schedule'" class="row align-items-center mr-0 justify-content-evenly">
-      <div *ngIf="!subTitle" class="ml-4 px-2 py-1 border-light row hover-light pointer " (click)="openHistory()">
+      <div *ngIf="!subTitle" class="ml-4 mr-2  px-2 py-1 border-light row hover-light pointer " (click)="openHistory()">
         <ion-icon name="icon-history" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
       </div>
-      <div class="ml-4 mr-2 px-2 py-1 border-light row hover-light pointer " (click)="openFilter()">
+      <!-- <div class="ml-4 mr-2 px-2 py-1 border-light row hover-light pointer " (click)="openFilter()">
         <ion-icon name="icon-filter" class="p-0 center-center color-red" style="width: 24px; height: 24px;"></ion-icon>
-      </div>
+      </div> -->
       <ion-button color="red" class="text-white non-capitalize mr-4" (click)="createSchedule()">
         Buat Penjadwalan <span style="font-size: 30px;">+</span>
       </ion-button>

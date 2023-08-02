@@ -21,7 +21,7 @@ import { DetailScheduleComponent } from '../../modal/detail-schedule/detail-sche
 })
 export class TableExcelComponent implements OnInit {
   @Input() dataInput: any;
-
+  @Input() type: any;
   @Output() myEvent = new EventEmitter<any>();
   @Output() getDataOriginal = new EventEmitter<any>();
   @ViewChild(DetailScheduleComponent) detailComponent: DetailScheduleComponent;
@@ -135,8 +135,16 @@ export class TableExcelComponent implements OnInit {
     value.isChecked = !value.isChecked;
   }
   expandColumn(value: any) {
-    this.isMinimized = !this.isMinimized;
-    value.label = this.isMinimized ? "BUKA SEMUA BAG" : "TUTUP SEMUA BAG"
+    console.log(value);
+    if (value.columnKey === '"tutup_semua_bag"') {
+      this.isMinimized = !this.isMinimized;
+      value.label = this.isMinimized ? "BUKA SEMUA BAG" : "TUTUP SEMUA BAG"
+    }
+  }
+  hideColumn(value: any) {
+    value.isShow = !value.isShow;
+    console.log('hide', value);
+
   }
   checkboxExpand2(value: any, index: number, j: number) {
     console.log('sdad');
@@ -193,6 +201,7 @@ export class TableExcelComponent implements OnInit {
       css: css,
       function: isFunction,
       columnKey: columnKey,
+      isShow: false,
       data: data
     };
     // console.log(newHeader);
@@ -204,6 +213,7 @@ export class TableExcelComponent implements OnInit {
       row[newHeader.columnKey] = ''; // Replace '' with the default value if needed
     });
   }
+
   addNewData(newData: any) {
     let dataExpand: any = [];
     // console.log(newData);
@@ -284,15 +294,18 @@ export class TableExcelComponent implements OnInit {
     return label.replace(/\s+/g, '_').toLowerCase();
   }
 
-  setData(data: any): void {
+  setData(data: any, type: any): void {
+    this.type = type;
     // console.log(dataHeader);
     this.headers = []
     for (let s of data.data) {
       const index = data.data.indexOf(s);
       let freeze = true;
       let css = 'text-grey'
+      let width = 200
       if (s.column_key === 'tutup_semua_bag') {
         css = 'color-red';
+        width = 350;
         this.total_freeze_col = index;
       }
       if (this.total_freeze_col !== 0) {
@@ -300,7 +313,7 @@ export class TableExcelComponent implements OnInit {
           freeze = false;
         }
       }
-      let width = 200
+
       if (s.column_key.length > 20) {
         width = 400
       }

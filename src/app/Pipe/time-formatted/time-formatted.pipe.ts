@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeFormattedPipe implements PipeTransform {
 
-  transform(dateString: string, isWithTime: boolean = false): String {
+  transform(dateString: string, isWithTime: boolean = false, type: string = ''): String {
     const date = new Date(dateString);
     date.setHours(date.getHours() + 7);
     const formattedDate = date.toLocaleDateString("id-ID", {
@@ -15,6 +15,7 @@ export class TimeFormattedPipe implements PipeTransform {
       year: "numeric",
     });
     const formattedTime = date.toLocaleTimeString("en-US", {
+      hour12: false,
       hour: "numeric",
       minute: "numeric",
     });

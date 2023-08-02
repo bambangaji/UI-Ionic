@@ -37,7 +37,7 @@
           </span>
           Kamu memiliki <span class="bold-text"> 1 Draft Data Manifest</span> yang belum diproses untuk dijadwalkan
         </p>
-        <p class="bold-text">
+        <p class="bold-text pointer" (click)="currentTab=listTab[1]">
           Lihat Sekarang
           <span>
             <ion-icon style="position: relative;top: 2px;" name="arrow-forward">
@@ -45,12 +45,13 @@
           </span>
         </p>
       </ion-row>
-      <ion-content style="height: 600px;" class="bg-grey-blue2 ml-auto mr-auto overflow-hidden">
+      <ion-content style="height: 80vh"
+        class="bg-grey-blue2 ml-auto mr-auto overflow-hidden">
         <ion-grid *ngIf="layout">
           <ion-row>
-            <ion-col *ngFor="let p of listData" size="3" class="">
+            <ion-col *ngFor="let p of listData" size="3" class="color-grey">
               <ion-card class="p-0 m-0">
-                <div class="p-2 ml-2">
+                <div class="p-2 pl-4 border-bottom-light-2">
                   <div class="row pl-2">
                     <div class="align-self-center">
                       <img src="assets/icon/profileDummy.svg" class="small-icon">
@@ -68,7 +69,7 @@
                   <p class="text-grey mt-2">
                     Bag Range
                   </p>
-                  <p class="bold-text">
+                  <p class="bold-text color-grey">
                     757G22005 - 757G22100
                   </p>
                   <ion-row class="justify-content-between my-2">
@@ -94,7 +95,7 @@
                   </ion-row>
                   <ion-row class="my-3 text-center center-center justify-content-center">
                     <div class="ml-1 mr-2 px-2 py-1 border-light row hover-light pointer ">
-                      <ion-icon name="icon-filter" class="p-0 center-center color-red"
+                      <ion-icon name="icon-history" class="p-0 center-center color-red"
                         style="width: 24px; height: 24px;"></ion-icon>
                     </div>
                     <ion-button (click)="openBag()" color="red" class="text-white"> <ion-icon name="icon-download-white"
@@ -103,12 +104,12 @@
                   </ion-row>
                 </div>
 
-                <ion-row class="bg-grey-light w-100 p-2">
+                <ion-row class="bg-grey-light w-100 p-2 color-grey">
                   <p>
                     Ditangani <span class="bold-text">
                       Toha
                     </span>
-                    {{today | timeFormatted}} WIB
+                    {{today | timeFormatted:'true'}} 
                   </p>
                 </ion-row>
               </ion-card>
@@ -121,9 +122,9 @@
         <ion-list *ngIf="!layout" class="bg-transparent mx-3">
           <ion-col *ngFor="let p of listData" class="">
             <ion-card class="p-0 m-0">
-              <div class="row justify-content-between p-2 ml-2">
+              <div class="row justify-content-between p-2 pl-4 border-bottom-light-2">
                 <div class="row pl-2 col-6">
-                  <div class="align-self-center">
+                  <div class="align-self-center ml-2">
                     <img src="assets/icon/profileDummy.svg" class="small-icon">
                     <img src="assets/icon/profileDummy.svg" class="small-icon imgNimpa">
                   </div>
@@ -137,7 +138,7 @@
                   </div>
                 </div>
 
-                <ion-row class="justify-content-between my-2 col-6">
+                <ion-row class="justify-content-between my-2 col-6 color-grey">
                   <ion-col>
                     <p class="text-grey">
                       Bag Range
@@ -168,17 +169,33 @@
                 </ion-row>
               </div>
 
-              <ion-row class="bg-grey-light w-100 px-2 justify-content-between">
-                <p class="center-center">
-                  Ditangani <span class="bold-text">
-                    Toha
-                  </span>
-                  {{today | timeFormatted}} WIB
-                </p>
+              <ion-row class="bg-grey-light w-100 px-2 justify-content-between color-grey">
+                <ion-col class="align-self-center">
+                  <ion-row>
+                    <p class="col-1">
+                      Ditangani
+
+                    </p>
+                    <p>
+                      {{today | timeFormatted}}
+                    </p>
+                  </ion-row>
+                  <ion-row>
+                    <p class="bold-text col-1">
+                      Toha
+
+                    </p>
+                    <p class="bold-text">
+                      {{today | timeFormatted:'true' | slice:-10}}
+                    </p>
+                  </ion-row>
+
+                </ion-col>
+
                 <ion-row class="my-3 text-center center-center justify-content-center">
                   <div class="ml-1 mr-2 px-2 py-1 border-light row hover-light pointer ">
-                    <ion-icon name="icon-filter" class="p-0 center-center color-red"
-                      style="width: 24px; height: 24px;"></ion-icon>
+                    <ion-icon name="icon-history" class="p-0 center-center color-red"
+                      style="width: 24px; height: 24px;" (click)="openHistory()"></ion-icon>
                   </div>
                   <ion-button (click)="openBag()" color="red" class="text-white"> <ion-icon name="icon-download-white"
                       class="text-white mr-2">

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ModalScheduleComponent } from 'src/app/Components/modal/modal-schedule/modal-schedule.component';
 import { ProcessBagComponent } from 'src/app/Components/modal/process-bag/process-bag.component';
 import { TableExcelComponent } from 'src/app/Components/table/table-excel/table-excel.component';
 import { GlobalService } from 'src/app/Services/global/global.service';
@@ -13,6 +15,7 @@ import { NavigationService } from 'src/app/Services/navigation/navigation.servic
 export class TablePage implements OnInit {
   @ViewChild(ProcessBagComponent) processBagComponent: ProcessBagComponent;
   @ViewChild(TableExcelComponent) tableComponent: TableExcelComponent;
+  @ViewChild(ModalScheduleComponent) modalComponent: ModalScheduleComponent;
   checkAll: boolean = false;
   showDelete: boolean = false;
   listDataDelete: any;
@@ -20,6 +23,8 @@ export class TablePage implements OnInit {
     search: new FormControl('')
   });
   inputArray: any;
+  type: string;
+  uuid: string;
   data: any =
     {
       header: [
@@ -195,7 +200,7 @@ export class TablePage implements OnInit {
   //   console.log('transformed Data', transformedData);
   //   return transformedData;
   // }
-  constructor(public navService: NavigationService, public globalService: GlobalService) {
+  constructor(public navService: NavigationService, public globalService: GlobalService, private activatedRoute: ActivatedRoute) {
     this.formSearch.get('search')!.valueChanges.subscribe((value) => {
       // Handle the value change
       this.resetData();
@@ -221,17 +226,22 @@ export class TablePage implements OnInit {
   }
 
   unflattenData(flattenedData: any[]): any[] {
+    console.log(flattenedData);
+
     const nestedData: any[] = [];
 
     // Group the flattened data by their parent_key
     const dataByParentKey: { [key: string]: any[] } = {};
     flattenedData.forEach((item: any) => {
+      console.log(item);
+
       const parentKey = item.parent_key || '';
       if (!dataByParentKey[parentKey]) {
         dataByParentKey[parentKey] = [];
       }
       dataByParentKey[parentKey].push(item);
     });
+    console.log(dataByParentKey);
 
     // Reconstruct the nested structure
     dataByParentKey[''].forEach((item: any) => {
@@ -247,15 +257,14 @@ export class TablePage implements OnInit {
   }
   transformedData(data: any) {
     let transformedData: any = [];
-    console.log(this.inputArray);
-
-    for (let i in data) {
+    for (let i in data[0].data) {
       const headerMap = this.inputArray.reduce((map: any, item: any) => {
         map[item.column_key] = "";
         return map;
       }, {});
       for (let j of this.inputArray) {
-        headerMap[j.column_key] = j.data[i].name;
+
+        headerMap[j.column_key] = j.data[i].name || '';
         headerMap.parent_key = j.data[i].parent_key;
         headerMap.key_parent = j.data[i].key_parent;
         headerMap.edit_able = j.data[i].edit_able;
@@ -265,25 +274,12 @@ export class TablePage implements OnInit {
     }
     return transformedData;
   }
-  convertBack() {
-    // let transformedData: any = [];
-    // for (let i in this.inputArray[0].data) {
-    //   const headerMap = this.inputArray.reduce((map: any, item: any) => {
-    //     map[item.column_key] = "";
-    //     return map;
-    //   }, {});
-    //   for (let j of this.inputArray) {
-    //     headerMap[j.column_key] = j.data[i].name;
-    //     headerMap.parent_key = j.data[i].parent_key;
-    //     headerMap.key_parent = j.data[i].key_parent;
-    //     headerMap.edit_able = j.data[i].edit_able;
-    //     // headerMap.dataExpand = this.processNestedData(inputArray[0], j.data[i].dataExpand,i,j.column_key);
-    //   }
-    //   transformedData.push(headerMap);
-    // }
-    let transformedData: any = this.transformedData(this.inputArray.data);
+  convertBack(transformedData: any) {
+    // let transformedData: any = this.transformedData(this.inputArray);
+    // console.log(transformedData);
+    // const header = 
     const originalData = this.unflattenData(transformedData);
-    this.data = originalData;
+    this.data.data = originalData;
     console.log('originalData', originalData);
   }
   setData() {
@@ -302,12 +298,13 @@ export class TablePage implements OnInit {
       expand: false,
       column_key: headerItem.column_key,
       uid: headerItem.uid,
+      isShow: false,
       data: flattenedData.data.map((dataItem: any) => ({
         edit_able: headerItem.edit_able && dataItem[headerItem.column_key] ? headerItem.edit_able : false,
         parent_key: dataItem.parent_key || '',
         key_parent: dataItem.no_bag || '',
         name: dataItem[headerItem.column_key] || '',
-        tempData: dataItem[headerItem.column_key],
+        tempData: dataItem[headerItem.column_key] || '',
         uid: dataItem.uid,
         css: 'text-grey', // Change this value as needed
         isChecked: false,
@@ -342,36 +339,45 @@ export class TablePage implements OnInit {
       title: item.label,
       column_key: item.column_key,
     }));
-    console.log(this.data);
-    // let transformedData: any = [];
-    // for (let i in inputArray[0].data) {
-    //   const headerMap = inputArray.reduce((map: any, item: any) => {
-    //     map[item.column_key] = "";
-    //     return map;
-    //   }, {});
-    //   for (let j of inputArray) {
-    //     headerMap[j.column_key] = j.data[i].name;
-    //     headerMap.parent_key = j.data[i].parent_key;
-    //     headerMap.key_parent = j.data[i].key_parent;
-    //     headerMap.edit_able = j.data[i].edit_able;
-    //     // headerMap.dataExpand = this.processNestedData(inputArray[0], j.data[i].dataExpand,i,j.column_key);
-    //   }
-    //   transformedData.push(headerMap);
-    // }
-    // const originalData = this.unflattenData(transformedData);
-    // console.log('originalData', originalData);
 
     result.header = headerInfo;
     result.data = this.inputArray;
-    this.tableComponent?.setData(result)
+    console.log('result',result);
+    
+    this.tableComponent?.setData(result, this.type)
   }
   ngAfterViewInit() {
+    this.resetCustomComponent();
+    // Function to be called when the page is entered
+    this.resetState();
+    this.activatedRoute.queryParams.subscribe(params => {
+      console.log('params', params);
+      this.type = params['type'];
+      this.uuid = params['uuid'];
+    });
     this.setData()
   }
   goToHome() {
     this.navService.toDashboardPage();
   }
   goToSubTitlePage() {
+  }
+  simpan() {
+    console.log(this.tableComponent.listDataTable);
+    console.log(this.inputArray);
+    // this.convertBack()
+    this.modalComponent?.setData('', 'openAlertKonfirmasi', 'save-table')
+    // const data = this.transformedData(this.inputArray);
+    // this.convertBack(data);
+    // this.setData()
+  }
+  saveDraft() {
+    console.log('saveDraft');
+    this.navService.toManifestBagPage()
+  }
+  save() {
+    console.log('save');
+    this.navService.toManifestBagPage()
   }
   resetData() {
 
@@ -380,7 +386,7 @@ export class TablePage implements OnInit {
 
   };
   goToTitlePage() {
-
+    this.navService.toManifestBagPage()
   }
   checkAllData() {
     this.tableComponent.listDataTable[0].data.map((data: any) => {
@@ -460,4 +466,11 @@ export class TablePage implements OnInit {
     this.setData()
     this.globalService.showToast('Berhasil hapus data', 'danger')
   }
+  resetCustomComponent() {
+
+  }
+  resetState() {
+
+  }
+
 }

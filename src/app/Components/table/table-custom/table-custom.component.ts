@@ -7,6 +7,8 @@ import { DetailScheduleComponent } from '../../modal/detail-schedule/detail-sche
 import { ModalScheduleCreateComponent } from '../../modal/modal-schedule-create/modal-schedule-create.component';
 import { NavigationService } from 'src/app/Services/navigation/navigation.service';
 import { ModalScheduleComponent } from '../../modal/modal-schedule/modal-schedule.component';
+import { PopoverTableComponent } from '../../popover/popover-table/popover-table.component';
+import { FilterComponent } from '../../modal/filter/filter.component';
 
 export interface ITableScheduleSettings {
   import: boolean,
@@ -17,6 +19,7 @@ export interface ITableScheduleSettings {
   confirm: boolean,
   detail: boolean,
   option: boolean,
+  optionRiwayat: boolean,
   checkbox: boolean,
   trash: boolean,
   optionDetail: boolean,
@@ -24,7 +27,17 @@ export interface ITableScheduleSettings {
   optionChange: boolean,
   optionChangeVendor: boolean,
   complete: boolean,
-  status: boolean
+  status: boolean,
+  mawb: boolean,
+  airlines: boolean,
+  totalCollie: boolean,
+  totalBag: boolean,
+  bagRanges: boolean,
+  collie: boolean,
+  weight: boolean,
+  departed: boolean,
+  agent: boolean,
+  print: boolean,
 }
 
 @Component({
@@ -36,6 +49,8 @@ export class TableCustomComponent implements OnInit {
   @ViewChild(DetailScheduleComponent) detailScheduleComponent?: DetailScheduleComponent;
   @ViewChild(ModalScheduleCreateComponent) createScheduleComponent?: ModalScheduleCreateComponent;
   @ViewChild(ModalScheduleComponent) modalScheduleComponent?: ModalScheduleComponent;
+  @ViewChild(PopoverController) popoverComponent?: PopoverController;
+  @ViewChild(FilterComponent) filterComponent?: FilterComponent;
   @Input() dataTable?: any[];
   @Input() type: string = 'schedule';
   @Input() import: boolean = true;
@@ -53,6 +68,7 @@ export class TableCustomComponent implements OnInit {
     confirm: true,
     detail: false,
     option: true,
+    optionRiwayat: true,
     optionDetail: true,
     optionDelete: true,
     trash: false,
@@ -61,7 +77,17 @@ export class TableCustomComponent implements OnInit {
     optionChangeVendor: false,
     complete: false,
     checkbox: true,
-    status: false
+    status: false,
+    mawb: true,
+    airlines: true,
+    agent: true,
+    collie: true,
+    departed: true,
+    weight: true,
+    bagRanges: false,
+    totalBag: false,
+    totalCollie: false,
+    print: false,
   };
   public list_vendor?: IVendor[] = [{ icon: '', name: 'HD', uuid: '50' }, { icon: '', name: 'MINA', uuid: '10' }];
   public vendor: IVendor = { icon: '', name: '', uuid: '' };
@@ -109,13 +135,21 @@ export class TableCustomComponent implements OnInit {
     complete?: boolean;
     deleteAll?: boolean;
     status?: boolean;
+    print?: boolean;
+    mawb?: boolean;
+    airlines?: boolean;
+    collie?: boolean;
+    bagRanges?: boolean;
+    totalBag?: boolean;
+    totalCollie?: boolean;
+    weight?: boolean;
+    departed?: boolean;
+    agent?: boolean;
+    optionRiwayat?: boolean;
   }, type: string = 'schedule') {
     this.type = type;
-    console.log(this.type);
-
     this.listHeaderTabel = dataheader;
     this.setWidth();
-    console.log(dataTable);
     this.dataTable = dataTable;
     const {
       importData = true,
@@ -134,9 +168,18 @@ export class TableCustomComponent implements OnInit {
       complete = false,
       deleteAll = false,
       status = false,
+      print = false,
+      mawb = true,
+      bagRanges = false,
+      agent = true,
+      airlines = true,
+      collie = true,
+      departed = true,
+      totalBag = false,
+      totalCollie = false,
+      weight = true,
+      optionRiwayat = false
     } = settings;
-    console.log(optionChangeVendor);
-
     this.dataTableSettings.checkboxAll = checkboxAll;
     this.dataTableSettings.complete = complete;
     this.dataTableSettings.optionDelete = optionDelete;
@@ -153,13 +196,24 @@ export class TableCustomComponent implements OnInit {
     this.dataTableSettings.import = importData;
     this.dataTableSettings.trash = trash;
     this.dataTableSettings.optionChangeVendor = optionChangeVendor;
+    this.dataTableSettings.weight = weight;
+    this.dataTableSettings.agent = agent;
+    this.dataTableSettings.totalCollie = totalCollie;
+    this.dataTableSettings.totalBag = totalBag;
+    this.dataTableSettings.print = print;
+    this.dataTableSettings.mawb = mawb;
+    this.dataTableSettings.airlines = airlines;
+    this.dataTableSettings.bagRanges = bagRanges;
+    this.dataTableSettings.collie = collie;
+    this.dataTableSettings.departed = departed;
+    this.dataTableSettings.optionRiwayat = optionRiwayat;
     console.log(this.dataTableSettings);
   }
   setWidth() {
     const width = 220;
     const totalWidth = width * this.listHeaderTabel!.length;
     console.log(this.customCssContent = `height: ${this.height}px ;width: ${totalWidth}px`);
-    return this.customCssContent = `height: ${this.height} ;width: ${totalWidth}px`
+    return this.customCssContent = `height: ${this.height} ;width: ${totalWidth}px; min-width: 93vw`
   }
   exportData() {
 
@@ -197,7 +251,6 @@ export class TableCustomComponent implements OnInit {
   async openAlertTrash(val: any) {
     const data = { mawb: val.mawb, list_vendor: this.list_vendor };
     this.modalScheduleComponent?.setData(data, 'openAlertKonfirmasi', 'trash')
-
   }
 
   async openAlertChangeSchedule(val: any) {
@@ -207,11 +260,81 @@ export class TableCustomComponent implements OnInit {
   }
 
   async openAlertDelete(val: any, type: number) {
+    this.popoverController.dismiss();
     const data = { mawb: val.mawb, list_vendor: this.list_vendor };
     this.modalScheduleComponent?.setData(data, 'openAlertKonfirmasi', 'delete')
+  }
+  async openManifest(data: any) {
+    this.popoverController.dismiss();
+    this.navService.toTablePage(this.type, data.uuid || '');
+  }
+  async openFilter() {
+    this.filterComponent?.modal?.present();
+  }
+  async presentPopover(ev: Event) {
+    // this.popoverController.dismiss();
+    // const popover = await this.popoverController.create({
+    //   event: ev,
+    //   translucent: true,
+    //   componentProps: {
+    //     // Add any data you want to pass to the popover content here
+    //   },
+    //   component: this.popoverContent,
+    // });
 
+    // await popover.present();
+  }
+  sortDataAscending(value: any) {
+    console.log(value);
+    console.log(this.dataTable);
+    
+    this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
+    value.sortASC = true;
+    this.dataTable!.sort((a, b) => {
+      if (value.label.toLowerCase() === 'destinasi')
+        return a.country.localeCompare(b.country);
+      if (value.label.toLowerCase() === 'schedule')
+        return a.date_departed.localeCompare(b.date_departed);
+      if (value.label.toLowerCase() === 'est.weight')
+        return a.weight.toLocaleString().localeCompare(b.weight);
+      if (value.label.toLowerCase() === 'est.collie')
+        return a.collie.toLocaleString().localeCompare(b.collie);
+      if (value.label.toLowerCase() === 'dibuat')
+        return a.created_at.localeCompare(b.created_at);
+      else
+        return a[value.label.toLocaleString().toLowerCase()].localeCompare(b[value.label.toLocaleString().toLowerCase()]);
+    });
   }
 
+  sortDataDescending(value: any) {
+    this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
+    value.sortASC = false;
+    this.dataTable!.sort((a, b) => {
+      if (value.label.toLowerCase() === 'destinasi')
+        return b.country.localeCompare(a.country);
+      if (value.label.toLowerCase() === 'schedule')
+        return b.date_departed.localeCompare(a.date_departed);
+      if (value.label.toLowerCase() === 'est.weight')
+        return b.weight.toLocaleString().localeCompare(a.weight);
+      if (value.label.toLowerCase() === 'est.collie')
+        return b.collie.toLocaleString().localeCompare(a.collie);
+      if (value.label.toLowerCase() === 'dibuat')
+        return b.created_at.localeCompare(a.created_at);
+      else
+        return b[value.label.toLocaleString().toLowerCase()].localeCompare(a[value.label.toLocaleString().toLowerCase()]);
+    });
+  }
+  async openPopover(ev: Event, d: any) {
+    const popover = await this.popoverController.create({
+      component: PopoverTableComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        data: d
+      }
+    });
+    return await popover.present();
+  }
   closeModalConfirm() {
     this.modal?.dismiss();
   }
@@ -225,6 +348,8 @@ export class TableCustomComponent implements OnInit {
     this.modalScheduleComponent?.setData('', 'openAlertKonfirmasi', 'delete')
   }
   async openRingkasan(p: any) {
+    console.log(p);
+    this.popoverController.dismiss();
     await this.detailScheduleComponent?.setData(p);
     this.detailScheduleComponent?.modal?.present();
   }
@@ -232,7 +357,6 @@ export class TableCustomComponent implements OnInit {
     this.closeAllModal();
   }
   closeAllModal() {
-    console.log(this.popoverController);
     this.modalController?.dismiss();
     this.popoverController.dismiss();
   }

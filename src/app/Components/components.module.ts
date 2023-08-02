@@ -39,6 +39,7 @@ import { ModalScheduleComponent } from './modal/modal-schedule/modal-schedule.co
 import { ChartDashboardComponent } from './chart/chart-dashboard/chart-dashboard.component';
 import { ProcessBagComponent } from './modal/process-bag/process-bag.component';
 import { TableExcelComponent } from './table/table-excel/table-excel.component';
+import { PopoverTableComponent } from './popover/popover-table/popover-table.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { TableExcelComponent } from './table/table-excel/table-excel.component';
     ModalScheduleComponent,
     ChartDashboardComponent,
     ProcessBagComponent,
-    TableExcelComponent
+    TableExcelComponent,
+    PopoverTableComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -125,7 +127,8 @@ import { TableExcelComponent } from './table/table-excel/table-excel.component';
     ModalScheduleComponent,
     ChartDashboardComponent,
     ProcessBagComponent,
-    TableExcelComponent
+    TableExcelComponent,
+    PopoverTableComponent
   ]
 })
 export class ComponentsModule { }

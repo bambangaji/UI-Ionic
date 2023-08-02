@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: () => import('./schedule/schedule.module').then(m => m.SchedulePageModule)
       },
       {
+        path: 'regulasi',
+        loadChildren: () => import('./regulasi/regulasi.module').then(m => m.RegulasiPageModule)
+      },
+      {
         path: 'manifest',
         children: [
           {
@@ -30,7 +34,7 @@ const routes: Routes = [
           },
           {
             path: 'scheduled',
-            loadChildren: () => import('./manifest/riwayat/riwayat.module').then(m => m.RiwayatPageModule)
+            loadChildren: () => import('./manifest/jadwal/jadwal.module').then(m => m.JadwalPageModule)
           },
           {
             path: 'history',
@@ -50,6 +54,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/main/dashboard',
     pathMatch: 'full',
+  },
+  {
+    path: 'regulasi',
+    loadChildren: () => import('../../Modules/main/regulasi/regulasi.module').then( m => m.RegulasiPageModule)
   }
 ]
 @NgModule({

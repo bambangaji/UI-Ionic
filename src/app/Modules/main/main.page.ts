@@ -17,7 +17,7 @@ export class MainPage implements OnInit {
         { title: 'Riwayat', url: ERoutePath.MANIFEST_HISTORY }
       ]
     },
-    { title: 'Regulasi', url: 'regulasi', icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    { title: 'Regulasi', url: ERoutePath.REGULASI, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
 
   ];
   public currentUrl: string = ERoutePath.DASHBOARD;
