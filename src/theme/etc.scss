@@ -34,20 +34,27 @@
     height: 40px;
     object-fit: cover;
 }
-.w-48{
-    width:48% !important;
+
+.w-48 {
+    width: 48% !important;
 }
+
 .icon-medium {
     height: 20px !important;
     width: 20px !important;
 }
-.popover-country{
+
+.popover-country {
     width: 500px;
 }
+
 .icon-medium-24 {
     height: 24px !important;
     width: 24px !important;
 }
+
+.circle {border-radius: 100px;}
+
 .icon-medium-22 {
     height: 22px !important;
     width: 22px !important;
@@ -295,12 +302,14 @@ button.alert-button.alert-button-cancel {
     border-radius: 11px;
     background: #F7F5FF;
 }
+
 .imgNimpa {
     position: relative;
     left: -15px;
     z-index: 9999;
     top: 0px;
 }
+
 .right-header-table {
     position: absolute !important;
     right: 50px !important;

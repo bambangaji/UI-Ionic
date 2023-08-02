@@ -20,4 +20,8 @@ export interface ISchedule {
     role?: string[];
     show_column?: string;
     max_column?: string;
+    bag?: string;
+    est_bag?: string;
+    est_weight?: string;
+    noFlight?: string;
 }

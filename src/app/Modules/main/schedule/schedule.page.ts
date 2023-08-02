@@ -34,6 +34,12 @@ export class SchedulePage implements OnInit {
     },
     {
       css: '',
+      label: 'No.Flight',
+      sort: true,
+      sortASC: true,
+    },
+    {
+      css: '',
       label: 'AGENT',
       sort: true,
       sortASC: true,
@@ -47,16 +53,22 @@ export class SchedulePage implements OnInit {
     },
     {
       css: '',
-      label: 'EST.WEIGHT',
+      label: 'EST.BAG',
       sort: true,
       sortASC: true,
     },
     {
       css: '',
-      label: 'EST.COLLIE',
+      label: 'EST.WEIGHT',
       sort: true,
       sortASC: true,
     }
+    // {
+    //   css: '',
+    //   label: 'EST.COLLIE',
+    //   sort: true,
+    //   sortASC: true,
+    // }
     ,
     {
       css: '',
@@ -80,8 +92,8 @@ export class SchedulePage implements OnInit {
         mawb: '819-00000004',
         image_from: 'assets/icon/profileDummy.svg',
         image_to: 'assets/icon/profileDummy.svg',
-        date_departed: '20-09-2022 13:45',
-        date_arival: '20-09-2022 13:45',
+        date_departed: '20-09-2023 13:45',
+        date_arival: '20-09-2023 13:45',
         collie: 10,
         weight: 100,
         country: 'Singapore',
@@ -89,7 +101,8 @@ export class SchedulePage implements OnInit {
         vendor: 'HD',
         uuid: '2',
         status: 'Terbang',
-        isStatus: false
+        isStatus: false,
+        noFlight: '222'
       },
       {
         agent: 'KSL',
@@ -98,8 +111,8 @@ export class SchedulePage implements OnInit {
         mawb: '819-00000004',
         image_from: 'assets/icon/profileDummy.svg',
         image_to: 'assets/icon/profileDummy.svg',
-        date_departed: '24-09-2022 13:45',
-        date_arival: '26-09-2022 13:45',
+        date_departed: '24-09-2023 13:45',
+        date_arival: '26-09-2023 13:45',
         collie: 12,
         weight: 120,
         country: 'Indonesia',
@@ -107,7 +120,8 @@ export class SchedulePage implements OnInit {
         vendor: 'SD',
         uuid: '1',
         status: 'Terbang',
-        isStatus: false
+        isStatus: false,
+        noFlight: '223'
       },
       {
         agent: 'DSL',
@@ -125,7 +139,8 @@ export class SchedulePage implements OnInit {
         vendor: 'ED',
         uuid: '3',
         status: 'Terbang',
-        isStatus: false
+        isStatus: false,
+        noFlight: '225'
       },
       {
         agent: 'zSL',
@@ -138,12 +153,14 @@ export class SchedulePage implements OnInit {
         date_arival: '24-09-2022 13:45',
         collie: 29,
         weight: 150,
+
         country: 'China',
         created_at: '23-09-2022 13:45',
         vendor: 'MD',
         uuid: '5',
         status: 'Terbang',
-        isStatus: false
+        isStatus: false,
+        noFlight: '2220'
       },
     ]
   ngOnInit() {
@@ -162,26 +179,26 @@ export class SchedulePage implements OnInit {
 
     // this.tableComponent?.setSettingsTable()
     if (this.currentTab === 'Daftar Jadwal') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: true, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: true, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
     }
     if (this.currentTab === 'Siap Diangkut') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Menuju Bandara') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Dibandara') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
     }
     if (this.currentTab === 'Berangkat') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { complete: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, complete: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Sampai') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Dibatalkan') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { checkbox: true, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
     }
-    return this.tableComponent?.setData(this.dataheader, this.dataTable, { confirm: true, importData: false, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+    return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, confirm: true, importData: false, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
   }
 }

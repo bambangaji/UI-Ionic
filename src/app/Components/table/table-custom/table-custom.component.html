@@ -1,5 +1,5 @@
 <div class="table" style="    overflow: auto;">
-  <div *ngIf="type==='schedule'" class="row my-3 justify-content-between" style="position: sticky; left: 0;">
+  <div *ngIf="type==='schedule'" class="row my-3 justify-content-between mx-0" style="position: sticky; left: 0;">
     <div class="row">
       <div class="px-3 py-2 border-light row ml-4 " *ngIf="dataTableSettings.checkbox">
         <ion-checkbox labelPlacement="end" [checked]="isCheckAll" value="isCheckAll"
@@ -37,40 +37,43 @@
       </div>
     </div>
   </div>
-  <div *ngIf="type==='schedule-import'" class="col my-3 mx-4">
-    <div class="row justify-content-between">
-      <p class="bold-text h6 ">
-        Import Jadwal
-      </p>
-      <p (click)="openAlertKonfirmasi(p)"
-        class="mb-0 py-1 px-3 pointer bg-red-light color-red border-radius-8 mr-3 bold-text"
-        style="width: fit-content; float:right; position: absolute; right:10px;">Proses Import</p>
-    </div>
-    <div class="row mt-2 ">
-      <p class=" col-2">
-        Template Import
-      </p>
-      <p class="bold-text color-red col-4 p-0">
-        Unduh Template
-      </p>
-    </div>
-    <div class="row mt-2" style="place-items: center;">
-      <p class=" col-2">
-        File Jadwal Flight
-      </p>
-      <div class="col-4 row text-center center-center " style="place-items: center;">
-        <input type="file" name="importData" id="importData" hidden #fileInput>
-
-        <p class=" p-2 bg-grey-blue2 border-radius-8 pointer hover-light" (click)="triggerFileInput()">
-          Ubah File
+  <div *ngIf="type==='schedule-import'" class="col my-3" style="position: sticky; left: 0;">
+    <div class="ml-4">
+      <div class="row justify-content-between">
+        <p class="bold-text h6 ">
+          Import Jadwal
         </p>
-        <p class="text-grey ml-2">
-          fileName
+        <p (click)="openAlertKonfirmasi(p)"
+          class="mb-0 py-1 px-3 pointer bg-red-light color-red border-radius-8 mr-3 bold-text"
+          style="width: fit-content; float:right; position: absolute; right:10px;">Proses Import</p>
+      </div>
+      <div class="row mt-2 ">
+        <p class=" col-2">
+          Template Import
+        </p>
+        <p class="bold-text color-red col-4 p-0">
+          Unduh Template
         </p>
       </div>
-      <p (click)="openAlertKonfirmasi(p)" class="mb-0 py-1 px-3 pointer mr-3 bold-text"
-        style="width: fit-content; float:right; position: absolute; right:10px;">Total Data: 120 Jadwal </p>
+      <div class="row mt-2" style="place-items: center;">
+        <p class=" col-2">
+          File Jadwal Flight
+        </p>
+        <div class="col-4 row text-center center-center " style="place-items: center;">
+          <input type="file" name="importData" id="importData" hidden #fileInput>
+
+          <p class=" p-2 bg-grey-blue2 border-radius-8 pointer hover-light" (click)="triggerFileInput()">
+            Ubah File
+          </p>
+          <p class="text-grey ml-2">
+            fileName
+          </p>
+        </div>
+        <p (click)="openAlertKonfirmasi(p)" class="mb-0 py-1 px-3 pointer mr-3 bold-text"
+          style="width: fit-content; float:right; position: absolute; right:10px;">Total Data: 120 Jadwal </p>
+      </div>
     </div>
+
 
   </div>
   <div>
@@ -84,17 +87,17 @@
                   {{p.label}}
                 </p>
                 <div class="ml-1" *ngIf="p.sort">
-                  <div *ngIf="!p.sortASC" >
+                  <div *ngIf="!p.sortASC">
                     <img src="assets/icon/sort-bottom.svg" (click)="sortDataAscending(p)"
                       style="position: absolute; top: 5px; width: 10px;  transform: rotate(180deg)" class="pointer">
-                    <img src="assets/icon/sort-bottom-e.svg"  (click)="sortDataDescending(p)" style="position: absolute; bottom: 5px; width: 10px;"
-                      class="pointer">
+                    <img src="assets/icon/sort-bottom-e.svg" (click)="sortDataDescending(p)"
+                      style="position: absolute; bottom: 5px; width: 10px;" class="pointer">
                   </div>
                   <div *ngIf="p.sortASC">
                     <img src="assets/icon/sort-top-e.svg" (click)="sortDataAscending(p)"
                       style="position: absolute; top: 5px; width: 10px;" class="pointer">
-                    <img src="assets/icon/sort-bottom.svg" (click)="sortDataDescending(p)" style="position: absolute; bottom: 5px; width: 10px;"
-                      class="pointer">
+                    <img src="assets/icon/sort-bottom.svg" (click)="sortDataDescending(p)"
+                      style="position: absolute; bottom: 5px; width: 10px;" class="pointer">
                   </div>
 
                 </div>
@@ -197,6 +200,11 @@
                     {{p.airlines}}
                   </p>
                 </div>
+                <div *ngIf="dataTableSettings.noFlight" class="col center-center max-width-200">
+                  <p class="text-dark">
+                    {{p.noFlight}}
+                  </p>
+                </div>
                 <div *ngIf="dataTableSettings.agent" class="col center-center max-width-200">
                   <p class="text-dark">
                     {{p.agent}}
@@ -206,10 +214,28 @@
                   style="min-width: 300px;">
                   <p class="text-dark">
                     {{p.date_departed}} <span class="text-grey">Departed</span>
+                    <span *ngIf="validateDate(p.date_departed)">
+                      <ion-icon name="information-outline" [id]="'pop-over-departed-'+p.uuid"
+                        class="color-red circle bg-red-light p-1 ml-1 pointer"
+                        style="position: relative; top: 7px; right:0px;"></ion-icon>
+                    </span>
                   </p>
                   <p>
                     {{p.date_arival}} <span class="text-grey">Arival</span>
                   </p>
+                  <ion-popover [trigger]="'pop-over-departed-'+p.uuid" triggerAction="hover">
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <p>
+                          Jadwal ini telah melebihi batas waktu kedatangan, sebelum di proses manifest, segera lakukan
+                          penjadwalan ulang dari jadwal yang tersedia
+                        </p>
+                        <p class="color-red bold-text hover-light pointer" (click)="openAlertChangeSchedule(p)">
+                          Ubah Jadwal
+                        </p>
+                      </ion-content>
+                    </ng-template>
+                  </ion-popover>
                 </div>
                 <div *ngIf="dataTableSettings.weight" class="col center-center max-width-200">
                   <p class="text-dark">

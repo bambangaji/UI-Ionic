@@ -38,6 +38,9 @@ export interface ITableScheduleSettings {
   departed: boolean,
   agent: boolean,
   print: boolean,
+  noFlight: boolean,
+  estBag: boolean,
+  estWeight: boolean,
 }
 
 @Component({
@@ -88,6 +91,9 @@ export class TableCustomComponent implements OnInit {
     totalBag: false,
     totalCollie: false,
     print: false,
+    noFlight: false,
+    estBag: false,
+    estWeight: false,
   };
   public list_vendor?: IVendor[] = [{ icon: '', name: 'HD', uuid: '50' }, { icon: '', name: 'MINA', uuid: '10' }];
   public vendor: IVendor = { icon: '', name: '', uuid: '' };
@@ -145,7 +151,10 @@ export class TableCustomComponent implements OnInit {
     weight?: boolean;
     departed?: boolean;
     agent?: boolean;
+    noFlight?: boolean;
     optionRiwayat?: boolean;
+    estBag?: boolean;
+    estWeight?: boolean;
   }, type: string = 'schedule') {
     this.type = type;
     this.listHeaderTabel = dataheader;
@@ -178,7 +187,10 @@ export class TableCustomComponent implements OnInit {
       totalBag = false,
       totalCollie = false,
       weight = true,
-      optionRiwayat = false
+      optionRiwayat = false,
+      noFlight = false,
+      estBag = false,
+      estWeight = false,
     } = settings;
     this.dataTableSettings.checkboxAll = checkboxAll;
     this.dataTableSettings.complete = complete;
@@ -207,6 +219,9 @@ export class TableCustomComponent implements OnInit {
     this.dataTableSettings.collie = collie;
     this.dataTableSettings.departed = departed;
     this.dataTableSettings.optionRiwayat = optionRiwayat;
+    this.dataTableSettings.noFlight = noFlight;
+    this.dataTableSettings.estBag = estBag;
+    this.dataTableSettings.estWeight = estWeight;
     console.log(this.dataTableSettings);
   }
   setWidth() {
@@ -254,6 +269,7 @@ export class TableCustomComponent implements OnInit {
   }
 
   async openAlertChangeSchedule(val: any) {
+    this.popoverController.dismiss();
     this.dataModalConfirm = { mawb: val.mawb };
     // this.elementRef.nativeElement.querySelector('#scheduleModal').click();
     this.createScheduleComponent?.modal?.present();
@@ -287,7 +303,7 @@ export class TableCustomComponent implements OnInit {
   sortDataAscending(value: any) {
     console.log(value);
     console.log(this.dataTable);
-    
+
     this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
     value.sortASC = true;
     this.dataTable!.sort((a, b) => {
@@ -305,7 +321,17 @@ export class TableCustomComponent implements OnInit {
         return a[value.label.toLocaleString().toLowerCase()].localeCompare(b[value.label.toLocaleString().toLowerCase()]);
     });
   }
+  validateDate(data: string): boolean {
+    const [datePart, timePart] = data.split(' ');
+    const [day, month, year] = datePart.split('-');
+    const [hours, minutes] = timePart.split(':');
 
+    const dateDeparted = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes));
+    const today = new Date();
+
+    return dateDeparted < today;
+
+  }
   sortDataDescending(value: any) {
     this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
     value.sortASC = false;
