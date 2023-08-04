@@ -102,7 +102,10 @@ export class SchedulePage implements OnInit {
         uuid: '2',
         status: 'Terbang',
         isStatus: false,
-        noFlight: '222'
+        noFlight: '222',
+        bag: '20',
+        est_bag: '100',
+        est_weight: '1000',
       },
       {
         agent: 'KSL',
@@ -121,7 +124,10 @@ export class SchedulePage implements OnInit {
         uuid: '1',
         status: 'Terbang',
         isStatus: false,
-        noFlight: '223'
+        noFlight: '223',
+        bag: '10',
+        est_bag: '100',
+        est_weight: '1000',
       },
       {
         agent: 'DSL',
@@ -140,7 +146,10 @@ export class SchedulePage implements OnInit {
         uuid: '3',
         status: 'Terbang',
         isStatus: false,
-        noFlight: '225'
+        noFlight: '225',
+        bag: '120',
+        est_bag: '150',
+        est_weight: '1000',
       },
       {
         agent: 'zSL',
@@ -153,14 +162,16 @@ export class SchedulePage implements OnInit {
         date_arival: '24-09-2022 13:45',
         collie: 29,
         weight: 150,
-
         country: 'China',
         created_at: '23-09-2022 13:45',
         vendor: 'MD',
         uuid: '5',
         status: 'Terbang',
         isStatus: false,
-        noFlight: '2220'
+        noFlight: '2220',
+        bag: '50',
+        est_bag: '200',
+        est_weight: '1000',
       },
     ]
   ngOnInit() {
@@ -175,30 +186,28 @@ export class SchedulePage implements OnInit {
     this.setTable();
   }
   setTable() {
-    console.log(this.currentTab);
-
     // this.tableComponent?.setSettingsTable()
     if (this.currentTab === 'Daftar Jadwal') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: true, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, {  bag: true,  collie: false ,  noFlight: true, checkbox: true, importData: true, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
     }
-    if (this.currentTab === 'Siap Diangkut') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+    if (this.currentTab === 'Dalam Proses') {
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, {  ready:true, estBag: true, estWeight: true, bag: true,  collie: false , noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Menuju Bandara') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, {  bag: true,  collie: false , noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Dibandara') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, {  bag: true,  collie: false , noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
     }
     if (this.currentTab === 'Berangkat') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, complete: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, {  estBag: true, estWeight: true, bag: true,  collie: false , noFlight: true, complete: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Sampai') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { estBag: true, estWeight: true, bag: true,  collie: false , noFlight: true, checkbox: true, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: true });
     }
     if (this.currentTab === 'Dibatalkan') {
-      return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, checkbox: true, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
+      return this.tableComponent?.setData(this.dataheader, this.dataTable, { estBag: true, estWeight: true, bag: true,  collie: false ,noFlight: true, checkbox: true, exportData: false, importData: false, confirm: false, option: true, optionChangeVendor: false, optionDetail: true, optionChange: false, optionDelete: false, checkboxAll: false });
     }
-    return this.tableComponent?.setData(this.dataheader, this.dataTable, { noFlight: true, confirm: true, importData: false, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
+    return this.tableComponent?.setData(this.dataheader, this.dataTable, { bag: true,  collie: false, estBag: true, estWeight: true, noFlight: true, confirm: true, importData: false, option: true, optionDetail: true, optionChange: true, optionDelete: true, checkboxAll: true });
   }
 }

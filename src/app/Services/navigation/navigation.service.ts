@@ -13,7 +13,7 @@ export enum ERoutePath {
   FORGOT_PASSWORD_SET_NEW = '/forgot-password/set-new',
   //MAIN
   DASHBOARD = '/main/dashboard/home',
-
+  PENGATURAN = '/main/dashboard/settings',
   //schedule
   SCHEDULE = '/main/dashboard/schedule',
   SCHEDULE_LOG = '/main/dashboard/schedule/log',
@@ -96,6 +96,9 @@ export class NavigationService {
   }
   toRegulasiPage() {
     this.setRoot(ERoutePath.REGULASI, undefined, undefined, true);
+  }
+  toSettingsPage() {
+    this.setRoot(ERoutePath.PENGATURAN, undefined, undefined, true);
   }
 
   async toPage(path: string): Promise<void> {

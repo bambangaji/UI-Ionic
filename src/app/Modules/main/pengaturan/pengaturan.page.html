@@ -1,0 +1,22 @@
+<ion-content [fullscreen]="true">
+  <app-dashboard-background>
+    <app-label-page title="Pengaturan" subTitle="Profile"></app-label-page>
+    <ion-card class="z102 position-relative mr-4 ml-4">
+      <ion-card-content class="p-0">
+        <ion-row class="row ">
+          <ion-col size="3" class=" p-3 pl-4 border-right-light">
+            <p *ngFor="let p of listTab" (click)="currentTab=p" class="hover-light pointer pl-3 py-2"
+              [class]="currentTab===p?'color-red bold-text':''">
+              {{p}}
+            </p>
+          </ion-col>
+          <ion-col size="9" *ngIf="currentTab===listTab[0]">
+            <p>
+              Profil
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </app-dashboard-background>
+</ion-content>

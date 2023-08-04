@@ -60,7 +60,7 @@
           File Jadwal Flight
         </p>
         <div class="col-4 row text-center center-center " style="place-items: center;">
-          <input type="file" name="importData" id="importData" hidden #fileInput>
+          <input type="file" name="importData" id="importData" (change)="handleFile($event)" hidden #fileInput>
 
           <p class=" p-2 bg-grey-blue2 border-radius-8 pointer hover-light" (click)="triggerFileInput()">
             Ubah File
@@ -70,7 +70,7 @@
           </p>
         </div>
         <p (click)="openAlertKonfirmasi(p)" class="mb-0 py-1 px-3 pointer mr-3 bold-text"
-          style="width: fit-content; float:right; position: absolute; right:10px;">Total Data: 120 Jadwal </p>
+          style="width: fit-content; float:right; position: absolute; right:10px;">Total Data: {{dataTable.length}} Jadwal </p>
       </div>
     </div>
 
@@ -240,6 +240,41 @@
                 <div *ngIf="dataTableSettings.weight" class="col center-center max-width-200">
                   <p class="text-dark">
                     {{p.weight}}
+                    <span *ngIf="dataTableSettings.estWeight">
+                      <ion-icon name="help-circle-outline" [id]="'pop-over-estWeight-'+p.uuid"
+                        class="color-grey circle p-0 ml-1 pointer icon-medium-22"
+                        style="position: relative; top: 5px; right:0px;"></ion-icon>
+                      <ion-popover [trigger]="'pop-over-estWeight-'+p.uuid" triggerAction="hover"
+                        cssClass="custom-popover">
+                        <ng-template>
+                          <ion-content class="ion-padding">
+                            <p>
+                              Est Weight {{p.est_weight}}
+                            </p>
+                          </ion-content>
+                        </ng-template>
+                      </ion-popover>
+                    </span>
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.bag" class="col center-center max-width-200">
+                  <p class="text-dark">
+                    {{p.bag}}
+                    <span *ngIf="dataTableSettings.estBag">
+                      <ion-icon name="help-circle-outline" [id]="'pop-over-estBag-'+p.uuid"
+                        class="color-grey circle p-0 ml-1 pointer icon-medium-22"
+                        style="position: relative; top: 5px; right:0px;"></ion-icon>
+                      <ion-popover [trigger]="'pop-over-estBag-'+p.uuid" triggerAction="hover"
+                        cssClass="custom-popover">
+                        <ng-template>
+                          <ion-content class="ion-padding">
+                            <p>
+                              Est Bag {{p.est_bag}}
+                            </p>
+                          </ion-content>
+                        </ng-template>
+                      </ion-popover>
+                    </span>
                   </p>
                 </div>
                 <div *ngIf="dataTableSettings.collie" class="col center-center max-width-200">
@@ -262,6 +297,9 @@
                   <p *ngIf="dataTableSettings.complete" (click)="openAlertComplete(p)"
                     class="mb-0 py-1 px-3 pointer bg-red-light color-red border-radius-8 mr-3 bold-text"
                     style="width: fit-content; float:right;">Sampai</p>
+                  <p *ngIf="dataTableSettings.ready" (click)="openKeberangkatan(p)"
+                    class="mb-0 py-1 px-3 pointer bg-red-light color-red border-radius-8 mr-3 bold-text"
+                    style="width: fit-content; float:right;">Berangkat</p>
                   <ion-icon *ngIf="dataTableSettings.print" (click)="openRingkasan(p)" name="print-outline"
                     class="border-light  p-1 pointer hover-light mr-2" color="grey" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
@@ -275,8 +313,8 @@
                   <ion-icon *ngIf="dataTableSettings.detail" (click)="openRingkasan(p)" name="eye"
                     class="border-light  p-1 pointer hover-light mr-2" color="dark" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
-                  <ion-icon *ngIf="dataTableSettings.trash" (click)="openAlertTrash(p)" name="trash"
-                    class="border-light  p-1 pointer hover-light mr-2" color="dark" style="    position: relative !important;
+                  <ion-icon *ngIf="dataTableSettings.trash" (click)="openAlertTrash(p)" name="trash-outline"
+                    class="border-light  p-1 pointer hover-light mr-2 icon-medium-22" color="grey" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
                   <ion-popover *ngIf="dataTableSettings.option" [trigger]="'pop-over-'+p.uuid" triggerAction="click">
                     <ng-template>
@@ -327,11 +365,25 @@
           </div>
         </ion-list>
       </div>
+      <div *ngIf="dataTable!.length===0">
+        <div style="
+        position: fixed;
+        left: 43vw;
+        top: 40vh;
+    ">
+          <img src="assets/icon/empty.svg">
+          <p class="bold-text ml-4 pl-2 mt-3">
+            Tidak ada data
+          </p>
+        </div>
+
+      </div>
     </ion-content>
   </div>
 
 </div>
 <app-detail-schedule hidden></app-detail-schedule>
 <app-modal-schedule-create></app-modal-schedule-create>
-<app-modal-schedule></app-modal-schedule>
+<app-modal-schedule (ok)="okEmit($event)" (cancel)="cancelEmit($event)"></app-modal-schedule>
 <app-filter></app-filter>
+<app-modal-keberangkatan> </app-modal-keberangkatan>

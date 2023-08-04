@@ -34,6 +34,8 @@ export class ModalScheduleComponent implements OnInit {
 
     }
     this.idModal = id;
+    console.log(data);
+    this.dataModal = data;
     await this.globalService.delay(100);
     this.modal?.present();
   }
@@ -42,8 +44,14 @@ export class ModalScheduleComponent implements OnInit {
     this.cancel.emit();
     this.modalController?.dismiss();
   }
-  konfirmasiSchedule(){
+  konfirmasiSchedule() {
     this.ok.emit();
     this.modalController?.dismiss();
+  }
+  deleteSchedule() {
+    // const data = {mawb:this.dataModal}
+    console.log(this.dataModal);
+
+    this.ok.emit(this.dataModal)
   }
 }

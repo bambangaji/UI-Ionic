@@ -18,7 +18,8 @@ export class MainPage implements OnInit {
       ]
     },
     { title: 'Regulasi', url: ERoutePath.REGULASI, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
-    { title: 'Pengaturan', url: 'pengaturan', icon: 'settings-outline', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    { title: 'Loading', url: ERoutePath.REGULASI, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    { title: 'Pengaturan', url: ERoutePath.PENGATURAN, icon: 'settings-outline', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
     { title: 'Logout', url: ERoutePath.LOGIN, icon: 'log-out-outline', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
   ];
   public currentUrl: string = ERoutePath.DASHBOARD;
@@ -48,11 +49,10 @@ export class MainPage implements OnInit {
     return this.navigationService.currentRoute
   }
   customStyle(data: any) {
-    console.log(data);
-    if (data.url === 'pengaturan') {
+    if (data.url === ERoutePath.PENGATURAN) {
       return 'position:absolute; bottom:50px;'
     }
-    if (data.url === '/login') {
+    if (data.url === ERoutePath.LOGIN) {
       return 'position:absolute; bottom:0px; '
     }
     return

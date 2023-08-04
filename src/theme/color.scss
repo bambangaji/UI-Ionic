@@ -18,6 +18,18 @@
     border-bottom: 1px solid #ECEAF6 !important;
 }
 
+.border-right-light {
+    border-right: 1px solid #ECEAF6 !important;
+}
+
+.border-left-light {
+    border-left: 1px solid #ECEAF6 !important;
+}
+
+.border-top-light {
+    border-top: 1px solid #ECEAF6 !important;
+}
+
 .bg-purple-light {
     @include bg-purple-light;
 }
@@ -423,6 +435,10 @@ ion-card {
 .border-bottom-light-2
 {
     border-bottom: 1px solid #b2aec691 !important;;
+}
+.border-top-light-2
+{
+    border-top: 1px solid #b2aec691 !important;;
 }
 .border-radius-0{
     border-radius: 0 !important;

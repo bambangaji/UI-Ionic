@@ -1,0 +1,173 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-row class="justify-content-between center-center align-items-center p-2">
+        <p class="mb-0 bold-text h6">
+          Konfirmasi Keberangkatan
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <div class="border-light text-grey bg-white with-overflow" style="height: 100vh; overflow: hidden;">
+        <div class="row justify-content-between mx-3 center-center align-items-center">
+          <div class="row pl-3">
+            <div class="align-self-center">
+              <img src="assets/icon/profileDummy.svg" class="small-icon">
+              <img src="assets/icon/profileDummy.svg" class="small-icon imgNimpa">
+            </div>
+            <div>
+              <p class="mb-0 bold-text">
+                Taiwan
+              </p>
+              <p class="text-grey mb-0">
+                Vendor <span class="bold-text text-dark">HD</span>
+              </p>
+            </div>
+          </div>
+          <div>
+            <p class="text-grey">
+              No MAWB <span class="bold-text text-dark">81600001</span>
+            </p>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-4"
+            style="border-top: 2px dashed rgba(178, 174, 198, 0.568627451) !important;position: relative;top: 14px;">
+          </div>
+          <div class="col-4 text-center">
+            Jadwal Keberangkatan
+          </div>
+          <div class="col-4"
+            style="border-top: 2px dashed rgba(178, 174, 198, 0.568627451) !important;position: relative;top: 14px;">
+          </div>
+        </div>
+        <ion-card class="shadow-none border-light text-grey">
+          <ion-card-content class="p-0">
+            <div class="border-bottom-light p-2">
+              <div class="row justify-content-between center-center align-items-center">
+                <div class="col p-0" style="    margin-left: 25px;">
+                  <p>
+                    <span class="h6 bold-text text-dark">ID-14045</span> • China Airlane • BSL
+                  </p>
+                </div>
+                <div class="col mx-2" style="text-align: -webkit-right;">
+                  <app-label-status [status]="data.status"></app-label-status>
+                </div>
+              </div>
+            </div>
+            <ion-row class="row p-2">
+              <ion-col size="2.2" class="pl-3">
+                <p>
+                  Pergi
+                </p>
+                <p class="bold-text text-dark h6">
+                  20:45
+                </p>
+                <p>
+                  16/09/2022
+                </p>
+              </ion-col>
+              <ion-col class="col row center-center">
+                <div class="border-bottom-light-2"
+                  style="width: 85%; position: relative; height: 10px; top: 7px; border-bottom: 3px solid rgba(178, 174, 198, 0.568627451) !important;">
+                  <p style="text-decoration: underline;text-align: center; position: relative; top: 12px;">
+                    1x Transit
+                  </p>
+                </div>
+
+                <ion-icon name="airplane" color="grey" class="icon-medium-24"
+                  style="margin: 0px 0px 0px 6px;"></ion-icon>
+              </ion-col>
+              <ion-col size="2.2" class="text-right pr-3">
+                <p>
+                  Tiba
+                </p>
+                <p class="bold-text text-dark h6">
+                  20:45
+                </p>
+                <p>
+                  16/09/2022
+                </p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row
+              class="justify-content-between m-2 px-2 py-1 color-grey border-light center-center align-items-center">
+              <p class="text-grey">
+                Total Bag
+              </p>
+              <ion-row class="align-items-center">
+                <p class="text-dark bold-text mr-2">
+                  100 Bag
+                </p>
+                <p class="bg-grey-blue2 border-radius-8 text-dark p-1">
+                  1000 Kg
+                </p>
+              </ion-row>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <div class="p-3">
+          <p class="bold-text h6 text-dark">
+            Form Konfirmasi Keberangkatan
+          </p>
+          <p>
+            Isi rincian informasi untuk detail bag yang di berangkatkan dari Nomor Flight
+          </p>
+        </div>
+        <ion-row class="justify-content-between pb-2 border-bottom-light-2 px-2">
+          <ion-col>
+            <p class="text-dark mb-1">
+              Jumlah Bag
+            </p>
+            <p class="border-light p-2 w-100 text-dark">
+              50
+            </p>
+          </ion-col>
+          <ion-col>
+            <p class="text-dark mb-1">
+              Jumlah Berat
+            </p>
+            <p class="border-light p-2 w-100 text-dark">
+              50
+              <span class="text-grey" style="position: relative; right: 0; float: right;">
+                Kg
+              </span>
+            </p>
+          </ion-col>
+        </ion-row>
+        <div class="bg-grey-blue pt-2" style="height: 100vh;">
+          <ion-card class="p-0 ">
+            <ion-card-content class="p-0">
+              <ion-row class="p-2 justify-content-between">
+                <ion-col size="9">
+                  <p>
+                    Apakah anda ingin membuat flight untuk bag yang tertinggal dari <span class="bold-text"> MWAB
+                    </span> yang sama ?
+                  </p>
+                </ion-col>
+                <ion-col size="2.4">
+                  <div>
+                    <p class="px-2 py-2 color-red bg-red-light border-radius-8 text-center bold-text">
+                      Buat
+                    </p>
+                  </div>
+
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="bg-white border-top-light-2" style="position: absolute;
+        bottom: 4rem;
+        width: 100%;
+        ">
+          <ion-button color="red" expand="block" class="m-2"> Simpan </ion-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

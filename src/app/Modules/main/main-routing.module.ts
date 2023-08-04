@@ -26,6 +26,10 @@ const routes: Routes = [
         loadChildren: () => import('./regulasi/regulasi.module').then(m => m.RegulasiPageModule)
       },
       {
+        path: 'settings',
+        loadChildren: () => import('./pengaturan/pengaturan.module').then(m => m.PengaturanPageModule)
+      },
+      {
         path: 'manifest',
         children: [
           {
@@ -55,10 +59,6 @@ const routes: Routes = [
     redirectTo: '/main/dashboard',
     pathMatch: 'full',
   },
-  {
-    path: 'regulasi',
-    loadChildren: () => import('../../Modules/main/regulasi/regulasi.module').then( m => m.RegulasiPageModule)
-  }
 ]
 @NgModule({
   imports: [RouterModule.forChild(routes)],

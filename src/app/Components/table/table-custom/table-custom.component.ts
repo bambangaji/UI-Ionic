@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AlertController, IonModal, ModalController, PopoverController } from '@ionic/angular';
-import { ITableHeader } from 'src/app/Interfaces/index.interface';
+import { ITableHeader, ITableScheduleSettings } from 'src/app/Interfaces/index.interface';
 import { IVendor } from 'src/app/Interfaces/vendor.intereface';
 import { DetailScheduleComponent } from '../../modal/detail-schedule/detail-schedule.component';
 import { ModalScheduleCreateComponent } from '../../modal/modal-schedule-create/modal-schedule-create.component';
@@ -9,39 +9,10 @@ import { NavigationService } from 'src/app/Services/navigation/navigation.servic
 import { ModalScheduleComponent } from '../../modal/modal-schedule/modal-schedule.component';
 import { PopoverTableComponent } from '../../popover/popover-table/popover-table.component';
 import { FilterComponent } from '../../modal/filter/filter.component';
+import { ConvertExcelService } from 'src/app/Services/convert-excel/convert-excel.service';
+import { ModalKeberangkatanComponent } from '../../modal/modal-keberangkatan/modal-keberangkatan.component';
+import * as XLSX from 'xlsx';
 
-export interface ITableScheduleSettings {
-  import: boolean,
-  export: boolean,
-  search: boolean,
-  checkboxAll: boolean,
-  deleteAll: boolean,
-  confirm: boolean,
-  detail: boolean,
-  option: boolean,
-  optionRiwayat: boolean,
-  checkbox: boolean,
-  trash: boolean,
-  optionDetail: boolean,
-  optionDelete: boolean,
-  optionChange: boolean,
-  optionChangeVendor: boolean,
-  complete: boolean,
-  status: boolean,
-  mawb: boolean,
-  airlines: boolean,
-  totalCollie: boolean,
-  totalBag: boolean,
-  bagRanges: boolean,
-  collie: boolean,
-  weight: boolean,
-  departed: boolean,
-  agent: boolean,
-  print: boolean,
-  noFlight: boolean,
-  estBag: boolean,
-  estWeight: boolean,
-}
 
 @Component({
   selector: 'app-table-custom',
@@ -54,6 +25,7 @@ export class TableCustomComponent implements OnInit {
   @ViewChild(ModalScheduleComponent) modalScheduleComponent?: ModalScheduleComponent;
   @ViewChild(PopoverController) popoverComponent?: PopoverController;
   @ViewChild(FilterComponent) filterComponent?: FilterComponent;
+  @ViewChild(ModalKeberangkatanComponent) keberangkatanComponent?: ModalKeberangkatanComponent;
   @Input() dataTable?: any[];
   @Input() type: string = 'schedule';
   @Input() import: boolean = true;
@@ -94,7 +66,10 @@ export class TableCustomComponent implements OnInit {
     noFlight: false,
     estBag: false,
     estWeight: false,
+    bag: false,
+    ready: false
   };
+  jsonData: any[];
   public list_vendor?: IVendor[] = [{ icon: '', name: 'HD', uuid: '50' }, { icon: '', name: 'MINA', uuid: '10' }];
   public vendor: IVendor = { icon: '', name: '', uuid: '' };
   public customCssContent: string = 'height:600px; width:1600px;';
@@ -108,7 +83,12 @@ export class TableCustomComponent implements OnInit {
   public listHeaderTabel?: ITableHeader[]
   constructor(
     public navService: NavigationService,
-    public alertController: AlertController, public elementRef: ElementRef, public popoverController: PopoverController, public modalController: ModalController) {
+    public alertController: AlertController,
+    public elementRef: ElementRef,
+    public popoverController: PopoverController,
+    public modalController: ModalController,
+    public excelService: ConvertExcelService
+  ) {
     this.formSearch.get('search')!.valueChanges.subscribe((value) => {
       // Handle the value change
       this.resetData();
@@ -155,6 +135,8 @@ export class TableCustomComponent implements OnInit {
     optionRiwayat?: boolean;
     estBag?: boolean;
     estWeight?: boolean;
+    bag?: boolean;
+    ready?: boolean;
   }, type: string = 'schedule') {
     this.type = type;
     this.listHeaderTabel = dataheader;
@@ -191,6 +173,8 @@ export class TableCustomComponent implements OnInit {
       noFlight = false,
       estBag = false,
       estWeight = false,
+      bag = false,
+      ready = false,
     } = settings;
     this.dataTableSettings.checkboxAll = checkboxAll;
     this.dataTableSettings.complete = complete;
@@ -222,6 +206,8 @@ export class TableCustomComponent implements OnInit {
     this.dataTableSettings.noFlight = noFlight;
     this.dataTableSettings.estBag = estBag;
     this.dataTableSettings.estWeight = estWeight;
+    this.dataTableSettings.bag = bag;
+    this.dataTableSettings.ready = ready;
     console.log(this.dataTableSettings);
   }
   setWidth() {
@@ -231,7 +217,7 @@ export class TableCustomComponent implements OnInit {
     return this.customCssContent = `height: ${this.height} ;width: ${totalWidth}px; min-width: 93vw`
   }
   exportData() {
-
+    this.excelService.convertToExcel(this.dataTable)
   }
   importData() {
     this.navService.toScheduleImportPage();
@@ -264,10 +250,13 @@ export class TableCustomComponent implements OnInit {
     this.modalScheduleComponent?.setData(data, 'openAlertKonfirmasi', 'sampai')
   }
   async openAlertTrash(val: any) {
-    const data = { mawb: val.mawb, list_vendor: this.list_vendor };
+    const data = { mawb: val.mawb, list_vendor: this.list_vendor, type: 'trash' };
     this.modalScheduleComponent?.setData(data, 'openAlertKonfirmasi', 'trash')
   }
-
+  async openKeberangkatan(p: any) {
+    await this.keberangkatanComponent?.setData(p);
+    this.keberangkatanComponent?.modal?.present();
+  }
   async openAlertChangeSchedule(val: any) {
     this.popoverController.dismiss();
     this.dataModalConfirm = { mawb: val.mawb };
@@ -300,9 +289,24 @@ export class TableCustomComponent implements OnInit {
 
     // await popover.present();
   }
+  okEmit(data: any) {
+    console.log(data);
+    this.modalScheduleComponent?.modal?.dismiss();
+    if (data.type === 'trash') {
+      const indexToRemove = this.dataTable!.findIndex((item: any) => item.mawb === data.mawb);
+
+      if (indexToRemove !== -1) {
+        this.dataTable!.splice(indexToRemove, 1);
+      }
+    }
+  }
+  cancelEmit(data: any) {
+    console.log(data);
+  }
   sortDataAscending(value: any) {
     console.log(value);
     console.log(this.dataTable);
+    console.log(this.dataTableSettings);
 
     this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
     value.sortASC = true;
@@ -316,6 +320,8 @@ export class TableCustomComponent implements OnInit {
       if (value.label.toLowerCase() === 'est.collie')
         return a.collie.toLocaleString().localeCompare(b.collie);
       if (value.label.toLowerCase() === 'dibuat')
+        return a.created_at.localeCompare(b.created_at);
+      if (value.label.toLowerCase() === 'no.flight')
         return a.created_at.localeCompare(b.created_at);
       else
         return a[value.label.toLocaleString().toLowerCase()].localeCompare(b[value.label.toLocaleString().toLowerCase()]);
@@ -385,5 +391,42 @@ export class TableCustomComponent implements OnInit {
   closeAllModal() {
     this.modalController?.dismiss();
     this.popoverController.dismiss();
+  }
+  handleFile(event: any) {
+    console.log(event);
+
+    const file = event.target.files[0];
+    const reader: FileReader = new FileReader();
+
+    reader.onload = (e: any) => {
+      const data: Uint8Array = new Uint8Array(e.target.result);
+      const workbook: XLSX.WorkBook = XLSX.read(data, { type: 'array' });
+
+      const firstSheetName: string = workbook.SheetNames[0];
+      const worksheet: XLSX.WorkSheet = workbook.Sheets[firstSheetName];
+
+      this.jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      console.log(this.jsonData);
+      this.convertArray(this.jsonData)
+    };
+
+    reader.readAsArrayBuffer(file);
+
+  }
+  convertArray(data: any) {
+    // Extract the keys from the first sub-array
+    const keys = data[0];
+
+    // Convert the rest of the sub-arrays into objects using the keys
+    const objects = data.slice(1).map((subArray: any) => {
+      const obj: any = {};
+      keys.forEach((key: any, index: any) => {
+        obj[key] = subArray[index];
+      });
+      return obj;
+    });
+
+    console.log(objects);
+    this.dataTable = objects;
   }
 }

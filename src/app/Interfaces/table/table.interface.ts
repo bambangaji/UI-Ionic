@@ -81,3 +81,38 @@ export interface IHeader {
     freeze?: boolean;
     content?: string;
 }
+export interface ITableScheduleSettings {
+    import: boolean,
+    export: boolean,
+    search: boolean,
+    checkboxAll: boolean,
+    deleteAll: boolean,
+    confirm: boolean,
+    detail: boolean,
+    option: boolean,
+    optionRiwayat: boolean,
+    checkbox: boolean,
+    trash: boolean,
+    optionDetail: boolean,
+    optionDelete: boolean,
+    optionChange: boolean,
+    optionChangeVendor: boolean,
+    complete: boolean,
+    status: boolean,
+    mawb: boolean,
+    airlines: boolean,
+    totalCollie: boolean,
+    totalBag: boolean,
+    bagRanges: boolean,
+    collie: boolean,
+    weight: boolean,
+    departed: boolean,
+    agent: boolean,
+    print: boolean,
+    noFlight: boolean,
+    estBag: boolean,
+    estWeight: boolean,
+    bag: boolean,
+    ready: boolean,
+  }
+  
