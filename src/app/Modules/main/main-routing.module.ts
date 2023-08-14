@@ -30,6 +30,18 @@ const routes: Routes = [
         loadChildren: () => import('./pengaturan/pengaturan.module').then(m => m.PengaturanPageModule)
       },
       {
+        path: 'penerbangan',
+        loadChildren: () => import('../../Modules/main/penerbangan/penerbangan.module').then( m => m.PenerbanganPageModule)
+      },
+      {
+        path: 'stock',
+        loadChildren: () => import('../../Modules/main/stock/stock.module').then( m => m.StockPageModule)
+      },
+      {
+        path: 'schedule-penerbangan',
+        loadChildren: () => import('../../Modules/main/schedule-penerbangan/schedule-penerbangan.module').then( m => m.SchedulePenerbanganPageModule)
+      },
+      {
         path: 'manifest',
         children: [
           {

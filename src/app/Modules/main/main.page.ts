@@ -18,7 +18,10 @@ export class MainPage implements OnInit {
       ]
     },
     { title: 'Regulasi', url: ERoutePath.REGULASI, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
-    { title: 'Loading', url: ERoutePath.REGULASI, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    { title: 'Loading', url: ERoutePath.PENERBANGAN, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    { title: 'Stock', url: ERoutePath.STOCK, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    { title: 'Schedule Penerbangan', url: ERoutePath.SCHEDULE_PENERBANGAN, icon: 'icon-freight', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
+    //settings
     { title: 'Pengaturan', url: ERoutePath.PENGATURAN, icon: 'settings-outline', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
     { title: 'Logout', url: ERoutePath.LOGIN, icon: 'log-out-outline', iconSelected: 'assets/icon/icon-home-selected.svg', isOpen: false, children: [] },
   ];

@@ -41,6 +41,7 @@ import { ProcessBagComponent } from './modal/process-bag/process-bag.component';
 import { TableExcelComponent } from './table/table-excel/table-excel.component';
 import { PopoverTableComponent } from './popover/popover-table/popover-table.component';
 import { ModalKeberangkatanComponent } from './modal/modal-keberangkatan/modal-keberangkatan.component';
+import { HoverComponent } from './popover/hover/hover.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { ModalKeberangkatanComponent } from './modal/modal-keberangkatan/modal-k
     ProcessBagComponent,
     TableExcelComponent,
     PopoverTableComponent,
-    ModalKeberangkatanComponent
+    ModalKeberangkatanComponent,
+    HoverComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -131,7 +133,8 @@ import { ModalKeberangkatanComponent } from './modal/modal-keberangkatan/modal-k
     ProcessBagComponent,
     TableExcelComponent,
     PopoverTableComponent,
-    ModalKeberangkatanComponent
+    ModalKeberangkatanComponent,
+    HoverComponent
   ]
 })
 export class ComponentsModule { }

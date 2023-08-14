@@ -2,7 +2,7 @@ ion-input.custom {
     // --background: #F7F5FF;
     --color: #615b80;
     --placeholder-color: #7D76A6;
-    --placeholder-font-size: 1;
+    --placeholder-font-size: '12px';
     --placeholder-font-weight: 500;
     --placeholder-opacity: 0.6;
     --border-radius: 10px;
@@ -14,6 +14,7 @@ ion-input.custom {
     --highlight: none;
     --highlight-color-valid: none;
     --highlight-color-invalid: none;
+    font-size: 12px;
 }
 
 ion-input.custom .helper-text,

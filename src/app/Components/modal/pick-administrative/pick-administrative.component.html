@@ -6,7 +6,7 @@
         <ion-icon name="close" class="close-icon pointer" size="small" (click)="closeModal();"></ion-icon>
       </ion-row>
       <ion-item lines="none">
-        <ion-input [placeholder]="'Cari ' + type" (ngModelChange)="onValueChange($event)"
+        <ion-input autocomplete="off"[placeholder]="'Cari ' + type" (ngModelChange)="onValueChange($event)"
           class="custom w-100 input-field border-input" [(ngModel)]="value" (keypress)="keypress($event)"
           [clearInput]="true"></ion-input>
       </ion-item>

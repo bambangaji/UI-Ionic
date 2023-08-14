@@ -21,8 +21,10 @@
             Destinasi <span class="color-red">*</span>
           </p>
           <div (click)="presentPopoverCountry($event)"
-            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-            {{country?country:'Pilih Destinasi'}}
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text align-items-center">
+            <p>
+              {{country?country:'Pilih Destinasi'}}
+            </p>
             <ion-icon name="chevron-down" class="text-grey icon-medium">
             </ion-icon>
           </div>
@@ -34,8 +36,10 @@
             Jenis Pengiriman Internasional <span class="color-red">*</span>
           </p>
           <div (click)="presentPopoverPengiriman($event)"
-            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-            {{pengiriman?pengiriman:'Pilih Pengiriman'}}
+            class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text align-items-center">
+            <p>
+              {{pengiriman?pengiriman:'Pilih Pengiriman'}}
+            </p>
             <ion-icon name="chevron-down" class="text-grey icon-medium">
             </ion-icon>
           </div>
@@ -47,8 +51,11 @@
               Pilih Agent <span class="color-red">*</span>
             </p>
             <div (click)="presentPopoverAgent($event)"
-              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              {{agent?agent:'Pilih Agent'}}
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text align-items-center">
+              <p>
+                {{agent?agent:'Pilih Agent'}}
+
+              </p>
               <ion-icon name="chevron-down" class="text-grey icon-medium">
               </ion-icon>
             </div>
@@ -58,8 +65,10 @@
               Pilih Airlines <span class="color-red">*</span>
             </p>
             <div (click)="presentPopoverAirLine($event)"
-              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              {{airline?airline:'Pilih Airlines'}}
+              class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text align-items-center">
+              <p>
+                {{airline?airline:'Pilih Airlines'}}
+              </p>
               <ion-icon name="chevron-down" class="text-grey icon-medium">
               </ion-icon>
             </div>
@@ -78,9 +87,11 @@
             </p>
             <div (click)="presentPopoverCalendar($event)"
               class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              <div class="row ml-2">
+              <div class="row ml-2 align-items-center">
                 <ion-icon name="calendar" class="icon-medium"> </ion-icon>
-                {{departed?departed:'Pilih Tanggal'}}
+                <p>
+                  {{departed?departed:'Pilih Tanggal'}}
+                </p>
               </div>
               <ion-icon name="chevron-down" class="text-grey icon-medium">
               </ion-icon>
@@ -92,9 +103,11 @@
             </p>
             <div (click)="presentPopoverTime($event)"
               class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              <div class="row ml-2">
+              <div class="row ml-2 align-items-center">
                 <ion-icon name="time" class="icon-medium"> </ion-icon>
-                {{departed_time?departed_time:'00:00'}}
+                <p>
+                  {{departed_time?departed_time:'00:00'}}
+                </p>
               </div>
               <p>
                 WIB
@@ -109,9 +122,11 @@
             </p>
             <div (click)="presentPopoverArival($event)"
               class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              <div class="row ml-2">
+              <div class="row ml-2 align-items-center">
                 <ion-icon name="calendar" class="icon-medium"> </ion-icon>
-                {{arival?arival:'Pilih Tanggal'}}
+                <p>
+                  {{arival?arival:'Pilih Tanggal'}}
+                </p>
               </div>
               <ion-icon name="chevron-down" class="text-grey icon-medium">
               </ion-icon>
@@ -123,9 +138,11 @@
             </p>
             <div (click)="presentPopoverArivalTime($event)"
               class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              <div class="row ml-2">
+              <div class="row ml-2 align-items-center">
                 <ion-icon name="time" class="icon-medium"> </ion-icon>
-                {{arival_time?arival_time:'00:00'}}
+                <p>
+                  {{arival_time?arival_time:'00:00'}}
+                </p>
               </div>
               <p>
                 WIB
@@ -140,9 +157,11 @@
             </p>
             <div (click)="presentPopoverTransit($event)"
               class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              <div class="row ml-2">
+              <div class="row ml-2 align-items-center">
                 <ion-icon name="calendar" class="icon-medium"> </ion-icon>
-                {{transit?transit:'Pilih Tanggal'}}
+                <p>
+                  {{transit?transit:'Pilih Tanggal'}}
+                </p>
               </div>
               <ion-icon name="chevron-down" class="text-grey icon-medium">
               </ion-icon>
@@ -154,9 +173,12 @@
             </p>
             <div (click)="presentPopoverTransitTime($event)"
               class="row w-100 justify-content-between bg-white border-light m-0 p-1 pointer hover-light bold-text">
-              <div class="row ml-2">
+              <div class="row ml-2 align-items-center">
                 <ion-icon name="time" class="icon-medium"> </ion-icon>
-                {{transit_time?transit_time:'00:00'}}
+                <p>
+                  {{transit_time?transit_time:'00:00'}}
+
+                </p>
               </div>
               <p>
                 WIB
@@ -185,7 +207,7 @@
       width: 100%;
       background: white;
       " class="py-2">
-        <ion-row  class="justify-content-between bg-white w-96 text-center">
+        <ion-row class="justify-content-between bg-white w-96 text-center">
           <ion-button (click)="closeModal()" color="red-light" class="w-48">
             <p class="color-red non-capitalize">Batal</p>
           </ion-button>

@@ -10,7 +10,7 @@
             </span>
             {{p.label.toUpperCase()}}
             <span *ngIf="p.freeze && i === total_freeze_col - 1">
-              <ion-icon name="chevron-back-circle" class="icon-medium-24 text-grey pointer" style="    position: absolute;
+              <ion-icon name="chevron-back-circle" class="icon-medium-20 text-grey pointer" style="    position: absolute;
               right: -8px;
               top: 6px;
               z-index: 9999;
@@ -40,7 +40,7 @@
                 <div *ngIf="!r.openEdit" class="row" style="position: relative; z-index: 99999;">
                   <ion-checkbox *ngIf="i===0" [(ngModel)]="r.isChecked" class="mr-1 ml-4"
                     (ionChange)="checkboxExpand(r,j,i,$event)" style="position: relative; top: 3px;"></ion-checkbox>
-                  <ion-icon name="icon-edit" *ngIf="r.edit_able" class="icon-medium-24 mr-2 pointer hover-light"
+                  <ion-icon name="icon-edit" *ngIf="r.edit_able" class="icon-medium-20 mr-2 pointer hover-light"
                     (click)="openEdit(r)"></ion-icon>
                   <p *ngIf="p.columnKey!=='resi_vendor'" [style]="q.style"
                     [class]="p.columnKey==='resi_vendor'?'color-red bold-text pointer':''">

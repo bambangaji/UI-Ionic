@@ -85,12 +85,12 @@
           </p>
         </ion-row>
         <div *ngIf="currentTab==='Detail'">
-          <div class="row pl-2 py-3 bg-grey-blue justify-content-between">
+          <div class="row pl-2 py-2 bg-grey-blue justify-content-between border-bottom-light align-items-center">
             <p class="text-dark ml-3  bold-text">
               Informasi Jadwal
             </p>
-            <ion-icon (click)="isJadwal=!isJadwal" [name]="isJadwal?'chevron-down':'chevron-up'" color="grey"
-              class="icon-medium-24 mr-4 pointer">
+            <ion-icon style="height: 20px; width: 20px;" (click)="isJadwal=!isJadwal" [name]="isJadwal?'chevron-down':'chevron-up'" color="grey"
+              class="icon-medium-20 mr-4 pointer">
             </ion-icon>
           </div>
           <div *ngIf="isJadwal">
@@ -109,12 +109,12 @@
             </div>
           </div>
 
-          <div class="row pl-2 py-3 bg-grey-blue justify-content-between">
+          <div class="row pl-2 py-3 bg-grey-blue justify-content-between  border-bottom-light align-items-center">
             <p class="text-dark ml-3  bold-text">
               Informasi Project
             </p>
-            <ion-icon (click)="isProject=!isProject" [name]="isProject?'chevron-down':'chevron-up'" color="grey"
-              class="icon-medium-24 mr-4 pointer">
+            <ion-icon  style="height: 20px; width: 20px;" (click)="isProject=!isProject" [name]="isProject?'chevron-down':'chevron-up'" color="grey"
+              class="icon-medium-20 mr-4 pointer">
             </ion-icon>
           </div>
           <div *ngIf="isProject">

@@ -17,8 +17,16 @@
     height: 24px;" slot="end">
 
     </ion-icon>
-    <div slot="end" class="pointer" id="profileUser" (mouseover)="changeMouse()">
-      <ion-img src="assets/icon/profileDummy.svg" class="mr-4 small-icon"></ion-img>
+    <div slot="end" class="pointer row mr-3" id="profileUser" (mouseover)="changeMouse()">
+      <ion-img src="assets/icon/profileDummy.svg" class="mr-3 small-icon"></ion-img>
+      <div class="text-left">
+        <p class="bold-text">
+          Ahmad Mulyadi
+        </p>
+        <p>
+          Team Bandara
+        </p>
+      </div>
     </div>
   </ion-toolbar>
   <ion-item *ngIf="mouse" (mouseleave)="changeMouse()" class="mt-3 modal-profile" lines="none">

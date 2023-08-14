@@ -1,0 +1,16 @@
+<div *ngIf="show" class="position_schedule" [id]="id">
+  <div *ngIf="type === 'expired_schedule'" class="custom-tooltip">
+    <p class="mb-0">
+      Jadwal ini telah melebihi batas waktu kedatangan, sebelum di proses manifest, segera lakukan
+      penjadwalan ulang dari jadwal yang tersedia
+    </p>
+    <!-- <p class="color-red bold-text hover-light pointer mb-0" (click)="openAlertChangeSchedule()">
+      Ubah Jadwal
+    </p> -->
+  </div>
+  <div *ngIf="type === 'est_bag'" class="custom-tooltip">
+    <p class="mb-0">
+      {{content}}
+    </p>
+  </div>
+</div>

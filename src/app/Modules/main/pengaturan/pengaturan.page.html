@@ -1,19 +1,78 @@
 <ion-content [fullscreen]="true">
   <app-dashboard-background>
     <app-label-page title="Pengaturan" subTitle="Profile"></app-label-page>
-    <ion-card class="z102 position-relative mr-4 ml-4">
+    <ion-card class="z102 position-relative mr-4 ml-4" style="min-height: 84vh;">
       <ion-card-content class="p-0">
         <ion-row class="row ">
-          <ion-col size="3" class=" p-3 pl-4 border-right-light">
+          <ion-col size="2" class=" p-3 pl-4 border-right-light" style="min-height: 84vh;">
             <p *ngFor="let p of listTab" (click)="currentTab=p" class="hover-light pointer pl-3 py-2"
               [class]="currentTab===p?'color-red bold-text':''">
               {{p}}
             </p>
           </ion-col>
-          <ion-col size="9" *ngIf="currentTab===listTab[0]">
-            <p>
+          <ion-col size="9" *ngIf="currentTab===listTab[0]" class="p-3">
+            <p class="h6 bold-text text-dark">
               Profil
             </p>
+            <ion-row>
+              <ion-col size="2">
+                <app-image-upload [imageSrc]="''" label="Unggah Photo"
+                  (imageSelected)="handleValueChange($event)"></app-image-upload>
+              </ion-col>
+              <ion-col class="text-dark">
+                <p>
+                  Nama <span class="color-red">*</span>
+                </p>
+                <div style="max-width: 400px;">
+                  <app-input-form background="grey" style="background-color: #F4F8FF;">
+                  </app-input-form>
+                </div>
+                <p class="mt-2">
+                  Email <span class="color-red">*</span>
+                </p>
+                <div style="max-width: 400px;">
+                  <app-input-form background="grey" style="background-color: #F4F8FF;">
+                  </app-input-form>
+                </div>
+                <p class="mt-2">
+                  Jabatan <span class="color-red">*</span>
+                </p>
+                <div style="max-width: 400px;">
+                  <app-input-form background="grey" style="background-color: #F4F8FF;">
+                  </app-input-form>
+                </div>
+                <ion-button color="red" class="mt-3">
+                  Ubah
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="9" *ngIf="currentTab===listTab[1]" class="p-3">
+            <p class="h6 bold-text text-dark">
+              Ubah Kata Sandi
+            </p>
+            <ion-row>
+              <ion-col class="text-dark">
+                <p>
+                  Password <span class="color-red">*</span>
+                </p>
+                <div style="max-width: 400px;">
+                  <app-input-form background="grey" style="background-color: #F4F8FF;" type="password" placeholder="Masukkan Password">
+                  </app-input-form>
+                </div>
+                <p class="mt-2">
+                  Ubah Password <span class="color-red">*</span>
+                </p>
+                <div style="max-width: 400px;">
+                  <app-input-form background="grey" style="background-color: #F4F8FF;" type="password" placeholder="Masukkan Password">
+                  </app-input-form>
+                </div>
+               
+                <ion-button color="red" class="mt-3">
+                  Simpan
+                </ion-button>
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-card-content>

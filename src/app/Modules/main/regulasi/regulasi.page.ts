@@ -27,13 +27,13 @@ export class RegulasiPage implements OnInit {
       css: '',
       label: 'ROLE',
       sort: true,
-      width: 400,
+      width: 200,
     },
     {
       css: '',
       label: 'MENAMPILKAN',
       sort: true,
-      width: 400
+      width: 300
     },
     {
       css: 'right-header-table',
@@ -48,7 +48,7 @@ export class RegulasiPage implements OnInit {
     [
       {
         country_image: 'assets/icon/profileDummy.svg',
-        initialVendor: 'BSL',
+        initial_vendor: 'BSL',
         country: 'Singapore',
         role: [
           'Export Cleareance Laut',
@@ -64,7 +64,7 @@ export class RegulasiPage implements OnInit {
       },
       {
         country_image: 'assets/icon/profileDummy.svg',
-        initialVendor: 'BSL',
+        initial_vendor: 'BSL',
         country: 'Zingapore',
         role: [
           'Export Cleareance Laut',
@@ -80,7 +80,7 @@ export class RegulasiPage implements OnInit {
       },
       {
         country_image: 'assets/icon/profileDummy.svg',
-        initialVendor: 'BSL',
+        initial_vendor: 'BSL',
         country: 'ringapore',
         role: [
           'Export Cleareance Laut',
@@ -116,7 +116,7 @@ export class RegulasiPage implements OnInit {
       importData: false,
       checkboxAll: false,
       checkbox: false,
-
+      search:true,
     }, 'regulasi')
   }
 

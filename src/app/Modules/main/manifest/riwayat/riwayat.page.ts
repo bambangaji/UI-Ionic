@@ -15,7 +15,7 @@ export class RiwayatPage implements OnInit {
       css: '',
       label: 'DESTINASI',
       sort: true,
-      width: 100
+      width: 220
     },
     {
       css: '',
@@ -75,7 +75,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'HD',
         uuid: '222',
         status: 'Dibandara',
-        isStatus: true
+        isStatus: true,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'BSL',
@@ -93,7 +96,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'HD',
         uuid: '1222',
         status: 'Berangkat',
-        isStatus: true
+        isStatus: true,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'BSL',
@@ -111,7 +117,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'HD',
         uuid: '1232',
         status: 'Selesai',
-        isStatus: true
+        isStatus: true,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'BSL',
@@ -129,7 +138,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'HD',
         uuid: '3232',
         status: 'Dibatalkan',
-        isStatus: true
+        isStatus: true,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'KSL',
@@ -147,7 +159,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'SD',
         uuid: '3231',
         status: 'Menuju Bandara',
-        isStatus: true
+        isStatus: true,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'DSL',
@@ -165,7 +180,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'ED',
         uuid: '34353',
         status: 'Siap Diangkut',
-        isStatus: false
+        isStatus: false,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'zSL',
@@ -183,7 +201,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'MD',
         uuid: '4365',
         status: 'Dikonfirmasi',
-        isStatus: false
+        isStatus: false,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'
       },
       {
         agent: 'zSL',
@@ -201,7 +222,10 @@ export class RiwayatPage implements OnInit {
         vendor: 'MD',
         uuid: '34235',
         status: 'Diajukan',
-        isStatus: false
+        isStatus: false,
+        bag_range: '100-1000',
+        total_bag: '100',
+        total_collie:'200'  
       },
     ]
   constructor() { }
@@ -228,13 +252,13 @@ export class RiwayatPage implements OnInit {
       mawb: true,
       collie: false,
       option: false,
-      optionRiwayat:true,
+      optionRiwayat: true,
       totalBag: true,
       totalCollie: true,
       weight: false,
       departed: false,
       print: true,
-      
+
     })
   }
 

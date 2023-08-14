@@ -272,7 +272,9 @@
     --ion-color-grey-light-shade: #d5d7d9;
     --ion-color-grey-light-tint: #f3f5f8;
 }
-
+.hover-red-icon:hover{
+    color: red !important;
+}
 .ion-color-grey-light {
     --ion-color-base: var(--ion-color-grey-light);
     --ion-color-base-rgb: var(--ion-color-grey-light-rgb);

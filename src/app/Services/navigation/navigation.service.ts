@@ -29,6 +29,13 @@ export enum ERoutePath {
   //regulasi
   REGULASI = '/main/dashboard/regulasi',
 
+  //penerbangan
+  PENERBANGAN ='/main/dashboard/penerbangan',
+
+  //stock
+  STOCK = '/main/dashboard/stock',
+  //schedule-penerbangan
+  SCHEDULE_PENERBANGAN = '/main/dashboard/schedule-penerbangan',
 }
 
 @Injectable({
@@ -99,6 +106,9 @@ export class NavigationService {
   }
   toSettingsPage() {
     this.setRoot(ERoutePath.PENGATURAN, undefined, undefined, true);
+  }
+  toStockPage() {
+    this.setRoot(ERoutePath.STOCK, undefined, undefined, true);
   }
 
   async toPage(path: string): Promise<void> {

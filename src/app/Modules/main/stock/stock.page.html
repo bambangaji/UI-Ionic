@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+  <app-dashboard-background>
+    <app-label-page title="Stock No Bag"></app-label-page>
+    <ion-card class="z102 position-relative mr-4 ml-4">
+      <div class="col bg-grey-blue2 p-0 text-grey">
+        <ion-row class="border-bottom-light-2">
+          <p *ngFor="let p of listTab" (click)="currentTab=p" class="hover-light pointer px-3 py-2"
+            [class]="currentTab===p?'color-red bold-text bg-white':''">
+            {{p}}
+          </p>
+        </ion-row>
+        <div class="bg-white">
+          <div class="row p-2 justify-content-between mx-0">
+            <div class="row pl-3 align-items-center">
+              <div class="align-self-center mr-2">
+                <img src="assets/icon/profileDummy.svg" class="small-icon">
+              </div>
+              <p class="mb-0 bold-text">
+                Taiwan
+              </p>
+              <p class="bg-grey-blue border-radius-8 py-1 px-2 ml-4">
+                Total bag tersedia 
+                <span class="ml-3 pl-2 text-dark bold-text h6"> 1200 </span>
+              </p>
+            </div>
+            <ion-button color="red">
+              Tambah Stock
+            </ion-button>
+          </div>
+          <app-table-custom></app-table-custom>
+        </div>
+      </div>
+    </ion-card>
+  </app-dashboard-background>
+</ion-content>

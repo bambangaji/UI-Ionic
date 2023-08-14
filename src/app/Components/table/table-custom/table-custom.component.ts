@@ -12,6 +12,8 @@ import { FilterComponent } from '../../modal/filter/filter.component';
 import { ConvertExcelService } from 'src/app/Services/convert-excel/convert-excel.service';
 import { ModalKeberangkatanComponent } from '../../modal/modal-keberangkatan/modal-keberangkatan.component';
 import * as XLSX from 'xlsx';
+import { HoverComponent } from '../../popover/hover/hover.component';
+import { GlobalService } from 'src/app/Services/global/global.service';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class TableCustomComponent implements OnInit {
   @ViewChild(PopoverController) popoverComponent?: PopoverController;
   @ViewChild(FilterComponent) filterComponent?: FilterComponent;
   @ViewChild(ModalKeberangkatanComponent) keberangkatanComponent?: ModalKeberangkatanComponent;
+  @ViewChild(HoverComponent) hoverComponent?: HoverComponent;
   @Input() dataTable?: any[];
   @Input() type: string = 'schedule';
   @Input() import: boolean = true;
@@ -35,40 +38,43 @@ export class TableCustomComponent implements OnInit {
   public page: number = 1;
   public show: number = 10;
   public total_data: number = 100;
-  public dataTableSettings: ITableScheduleSettings = {
-    import: false,
-    export: true,
-    search: true,
+  public isReady: boolean = false;
+  defaultSettings: ITableScheduleSettings = {
     checkboxAll: true,
     confirm: true,
     detail: false,
-    option: true,
-    optionRiwayat: true,
-    optionDetail: true,
-    optionDelete: true,
-    trash: false,
-    deleteAll: false,
-    optionChange: true,
-    optionChangeVendor: false,
-    complete: false,
+    option: false,
     checkbox: true,
+    optionDetail: true,
+    trash: false,
+    optionDelete: true,
+    optionChangeVendor: false,
+    optionChange: true,
+    complete: false,
+    deleteAll: false,
     status: false,
+    print: false,
     mawb: true,
-    airlines: true,
+    bagRanges: false,
     agent: true,
+    airlines: true,
     collie: true,
     departed: true,
-    weight: true,
-    bagRanges: false,
     totalBag: false,
     totalCollie: false,
-    print: false,
+    weight: true,
+    optionRiwayat: false,
     noFlight: false,
     estBag: false,
     estWeight: false,
     bag: false,
-    ready: false
+    ready: false,
+    infoBag: false,
+    destinasi: true,
+    created_at: true,
+    diperbarui: false,
   };
+  public dataTableSettings: ITableScheduleSettings = this.defaultSettings;
   jsonData: any[];
   public list_vendor?: IVendor[] = [{ icon: '', name: 'HD', uuid: '50' }, { icon: '', name: 'MINA', uuid: '10' }];
   public vendor: IVendor = { icon: '', name: '', uuid: '' };
@@ -76,6 +82,7 @@ export class TableCustomComponent implements OnInit {
   public width: string = '1600px';
   public height: string = '600px';
   public dataModalConfirm?: any;
+  openTooltip: boolean = false;
   isCheckAll: boolean = false;
   formSearch: FormGroup = new FormGroup({
     search: new FormControl('')
@@ -87,7 +94,8 @@ export class TableCustomComponent implements OnInit {
     public elementRef: ElementRef,
     public popoverController: PopoverController,
     public modalController: ModalController,
-    public excelService: ConvertExcelService
+    public excelService: ConvertExcelService,
+    public globalService: GlobalService
   ) {
     this.formSearch.get('search')!.valueChanges.subscribe((value) => {
       // Handle the value change
@@ -95,8 +103,20 @@ export class TableCustomComponent implements OnInit {
       this.getData(value, false)
     });
   }
-  resetData() {
+  tooltipStates: { [key: string]: { [key: string]: boolean } } = {};
 
+  toggleTooltip(uuid: any, tooltipKey: string, show: boolean) {
+    this.openTooltip = show;
+    this.tooltipStates[uuid][tooltipKey] = show;
+    // console.log(item.uuid);
+    // console.log(this.tooltipStates[item.uuid][tooltipKey]);
+    console.log(show);
+    console.log(this.tooltipStates);
+
+  }
+
+  resetData() {
+    this.isReady = false;
   }
   getData(value: string, isLoading: boolean = true) {
 
@@ -104,111 +124,31 @@ export class TableCustomComponent implements OnInit {
   ngOnInit() {
     this.setData([], [], {})
   }
-  setData(dataheader: ITableHeader[], dataTable: any[], settings: {
-    importData?: boolean;
-    exportData?: boolean;
-    search?: boolean;
-    checkbox?: boolean;
-    checkboxAll?: boolean;
-    confirm?: boolean;
-    detail?: boolean;
-    trash?: boolean;
-    option?: boolean;
-    optionDetail?: boolean;
-    optionDelete?: boolean;
-    optionChangeVendor?: boolean;
-    optionChange?: boolean;
-    complete?: boolean;
-    deleteAll?: boolean;
-    status?: boolean;
-    print?: boolean;
-    mawb?: boolean;
-    airlines?: boolean;
-    collie?: boolean;
-    bagRanges?: boolean;
-    totalBag?: boolean;
-    totalCollie?: boolean;
-    weight?: boolean;
-    departed?: boolean;
-    agent?: boolean;
-    noFlight?: boolean;
-    optionRiwayat?: boolean;
-    estBag?: boolean;
-    estWeight?: boolean;
-    bag?: boolean;
-    ready?: boolean;
-  }, type: string = 'schedule') {
+  async setData(dataheader: ITableHeader[], dataTable: any[], settings: ITableScheduleSettings, type: string = 'schedule') {
     this.type = type;
     this.listHeaderTabel = dataheader;
     this.setWidth();
     this.dataTable = dataTable;
-    const {
-      importData = true,
-      exportData = true,
-      search = true,
-      checkboxAll = true,
-      confirm = true,
-      detail = false,
-      option = false,
-      checkbox = true,
-      optionDetail = true,
-      trash = false,
-      optionDelete = true,
-      optionChangeVendor = false,
-      optionChange = true,
-      complete = false,
-      deleteAll = false,
-      status = false,
-      print = false,
-      mawb = true,
-      bagRanges = false,
-      agent = true,
-      airlines = true,
-      collie = true,
-      departed = true,
-      totalBag = false,
-      totalCollie = false,
-      weight = true,
-      optionRiwayat = false,
-      noFlight = false,
-      estBag = false,
-      estWeight = false,
-      bag = false,
-      ready = false,
-    } = settings;
-    this.dataTableSettings.checkboxAll = checkboxAll;
-    this.dataTableSettings.complete = complete;
-    this.dataTableSettings.optionDelete = optionDelete;
-    this.dataTableSettings.optionChange = optionChange;
-    this.dataTableSettings.status = status;
-    this.dataTableSettings.optionDetail = optionDetail;
-    this.dataTableSettings.option = option;
-    this.dataTableSettings.detail = detail;
-    this.dataTableSettings.confirm = confirm;
-    this.dataTableSettings.search = search;
-    this.dataTableSettings.checkbox = checkbox;
-    this.dataTableSettings.export = exportData;
-    this.dataTableSettings.deleteAll = deleteAll;
-    this.dataTableSettings.import = importData;
-    this.dataTableSettings.trash = trash;
-    this.dataTableSettings.optionChangeVendor = optionChangeVendor;
-    this.dataTableSettings.weight = weight;
-    this.dataTableSettings.agent = agent;
-    this.dataTableSettings.totalCollie = totalCollie;
-    this.dataTableSettings.totalBag = totalBag;
-    this.dataTableSettings.print = print;
-    this.dataTableSettings.mawb = mawb;
-    this.dataTableSettings.airlines = airlines;
-    this.dataTableSettings.bagRanges = bagRanges;
-    this.dataTableSettings.collie = collie;
-    this.dataTableSettings.departed = departed;
-    this.dataTableSettings.optionRiwayat = optionRiwayat;
-    this.dataTableSettings.noFlight = noFlight;
-    this.dataTableSettings.estBag = estBag;
-    this.dataTableSettings.estWeight = estWeight;
-    this.dataTableSettings.bag = bag;
-    this.dataTableSettings.ready = ready;
-    console.log(this.dataTableSettings);
+
+    this.dataTableSettings = {
+      ...this.defaultSettings,
+      ...settings,
+    };
+    this.dataTable.forEach(item => {
+      this.tooltipStates[item.uuid] = this.setPropertiesToFalse();
+    });
+    this.isReady = true;
+    console.log(this.dataTable);
+
+  }
+  setPropertiesToFalse(): { [key: string]: boolean } {
+    const newObj: { [key: string]: boolean } = {};
+    for (const key in this.dataTable![0]) {
+      if (this.dataTable![0].hasOwnProperty(key)) {
+        newObj[key] = false;
+      }
+    }
+    return newObj;
   }
   setWidth() {
     const width = 220;
@@ -233,11 +173,19 @@ export class TableCustomComponent implements OnInit {
     const fileInput: HTMLInputElement = this.elementRef.nativeElement.querySelector('#importData');
     fileInput.click();
   }
-  widthCol(width?: number) {
+  widthCol(width?: number, type?: string, name?: string) {
+    if (type === 'body') {
+      const d = this.listHeaderTabel?.filter((item: any) => item.label === name);
+      console.log(this.listHeaderTabel);
+      console.log(d);
+      if (d!.length > 0) {
+        width = d![0].width;
+      }
+    }
     if (!width) {
       return
     }
-    return `min-width: ${width}px`
+    return `min-width: ${width}px; max-width: ${width}px;`
   }
 
   async openAlertKonfirmasi(val: any) {
@@ -275,19 +223,6 @@ export class TableCustomComponent implements OnInit {
   }
   async openFilter() {
     this.filterComponent?.modal?.present();
-  }
-  async presentPopover(ev: Event) {
-    // this.popoverController.dismiss();
-    // const popover = await this.popoverController.create({
-    //   event: ev,
-    //   translucent: true,
-    //   componentProps: {
-    //     // Add any data you want to pass to the popover content here
-    //   },
-    //   component: this.popoverContent,
-    // });
-
-    // await popover.present();
   }
   okEmit(data: any) {
     console.log(data);

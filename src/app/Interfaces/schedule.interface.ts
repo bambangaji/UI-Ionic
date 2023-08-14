@@ -16,12 +16,16 @@ export interface ISchedule {
     isStatus?: boolean;
     created_at: string;
     country_image?: string;
-    initialVendor?: string;
+    initial_vendor?: string;
     role?: string[];
     show_column?: string;
     max_column?: string;
     bag?: string;
     est_bag?: string;
     est_weight?: string;
-    noFlight?: string;
+    no_flight?: string;
+    bag_range?: string;
+    total_bag?: string;
+    total_collie?: string;
+    bag_send?: string;
 }

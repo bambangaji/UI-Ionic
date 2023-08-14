@@ -28,7 +28,7 @@
   <div style="background: linear-gradient(180deg, #ECE8FF 0%, #F7F5FF 51%);" class="pt-3 pb-2">
     <ion-item lines="none">
       <ion-item slot="start" lines="none" class="border-radius-8 custom-item-40--custom w-50">
-        <ion-input [readonly]="isEditCard" class="custom w-50 input-field" placeholder="Berat" type="number"
+        <ion-input autocomplete="off"[readonly]="isEditCard" class="custom w-50 input-field" placeholder="Berat" type="number"
           [(ngModel)]="dataKoli!.weight">
         </ion-input>
         <p class="bold-text p-info">
@@ -36,14 +36,14 @@
         </p>
       </ion-item>
       <ion-item slot="end" class="border-radius-8 custom-item-40">
-        <ion-input [readonly]="isEditCard" [(ngModel)]="dataKoli!.length" class="custom input-field"
+        <ion-input autocomplete="off"[readonly]="isEditCard" [(ngModel)]="dataKoli!.length" class="custom input-field"
           placeholder="Panjang">
         </ion-input>
-        <ion-input [readonly]="isEditCard" [(ngModel)]="dataKoli!.width" class="custom input-field border-left pl-2"
+        <ion-input autocomplete="off"[readonly]="isEditCard" [(ngModel)]="dataKoli!.width" class="custom input-field border-left pl-2"
           style="
         left: 28%;" placeholder="Lebar">
         </ion-input>
-        <ion-input [readonly]="isEditCard" [(ngModel)]="dataKoli!.height" class="custom input-field border-left pl-2"
+        <ion-input autocomplete="off"[readonly]="isEditCard" [(ngModel)]="dataKoli!.height" class="custom input-field border-left pl-2"
           style="
         left: 56%;" placeholder="Tinggi">
         </ion-input>
