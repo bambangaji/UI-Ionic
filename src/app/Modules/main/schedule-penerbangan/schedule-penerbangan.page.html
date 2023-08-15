@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>schedule-penerbangan</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">schedule-penerbangan</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-dashboard-background>
+    <app-label-page title="Manifest Bag"></app-label-page>
+    <ion-card class="z102 position-relative mr-4 ml-4 text-dark">
+      <ion-row class="bg-white">
+        <ion-col size="3" class="border-right-light p-0" style="min-height: 80vh;">
+          <p class="bold-text h6 p-3">
+            Manifest Bagging
+          </p>
+          <div class="border-top-light border-bottom-light">
+            <app-input-form typeInput="search" style="background: transparent !important; border: none !important;"
+              color="transparent"></app-input-form>
+          </div>
+          <ion-list>
+            <ion-row class="align-items-center justify-content-between mx-2 px-2 border-light hover-light pointer">
+              <ion-row class="align-items-center">
+                <img src="assets/icon/profileDummy.svg" style="height: 30px; width: 30px;" class="circle">
+                <ion-col class="ml-1">
+                  <p class="text-grey">
+                    Taiwan
+                  </p>
+                  <p class="bold-text">
+                    MINA
+                  </p>
+                </ion-col>
+              </ion-row>
+              <app-label-status status="Open"></app-label-status>
+            </ion-row>
+          </ion-list>
+        </ion-col>
+        <ion-col size="9" class="p-0" style="min-height: 80vh;">
+          <p class="bold-text h6 p-3">
+            Manifest Bagging
+          </p>
+          <div class="border-top-light ">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </app-dashboard-background>
 </ion-content>

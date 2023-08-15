@@ -20,12 +20,24 @@ export interface ISchedule {
     role?: string[];
     show_column?: string;
     max_column?: string;
-    bag?: string;
-    est_bag?: string;
-    est_weight?: string;
+    bag?: number;
+    est_bag?: number;
+    est_weight?: number;
     no_flight?: string;
     bag_range?: string;
-    total_bag?: string;
-    total_collie?: string;
-    bag_send?: string;
+    total_bag?: number;
+    total_collie?: number;
+    bag_send?: number;
+    date_flight?: string;
+    loading_bag?: ILoadingBag
+    total_weight?: number;
+    edit_by?: string;
+    edited_at?: string;
+}
+
+export interface ILoadingBag {
+    siap_diangkut: number;
+    diangkut: number;
+    dibandara: number;
+
 }

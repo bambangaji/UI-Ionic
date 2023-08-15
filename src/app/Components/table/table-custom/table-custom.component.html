@@ -37,6 +37,7 @@
       <div class="ml-4 mr-4 px-2 py-1 border-light row hover-light pointer " (click)="openFilter()">
         <ion-icon name="icon-filter" class="p-0 center-center color-red" style="width: 20px; height: 20px;"></ion-icon>
       </div>
+      <ion-button *ngIf="dataTableSettings.add_penerbangan" color="red" class="non-capitalize"><ion-icon name="add"></ion-icon> Jadwal Penerbangan</ion-button>
     </div>
   </div>
   <div *ngIf="type==='schedule-import'" class="col my-3" style="position: sticky; left: 0;">
@@ -165,7 +166,7 @@
                     align-self: center;"></ion-checkbox>
                     <div class="align-self-center">
                       <img [src]="p.image_from" class="small-icon">
-                      <img [src]="p.image_to" class="small-icon imgNimpa">
+                      <img [src]="p.image_to" class="small-icon imgNimpa bg-red">
                     </div>
                     <div>
                       <p class="mb-0 bold-text">
@@ -177,10 +178,53 @@
                     </div>
                   </div>
                 </div>
+                <div *ngIf="dataTableSettings.loading_bag" class="col  center-center max-width-200 pointer"
+                  [style]="widthCol('','body','LOADING BAG')">
+                  <ion-row class="justify-content-between align-self-center">
+                    <ion-row class="align-items-center pr-2">
+                      <ion-icon name="box" class="mr-1" *ngIf="p.loading_bag.siap_diangkut===0">
+                      </ion-icon>
+                      <ion-icon name="box-red" class="mr-1" *ngIf="p.loading_bag.siap_diangkut!==0">
+                      </ion-icon>
+                      <p class="text-grey">
+                        {{p.loading_bag.siap_diangkut}}
+                      </p>
+                    </ion-row>
+                    <ion-row class="align-items-center border-left-light pl-2">
+                      <ion-icon name="truck-fast" class="mr-1 bg-grey-blue circle p-1"
+                        *ngIf="p.loading_bag.diangkut===0">
+                      </ion-icon>
+                      <ion-icon name="truck-fast-red" class="mr-1 bg-red-light circle p-1"
+                        *ngIf="p.loading_bag.diangkut!==0">
+                      </ion-icon>
+                      <p class="text-grey">
+                        {{p.loading_bag.diangkut}}
+                      </p>
+                    </ion-row>
+                    <ion-row class="align-items-center border-left-light pl-2">
+                      <ion-icon name="house" class="mr-1 bg-grey-blue circle p-1" *ngIf="p.loading_bag.dibandara===0">
+                      </ion-icon>
+                      <ion-icon name="house-red" class="mr-1 bg-red-light circle p-1"
+                        *ngIf="p.loading_bag.dibandara!==0">
+                      </ion-icon>
+                      <p class="text-grey">
+                        {{p.loading_bag.dibandara}}
+                      </p>
+                    </ion-row>
+
+                  </ion-row>
+
+                </div>
                 <div *ngIf="dataTableSettings.mawb" class="col center-center max-width-200 pointer"
                   (click)="openRingkasan(p)">
                   <p class="color-red bold-text">
                     {{p.mawb}}
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.date_flight" class="col center-center max-width-200"
+                  [style]="widthCol('','body','TANGGAL TERBANG')">
+                  <p class="text-grey">
+                    {{p.date_flight | timeFormatted}}
                   </p>
                 </div>
                 <div *ngIf="dataTableSettings.bagRanges" class="col center-center max-width-200"
@@ -198,9 +242,19 @@
                     <div class="progress-bar border-radius-8 " [style.width.%]="(p.total_bag/p.bag_send)"></div>
                   </div>
                 </div>
-                <div *ngIf="dataTableSettings.totalBag" class="col center-center max-width-200">
-                  <p class="text-dark">
-                    {{p.total_bag}}
+                <div *ngIf="dataTableSettings.totalBag" class="col center-center max-width-200"
+                  [style]="widthCol('','body','TOTAL BAG')">
+                  <p class="text-dark bold-text">
+                    {{p.total_bag}} <span class="text-grey">
+                      ( {{p.total_weight}} Kg )
+                    </span> <span>
+                      <ion-icon name="help-circle-outline" class="color-grey circle p-0 ml-1 pointer icon-medium-20"
+                        style="position: relative; top: 5px; right:0px;"
+                        (mouseenter)="toggleTooltip(p.uuid, 'weight', true)"
+                        (mouseleave)="toggleTooltip(p.uuid, 'weight', false)"></ion-icon>
+                      <app-hover [content]="'Est Weight '+p.est_weight" type="est_bag"
+                        [show]="tooltipStates[p.uuid]?.weight"></app-hover>
+                    </span>
                   </p>
                 </div>
                 <div *ngIf="dataTableSettings.totalCollie" class="col center-center max-width-200">
@@ -280,11 +334,16 @@
                     {{p.created_at}}
                   </p>
                 </div>
-                <div class="col center-center max-width-200" *ngIf="dataTableSettings.diperbarui"
-                  [style]="widthCol('','body','DIPERBARUI')">
-                  <p class="text-dark">
-                    {{p.created_at}}
-                  </p>
+                <div class="col center-center max-width-200" *ngIf="dataTableSettings.edited"
+                  [style]="widthCol('','body','DIBUAT OLEH')">
+                  <div>
+                    <p class="text-dark">
+                      {{p.country}}
+                    </p>
+                    <p class="text-grey mb-0">
+                      {{p.date_flight | timeFormatted}}
+                    </p>
+                  </div>
                 </div>
                 <div *ngIf="dataTableSettings.status" class="col center-center max-width-200">
                   <app-label-status [status]="p.status"></app-label-status>

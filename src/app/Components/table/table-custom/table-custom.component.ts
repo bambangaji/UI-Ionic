@@ -29,7 +29,7 @@ export class TableCustomComponent implements OnInit {
   @ViewChild(FilterComponent) filterComponent?: FilterComponent;
   @ViewChild(ModalKeberangkatanComponent) keberangkatanComponent?: ModalKeberangkatanComponent;
   @ViewChild(HoverComponent) hoverComponent?: HoverComponent;
-  @Input() dataTable?: any[];
+  @Input() dataTable: any[] = [];
   @Input() type: string = 'schedule';
   @Input() import: boolean = true;
   @Input() export: boolean = true;
@@ -73,6 +73,10 @@ export class TableCustomComponent implements OnInit {
     destinasi: true,
     created_at: true,
     diperbarui: false,
+    loading_bag: false,
+    date_flight: false,
+    edited: false,
+    add_penerbangan: false,
   };
   public dataTableSettings: ITableScheduleSettings = this.defaultSettings;
   jsonData: any[];
@@ -87,7 +91,7 @@ export class TableCustomComponent implements OnInit {
   formSearch: FormGroup = new FormGroup({
     search: new FormControl('')
   });
-  public listHeaderTabel?: ITableHeader[]
+  public listHeaderTabel: ITableHeader[] = []
   constructor(
     public navService: NavigationService,
     public alertController: AlertController,
@@ -108,11 +112,6 @@ export class TableCustomComponent implements OnInit {
   toggleTooltip(uuid: any, tooltipKey: string, show: boolean) {
     this.openTooltip = show;
     this.tooltipStates[uuid][tooltipKey] = show;
-    // console.log(item.uuid);
-    // console.log(this.tooltipStates[item.uuid][tooltipKey]);
-    console.log(show);
-    console.log(this.tooltipStates);
-
   }
 
   resetData() {
@@ -138,8 +137,6 @@ export class TableCustomComponent implements OnInit {
       this.tooltipStates[item.uuid] = this.setPropertiesToFalse();
     });
     this.isReady = true;
-    console.log(this.dataTable);
-
   }
   setPropertiesToFalse(): { [key: string]: boolean } {
     const newObj: { [key: string]: boolean } = {};
@@ -151,10 +148,17 @@ export class TableCustomComponent implements OnInit {
     return newObj;
   }
   setWidth() {
-    const width = 220;
-    const totalWidth = width * this.listHeaderTabel!.length;
-    console.log(this.customCssContent = `height: ${this.height}px ;width: ${totalWidth}px`);
-    return this.customCssContent = `height: ${this.height} ;width: ${totalWidth}px; min-width: 93vw`
+    const width = 210;
+    let total_width = 0;
+    for (let j of this.listHeaderTabel) {
+      if (j.width) {
+        total_width += j.width;
+      } else {
+        total_width += width;
+      }
+
+    }
+    return this.customCssContent = `height: ${this.height} ;width: ${total_width}px; min-width: 93vw`
   }
   exportData() {
     this.excelService.convertToExcel(this.dataTable)
@@ -176,8 +180,6 @@ export class TableCustomComponent implements OnInit {
   widthCol(width?: number, type?: string, name?: string) {
     if (type === 'body') {
       const d = this.listHeaderTabel?.filter((item: any) => item.label === name);
-      console.log(this.listHeaderTabel);
-      console.log(d);
       if (d!.length > 0) {
         width = d![0].width;
       }
@@ -225,7 +227,6 @@ export class TableCustomComponent implements OnInit {
     this.filterComponent?.modal?.present();
   }
   okEmit(data: any) {
-    console.log(data);
     this.modalScheduleComponent?.modal?.dismiss();
     if (data.type === 'trash') {
       const indexToRemove = this.dataTable!.findIndex((item: any) => item.mawb === data.mawb);
@@ -236,13 +237,8 @@ export class TableCustomComponent implements OnInit {
     }
   }
   cancelEmit(data: any) {
-    console.log(data);
   }
   sortDataAscending(value: any) {
-    console.log(value);
-    console.log(this.dataTable);
-    console.log(this.dataTableSettings);
-
     this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
     value.sortASC = true;
     this.dataTable!.sort((a, b) => {
@@ -328,23 +324,17 @@ export class TableCustomComponent implements OnInit {
     this.popoverController.dismiss();
   }
   handleFile(event: any) {
-    console.log(event);
-
     const file = event.target.files[0];
     const reader: FileReader = new FileReader();
 
     reader.onload = (e: any) => {
       const data: Uint8Array = new Uint8Array(e.target.result);
       const workbook: XLSX.WorkBook = XLSX.read(data, { type: 'array' });
-
       const firstSheetName: string = workbook.SheetNames[0];
       const worksheet: XLSX.WorkSheet = workbook.Sheets[firstSheetName];
-
       this.jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-      console.log(this.jsonData);
       this.convertArray(this.jsonData)
     };
-
     reader.readAsArrayBuffer(file);
 
   }
@@ -360,8 +350,6 @@ export class TableCustomComponent implements OnInit {
       });
       return obj;
     });
-
-    console.log(objects);
     this.dataTable = objects;
   }
 }

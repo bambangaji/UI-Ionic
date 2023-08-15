@@ -60,90 +60,6 @@ export class RiwayatPage implements OnInit {
   dataTable: ISchedule[] =
     [
       {
-        agent: 'BSL',
-        airlines: 'Interlink Airplane',
-        checked: false,
-        mawb: '819-00000004',
-        image_from: 'assets/icon/profileDummy.svg',
-        image_to: 'assets/icon/profileDummy.svg',
-        date_departed: '20-09-2022 13:45',
-        date_arival: '20-09-2022 13:45',
-        collie: 10,
-        weight: 100,
-        country: 'Singapore',
-        created_at: '20-09-2022 13:45',
-        vendor: 'HD',
-        uuid: '222',
-        status: 'Dibandara',
-        isStatus: true,
-        bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
-      },
-      {
-        agent: 'BSL',
-        airlines: 'Interlink Airplane',
-        checked: false,
-        mawb: '819-00000004',
-        image_from: 'assets/icon/profileDummy.svg',
-        image_to: 'assets/icon/profileDummy.svg',
-        date_departed: '20-09-2022 13:45',
-        date_arival: '20-09-2022 13:45',
-        collie: 10,
-        weight: 100,
-        country: 'Singapore',
-        created_at: '20-09-2022 13:45',
-        vendor: 'HD',
-        uuid: '1222',
-        status: 'Berangkat',
-        isStatus: true,
-        bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
-      },
-      {
-        agent: 'BSL',
-        airlines: 'Interlink Airplane',
-        checked: false,
-        mawb: '819-00000004',
-        image_from: 'assets/icon/profileDummy.svg',
-        image_to: 'assets/icon/profileDummy.svg',
-        date_departed: '20-09-2022 13:45',
-        date_arival: '20-09-2022 13:45',
-        collie: 10,
-        weight: 100,
-        country: 'Singapore',
-        created_at: '20-09-2022 13:45',
-        vendor: 'HD',
-        uuid: '1232',
-        status: 'Selesai',
-        isStatus: true,
-        bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
-      },
-      {
-        agent: 'BSL',
-        airlines: 'Interlink Airplane',
-        checked: false,
-        mawb: '819-00000004',
-        image_from: 'assets/icon/profileDummy.svg',
-        image_to: 'assets/icon/profileDummy.svg',
-        date_departed: '20-09-2022 13:45',
-        date_arival: '20-09-2022 13:45',
-        collie: 10,
-        weight: 100,
-        country: 'Singapore',
-        created_at: '20-09-2022 13:45',
-        vendor: 'HD',
-        uuid: '3232',
-        status: 'Dibatalkan',
-        isStatus: true,
-        bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
-      },
-      {
         agent: 'KSL',
         airlines: 'Knterlink Airplane',
         checked: false,
@@ -161,8 +77,8 @@ export class RiwayatPage implements OnInit {
         status: 'Menuju Bandara',
         isStatus: true,
         bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
+        total_bag: 100,
+        total_collie: 200
       },
       {
         agent: 'DSL',
@@ -182,8 +98,8 @@ export class RiwayatPage implements OnInit {
         status: 'Siap Diangkut',
         isStatus: false,
         bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
+        total_bag: 100,
+        total_collie: 200
       },
       {
         agent: 'zSL',
@@ -203,8 +119,8 @@ export class RiwayatPage implements OnInit {
         status: 'Dikonfirmasi',
         isStatus: false,
         bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'
+        total_bag: 100,
+        total_collie: 200
       },
       {
         agent: 'zSL',
@@ -224,8 +140,8 @@ export class RiwayatPage implements OnInit {
         status: 'Diajukan',
         isStatus: false,
         bag_range: '100-1000',
-        total_bag: '100',
-        total_collie:'200'  
+        total_bag: 100,
+        total_collie: 200
       },
     ]
   constructor() { }

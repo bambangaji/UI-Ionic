@@ -60,11 +60,11 @@ export class StockPage implements OnInit {
       status: 'Terbang',
       isStatus: false,
       no_flight: '222',
-      bag: '20',
-      est_bag: '100',
-      est_weight: '1000',
-      bag_send: '10',
-      total_bag: '100',
+      bag: 20,
+      est_bag: 100,
+      est_weight: 1000,
+      bag_send: 10,
+      total_bag: 100,
       bag_range: '1000-9000'
     },
   ]

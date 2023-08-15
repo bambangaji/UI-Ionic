@@ -2,8 +2,7 @@
   <ion-toolbar>
     <ion-row slot="start" style="border-right: 1.6px solid #EAECF0;padding-right: 12px;">
       <ion-icon name="icon-list" style="width: 50px; height: 40px;"></ion-icon>
-      <ion-img (click)="goToHome()" src="assets/icon/ax_logo.svg" style="width: 200px;"
-        class="ml-2 pointer"></ion-img>
+      <ion-img (click)="goToHome()" src="assets/icon/ax_logo.svg" style="width: 200px;" class="ml-2 pointer"></ion-img>
     </ion-row>
     <div class="ml-2">
       <p class="text-grey mb-0">
@@ -13,10 +12,12 @@
         Bandara
       </p>
     </div>
-    <ion-icon name="icon-troli" class="pointer mr-3" (click)="goToTroli()" style="width: 40px; 
+    <div slot="end" class="mr-1">
+      <ion-icon name="notifications-outline" (click)="goToTroli()" class="pointer mr-2 border-light p-1" style="width: 24px; 
     height: 24px;" slot="end">
-
-    </ion-icon>
+      </ion-icon>
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+    </div>
     <div slot="end" class="pointer row mr-3" id="profileUser" (mouseover)="changeMouse()">
       <ion-img src="assets/icon/profileDummy.svg" class="mr-3 small-icon"></ion-img>
       <div class="text-left">

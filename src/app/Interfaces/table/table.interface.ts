@@ -120,5 +120,8 @@ export interface ITableScheduleSettings {
     destinasi?: boolean,
     created_at?: boolean,
     diperbarui?: boolean,
-  }
-  
+    loading_bag?: boolean,
+    date_flight?: boolean,
+    edited?: boolean,
+    add_penerbangan?: boolean,
+}

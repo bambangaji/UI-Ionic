@@ -17,42 +17,78 @@ export class PenerbanganPage implements OnInit {
       css: '',
       label: 'DESTINASI TUJUAN',
       sort: true,
-      // width: 200
+      width: 200
+    },
+    {
+      css: '',
+      label: 'LOADING BAG',
+      sort: true,
+      width: 400,
     },
     {
       css: '',
       label: 'MAWB',
       sort: true,
-      // width: 220,
+      width: 210,
     },
     {
       css: '',
-      label: 'AIRLINES',
+      label: 'TANGGAL TERBANG',
       sort: true,
-      // width: 400,
+      width: 200
     },
     {
       css: '',
       label: 'TOTAL BAG',
       sort: true,
-      // width: 400
+      width: 250
     },
     {
       css: '',
-      label: 'TOTAL BERAT',
+      label: 'DIBUAT OLEH ',
       sort: true,
-      // width: 400
+      width: 300
     },
     {
       css: 'right-header-table',
-      label: 'AKSI',
+      label: '',
       sort: false,
     }
   ]
   dataTableSettings = {
     status: true
   }
-  dataTable: ISchedule[] = []
+  dataTable: ISchedule[] =
+    [
+      {
+        image_from: 'assets/icon/profileDummy.svg',
+        image_to: 'assets/icon/airplane.svg',
+        country_image: 'assets/icon/profileDummy.svg',
+        initial_vendor: 'BSL',
+        country: 'Singapore',
+        role: [
+          'Export Cleareance Laut',
+          'Export Cleareance Udara',
+          'Export Cleareance Darat',
+          'Export Cleareance Dalam Laut',
+          'Export Cleareance Luar Laut',
+        ],
+        created_at: '20-09-2022 13:45',
+        date_flight: '2023-08-15T06:01:15.854Z',
+        uuid: '222',
+        show_column: '6',
+        max_column: '10',
+        mawb: '12327362736',
+        total_weight: 2000,
+        total_bag: 2000,
+        est_weight: 1000,
+        loading_bag: {
+          diangkut: 10,
+          dibandara: 10,
+          siap_diangkut: 100,
+        }
+      },
+    ]
   constructor() { }
 
   ngOnInit() {
@@ -63,7 +99,7 @@ export class PenerbanganPage implements OnInit {
   }
   setTable() {
     this.tableComponent?.setData(this.dataheader, this.dataTable, {
-      mawb: false,
+      mawb: true,
       agent: false,
       collie: false,
       weight: false,
@@ -75,7 +111,13 @@ export class PenerbanganPage implements OnInit {
       checkboxAll: false,
       checkbox: false,
       trash: true,
-      print:true,
+      print: true,
+      loading_bag: true,
+      totalBag: true,
+      created_at: false,
+      date_flight: true,
+      edited:true,
+      add_penerbangan: true,
     })
   }
 
