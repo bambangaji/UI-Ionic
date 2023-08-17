@@ -42,7 +42,7 @@ export class GlobalService {
   config(key: 'apiUrlMode' | 'apiUrlOffline' | 'requestTimeout') {
     const config = {
       'apiUrlMode': 0,
-      'apiUrlOffline': 'https://support.abangexpress.co.id/api/',
+      'apiUrlOffline': 'https://support.Astralexpress.co.id/api/',
       'requestTimeout': 25000,
     };
     return config[key]
@@ -221,8 +221,8 @@ export class GlobalService {
   //     },
   //     user: {
   //       uuid: "0",
-  //       email: "info@abangexpress.co.id",
-  //       name: "Abang Express Pusat",
+  //       email: "info@Astralexpress.co.id",
+  //       name: "Astral Express Pusat",
   //       role_id: 0,
   //       document: null,
   //       phone_number: "8111361777",

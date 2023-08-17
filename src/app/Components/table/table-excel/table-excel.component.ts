@@ -136,7 +136,9 @@ export class TableExcelComponent implements OnInit {
   }
   expandColumn(value: any) {
     console.log(value);
-    if (value.columnKey === '"tutup_semua_bag"') {
+    if (value.columnKey === 'tutup_semua_bag') {
+      console.log('asds');
+      
       this.isMinimized = !this.isMinimized;
       value.label = this.isMinimized ? "BUKA SEMUA BAG" : "TUTUP SEMUA BAG"
     }
