@@ -33,6 +33,10 @@ export interface ISchedule {
     total_weight?: number;
     edit_by?: string;
     edited_at?: string;
+    no_resi?: string;
+    komoditas?: string;
+    berat_tertagih?: number
+    diperbarui?: string;
 }
 
 export interface ILoadingBag {

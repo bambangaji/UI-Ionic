@@ -1,0 +1,47 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <form [formGroup]="form">
+    
+<input type="file" name="importData" id="importData" (change)="handleFile($event)" hidden #fileInput>
+      <div class="wrapper mb-0  p-3">
+        <div>
+          <p class="h5">Konfirmasi Selesai</p>
+          <p class="text-grey w-90 my-2">
+            Apakah kamu ingin menyelesaikan
+            <span class="bold-text text-dark">
+              BAG 1020200,
+            </span>
+            Dengan Berat
+            <span class="bold-text text-dark">
+              28 KG?
+            </span>
+          </p>
+        </div>
+        <div class="border-bottom-light">
+          <p class="mb-2">
+            Isi form dibawah ini
+          </p>
+          <p class="mb-2">
+            Total berat timbangan <span class="color-red">*</span>
+          </p>
+          <app-input-form placeholder="scan" color="white" style="background: white;" placeholder="Masukkan berat badan"></app-input-form>
+          <div class="p-5 border-light text-center mt-3 pointer hover-light" (click)="triggerFileInput()">
+            <img src="assets/icon/camera.svg">
+          </div>
+        </div>
+        <div class="row center-center justify-content-center mt-2">
+          <ion-button color="red" style="width: 44%;" (click)="closeModal()">
+            <p class="color-white bold-text">
+              Simpan
+            </p>
+          </ion-button>
+          <ion-button color="red-light" style="width: 44%;" (click)="closeModal()">
+            <p class="color-red bold-text">
+              Batal
+            </p>
+          </ion-button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,88 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-row class="justify-content-between center-center align-items-center p-2">
+        <p class="mb-0 bold-text h6">
+          Detail Resi
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <div class="border-light text-grey bg-white with-overflow border-bottom-light" style="height: 100vh;">
+        <div class="row justify-content-between mx-3 center-center align-items-center my-2">
+          <p class="mb-0 bold-text text-dark">
+            AX000001
+          </p>
+          <p class="text-grey mb-0">
+            10 Juli 2023,10:00
+          </p>
+        </div>
+        <div>
+          <div
+            class="row pl-2 py-1 bg-grey-blue justify-content-between border-bottom-light align-items-center border-top-light">
+            <p class="text-grey ml-3 bold-text">
+              Informasi Berat
+            </p>
+          </div>
+          <div class="col p-3 border-bottom-light">
+            <p>
+              Berat Tertagih
+            </p>
+            <p class="bold-text text-dark">
+              10 Kg
+            </p>
+            <ion-row class="justify-content-between">
+              <ion-col size="6">
+                <p>
+                  Berat Tertagih
+                </p>
+                <p class="bold-text text-dark">
+                  10 Kg
+                </p>
+              </ion-col>
+              <ion-col size="6" class="float-left">
+                <p>
+                  Volume
+                </p>
+                <p class="bold-text text-dark">
+                  10 x 10 x 10 Cm
+                </p>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div
+            class="row pl-2 py-1 bg-grey-blue justify-content-between border-bottom-light align-items-center border-top-light">
+            <p class="text-grey ml-3 bold-text">
+              Detail barang
+            </p>
+          </div>
+          <div class="col p-3 border-bottom-light" *ngFor="let p of list_bag">
+            <p class="text-dark bold-text h7">
+              {{p.nama_barang}}
+            </p>
+            <ion-row class="justify-content-between">
+              <ion-col size="6">
+                <p>
+                  Nilai Barang
+                </p>
+                <p class="bold-text text-dark">
+                  Rp {{p.nilai_barang}}
+                </p>
+              </ion-col>
+              <ion-col size="6" class="float-left">
+                <p>
+                  Qty
+                </p>
+                <p class="bold-text text-dark">
+                  {{p.qty}} Pcs
+                </p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

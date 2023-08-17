@@ -42,6 +42,9 @@ import { TableExcelComponent } from './table/table-excel/table-excel.component';
 import { PopoverTableComponent } from './popover/popover-table/popover-table.component';
 import { ModalKeberangkatanComponent } from './modal/modal-keberangkatan/modal-keberangkatan.component';
 import { HoverComponent } from './popover/hover/hover.component';
+import { DetailBagComponent } from './modal/detail-bag/detail-bag.component';
+import { DeleteBagComponent } from './modal/delete-bag/delete-bag.component';
+import { ConfirmBagComponent } from './modal/confirm-bag/confirm-bag.component';
 
 
 @NgModule({
@@ -83,7 +86,10 @@ import { HoverComponent } from './popover/hover/hover.component';
     TableExcelComponent,
     PopoverTableComponent,
     ModalKeberangkatanComponent,
-    HoverComponent
+    HoverComponent,
+    DetailBagComponent,
+    DeleteBagComponent,
+    ConfirmBagComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -134,7 +140,10 @@ import { HoverComponent } from './popover/hover/hover.component';
     TableExcelComponent,
     PopoverTableComponent,
     ModalKeberangkatanComponent,
-    HoverComponent
+    HoverComponent,
+    DetailBagComponent,
+    DeleteBagComponent,
+    ConfirmBagComponent,
   ]
 })
 export class ComponentsModule { }

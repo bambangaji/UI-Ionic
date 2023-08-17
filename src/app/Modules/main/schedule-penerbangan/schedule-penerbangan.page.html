@@ -29,10 +29,180 @@
           </ion-list>
         </ion-col>
         <ion-col size="9" class="p-0" style="min-height: 80vh;">
-          <p class="bold-text h6 p-3">
-            Manifest Bagging
-          </p>
-          <div class="border-top-light ">
+          <ion-row class="align-items-center justify-content-between px-2">
+            <ion-col size="5.5">
+              <ion-row class="justify-content-between">
+                <ion-row class="align-items-center pr-2">
+                  <img src="assets/icon/profileDummy.svg" style="height: 30px; width: 30px;" class="circle">
+                  <ion-col class="ml-1">
+                    <p class="text-grey">
+                      Taiwanss
+                    </p>
+                    <p class="bold-text">
+                      MINA
+                    </p>
+                  </ion-col>
+                </ion-row>
+                <ion-col class="ml-1">
+                  <p class="text-grey">
+                    No MAWB
+                  </p>
+                  <p class="bold-text">
+                    888-0000001
+                  </p>
+                </ion-col>
+                <ion-col class="ml-1">
+                  <p class="text-grey">
+                    Tanggal Terbang
+                  </p>
+                  <p class="bold-text">
+                    {{today|timeFormatted}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col>
+              <ion-row class="float-right">
+                <ion-col class="ml-1 mr-4">
+                  <p class="text-grey">
+                    No Bag Selanjutnya
+                  </p>
+                  <p class="bold-text">
+                    734356436500
+                  </p>
+                </ion-col>
+                <ion-button color="red" class="non-capitalize" (click)="goToCreateManifest()">Buat Bag <ion-icon name="add"></ion-icon></ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <div class="border-top-light border-bottom-light p-3 pb-0">
+            <ion-row>
+              <ion-col size="2.5" class="p-0 text-grey pr-2 border-right-light-thick">
+                <ion-row class="mb-1">
+                  <p>
+                    Estimasi Waktu
+                  </p>
+                  <ion-icon name="help-circle-outline" class="grey icon-medium-20" (mouseenter)="showTooltip=true"
+                    (mouseleave)="showTooltip=false"></ion-icon>
+                  <app-hover [content]="'Segera selesaikan proses Bagging sebelum estimasi waktu habis'" type="est_bag"
+                    [show]="showTooltip "></app-hover>
+                </ion-row>
+                <ion-row class="bg-orange-light border-radius-8 px-1" style="width: fit-content;">
+                  <ion-row class="align-items-center">
+                    <ion-col>
+                      <p class="color-orange h6 bold-text">
+                        01
+                      </p>
+                      <p>
+                        Hari
+                      </p>
+                    </ion-col>
+                    <p class="color-orange h3">
+                      :
+                    </p>
+                  </ion-row>
+                  <ion-row class="align-items-center">
+                    <ion-col>
+                      <p class="color-orange h6 bold-text">
+                        02
+                      </p>
+                      <p>
+                        Jam
+                      </p>
+                    </ion-col>
+                    <p class="color-orange h3">
+                      :
+                    </p>
+                  </ion-row>
+                  <ion-row class="align-items-center">
+                    <ion-col>
+                      <p class="color-orange h6 bold-text">
+                        03
+                      </p>
+                      <p>
+                        Menit
+                      </p>
+                    </ion-col>
+                    <p class="color-orange h3">
+                      :
+                    </p>
+                  </ion-row>
+                  <ion-row class="align-items-center">
+                    <ion-col>
+                      <p class="color-orange h6 bold-text">
+                        10
+                      </p>
+                      <p>
+                        Detik
+                      </p>
+                    </ion-col>
+                  </ion-row>
+
+                </ion-row>
+              </ion-col>
+              <ion-col size="4" class="p-0 text-grey px-2 border-right-light-thick">
+                <ion-row class="mb-1">
+                  <p class="text-grey">
+                    Target Total Berat
+                  </p>
+                  <ion-icon name="help-circle-outline" class="grey icon-medium-20 text-grey"
+                    (mouseenter)="showTooltipBerat=true" (mouseleave)="showTooltipBerat=false"></ion-icon>
+                  <app-hover [content]="'Segera selesaikan proses Bagging sebelum estimasi waktu habis'" type="est_bag"
+                    [show]="showTooltipBerat "></app-hover>
+                </ion-row>
+                <ion-row class="justify-content-between">
+                  <p class="text-grey bold-text h7">
+                    10 <span>Kg</span>
+                  </p>
+                  <p class="text-dark bold-text h7">
+                    100 <span>Kg</span>
+                  </p>
+                </ion-row>
+                <div class="w-100 bg-grey-blue border-light mb-2" style="height: 10px;">
+                  <div class="progress-bar border-radius-8 " [style.width.%]="(100/10)"></div>
+                </div>
+              </ion-col>
+              <ion-col size="4" class="p-0 text-grey px-2">
+                <ion-row class="mb-1">
+                  <p class="text-grey">
+                    Target Bag
+                  </p>
+                  <ion-icon name="help-circle-outline" class="grey icon-medium-20 text-grey"
+                    (mouseenter)="showTooltipBerat=true" (mouseleave)="showTooltipBerat=false"></ion-icon>
+                  <app-hover [content]="'Segera selesaikan proses Bagging sebelum estimasi waktu habis'" type="est_bag"
+                    [show]="showTooltipBerat "></app-hover>
+                </ion-row>
+                <ion-row class="justify-content-between">
+                  <p class="text-dark bold-text">
+                    <span class="h7"> 0 </span>
+                    <span class="p-1 bg-grey-blue border-radius-8 "> 0 Resi</span>
+                  </p>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="bg-blue-light h-100 w-100 p-3">
+            <ion-card class="text-dark p-2 m-0" style="min-height: 60vh;">
+              <ion-row class="justify-content-between align-items-center border-bottom-light pb-2">
+                <p class="h7 bold-text pl-3">
+                  Daftar Bag
+                </p>
+                <app-input-form typeInput="search" placeholder="cari" style="width: 240px;"></app-input-form>
+              </ion-row>
+              <div class="text-center" style="
+              position: fixed;
+              left: 29vw;
+              top: 25vh;
+          ">
+                <img src="assets/icon/empty.svg">
+                <p class="bold-text ml-4 pl-2 mt-3">
+                  Kamu belum memiliki bag
+                </p>
+                <p>
+                  Segera buat Bag untuk mendapatkan Nomor Bag
+                </p>
+              </div>
+            </ion-card>
           </div>
         </ion-col>
       </ion-row>

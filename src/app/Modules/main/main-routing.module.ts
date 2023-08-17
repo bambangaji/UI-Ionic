@@ -31,15 +31,15 @@ const routes: Routes = [
       },
       {
         path: 'penerbangan',
-        loadChildren: () => import('../../Modules/main/penerbangan/penerbangan.module').then( m => m.PenerbanganPageModule)
+        loadChildren: () => import('../../Modules/main/penerbangan/penerbangan.module').then(m => m.PenerbanganPageModule)
       },
       {
         path: 'stock',
-        loadChildren: () => import('../../Modules/main/stock/stock.module').then( m => m.StockPageModule)
+        loadChildren: () => import('../../Modules/main/stock/stock.module').then(m => m.StockPageModule)
       },
       {
         path: 'schedule-penerbangan',
-        loadChildren: () => import('../../Modules/main/schedule-penerbangan/schedule-penerbangan.module').then( m => m.SchedulePenerbanganPageModule)
+        loadChildren: () => import('../../Modules/main/schedule-penerbangan/schedule-penerbangan.module').then(m => m.SchedulePenerbanganPageModule)
       },
       {
         path: 'manifest',
@@ -55,6 +55,10 @@ const routes: Routes = [
           {
             path: 'history',
             loadChildren: () => import('./manifest/riwayat/riwayat.module').then(m => m.RiwayatPageModule)
+          },
+          {
+            path: 'create-manifest',
+            loadChildren: () => import('../../Modules/main/manifest/create-manifest/create-manifest.module').then(m => m.CreateManifestPageModule)
           },
           {
             path: '',

@@ -82,6 +82,8 @@ export interface IHeader {
     content?: string;
 }
 export interface ITableScheduleSettings {
+    rightSearch?: boolean;
+    title?: string,
     import?: boolean,
     export?: boolean,
     importData?: boolean,
@@ -124,4 +126,9 @@ export interface ITableScheduleSettings {
     date_flight?: boolean,
     edited?: boolean,
     add_penerbangan?: boolean,
+    no_resi?: boolean,
+    komoditas?: boolean,
+    berat_tertagih?: boolean,
+    trash_bag?: boolean,
+    detail_bag?: boolean,
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService } from 'src/app/Services/navigation/navigation.service';
 
 @Component({
   selector: 'app-schedule-penerbangan',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchedulePenerbanganPage implements OnInit {
 
-  constructor() { }
-
+  constructor(private navigationService: NavigationService) { }
+  showTooltip: boolean = false;
+  showTooltipBerat: boolean = false;
+  today: Date = new Date();
   ngOnInit() {
   }
+  toggleTooltip() {
 
+  }
+
+  goToCreateManifest() {
+    this.navigationService.toCreateManifestPage();
+  }
 }

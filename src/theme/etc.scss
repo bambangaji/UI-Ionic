@@ -191,7 +191,21 @@ ion-alert.custom-alert {
     padding: 8px;
     min-width: 300px;
 }
+.progress-bar {
+    height: 10px;
+    width: 100%;
+    background-color: red;
+    transition: width 0.5s ease-in-out;
+}
 
+.progress-container {
+    width: 100%;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
 .alert-title.sc-ion-alert-md {
     font-weight: 600;
 }

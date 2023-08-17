@@ -25,17 +25,19 @@ export enum ERoutePath {
   MANIFEST_SCHEDULED = '/main/dashboard/manifest/scheduled',
   MANIFEST_HISTORY = '/main/dashboard/manifest/history',
   MANIFEST_TABLE = '/table',
+  MANIFEST_CREATE = '/main/dashboard/manifest/create-manifest',
 
   //regulasi
   REGULASI = '/main/dashboard/regulasi',
 
   //penerbangan
-  PENERBANGAN ='/main/dashboard/penerbangan',
+  PENERBANGAN = '/main/dashboard/penerbangan',
 
   //stock
   STOCK = '/main/dashboard/stock',
   //schedule-penerbangan
   SCHEDULE_PENERBANGAN = '/main/dashboard/schedule-penerbangan',
+
 }
 
 @Injectable({
@@ -88,6 +90,9 @@ export class NavigationService {
 
   toScheduleImportPage() {
     this.setRoot(ERoutePath.SCHEDULE_IMPORT, undefined, undefined, true);
+  }
+  toCreateManifestPage() {
+    this.setRoot(ERoutePath.MANIFEST_CREATE, undefined, undefined, true);
   }
   toManifestBagPage() {
     this.setRoot(ERoutePath.MANIFEST_BAG, undefined, undefined, true);

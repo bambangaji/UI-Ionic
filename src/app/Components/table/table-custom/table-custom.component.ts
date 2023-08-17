@@ -14,6 +14,8 @@ import { ModalKeberangkatanComponent } from '../../modal/modal-keberangkatan/mod
 import * as XLSX from 'xlsx';
 import { HoverComponent } from '../../popover/hover/hover.component';
 import { GlobalService } from 'src/app/Services/global/global.service';
+import { DetailBagComponent } from '../../modal/detail-bag/detail-bag.component';
+import { DeleteBagComponent } from '../../modal/delete-bag/delete-bag.component';
 
 
 @Component({
@@ -23,11 +25,13 @@ import { GlobalService } from 'src/app/Services/global/global.service';
 })
 export class TableCustomComponent implements OnInit {
   @ViewChild(DetailScheduleComponent) detailScheduleComponent?: DetailScheduleComponent;
+  @ViewChild(DetailBagComponent) detailBagComponent?: DetailBagComponent;
   @ViewChild(ModalScheduleCreateComponent) createScheduleComponent?: ModalScheduleCreateComponent;
   @ViewChild(ModalScheduleComponent) modalScheduleComponent?: ModalScheduleComponent;
   @ViewChild(PopoverController) popoverComponent?: PopoverController;
   @ViewChild(FilterComponent) filterComponent?: FilterComponent;
   @ViewChild(ModalKeberangkatanComponent) keberangkatanComponent?: ModalKeberangkatanComponent;
+  @ViewChild(DeleteBagComponent) deleteBagComponent?: DeleteBagComponent;
   @ViewChild(HoverComponent) hoverComponent?: HoverComponent;
   @Input() dataTable: any[] = [];
   @Input() type: string = 'schedule';
@@ -199,10 +203,16 @@ export class TableCustomComponent implements OnInit {
     const data = { mawb: val.mawb, list_vendor: this.list_vendor };
     this.modalScheduleComponent?.setData(data, 'openAlertKonfirmasi', 'sampai')
   }
+
   async openAlertTrash(val: any) {
     const data = { mawb: val.mawb, list_vendor: this.list_vendor, type: 'trash' };
     this.modalScheduleComponent?.setData(data, 'openAlertKonfirmasi', 'trash')
   }
+
+  async openAlertTrashBag(val: any) {
+    this.deleteBagComponent?.setData(val);
+  }
+
   async openKeberangkatan(p: any) {
     await this.keberangkatanComponent?.setData(p);
     this.keberangkatanComponent?.modal?.present();
@@ -307,6 +317,7 @@ export class TableCustomComponent implements OnInit {
   konfirmasiSchedule() {
     this.closeAllModal();
   }
+
   deleteAll() {
     this.modalScheduleComponent?.setData('', 'openAlertKonfirmasi', 'delete')
   }
@@ -315,6 +326,10 @@ export class TableCustomComponent implements OnInit {
     this.popoverController.dismiss();
     await this.detailScheduleComponent?.setData(p);
     this.detailScheduleComponent?.modal?.present();
+  }
+  async openRingkasanBag(p: any) {
+    console.log(p);
+    this.detailBagComponent?.setData(p);
   }
   deleteSchedule() {
     this.closeAllModal();

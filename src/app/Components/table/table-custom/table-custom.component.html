@@ -1,5 +1,5 @@
 <div class="table" style="    overflow: auto;" *ngIf="isReady">
-  <div *ngIf="type==='schedule' || type==='regulasi'" class="row my-3 justify-content-between mx-0"
+  <div *ngIf="type==='schedule' || type==='regulasi'" class="row my-2 justify-content-between mx-0 align-items-center"
     style="position: sticky; left: 0;">
     <div class="row">
       <div class="px-3 py-2 border-light row ml-4 align-items-center" *ngIf="dataTableSettings.checkbox">
@@ -8,9 +8,15 @@
         <p class="text-grey mb-0 ml-2">Pilih Semua</p>
       </div>
       <form [formGroup]="formSearch">
-        <div class="row ml-1">
-          <app-input-form class="ml-3 min-width-200 bg-white" *ngIf="!isCheckAll" typeInput="search" placeholder="Cari"
-            color="white" formControlName="search" background="grey"></app-input-form>
+        <div class="row ml-1 align-items-center">
+          <div *ngIf="dataTableSettings.title" class="ml-4 bold-text align-items-center">
+            <p class="h7">
+              {{dataTableSettings.title}}
+            </p>
+          </div>
+          <app-input-form class="ml-3 min-width-200 bg-white" *ngIf="!isCheckAll && dataTableSettings.search"
+            typeInput="search" placeholder="Cari" color="white" formControlName="search"
+            background="grey"></app-input-form>
           <input type="file" name="importData" id="importData" hidden #fileImport>
           <input type="file" name="exportData" id="exportData" hidden>
           <div *ngIf="!isCheckAll && dataTableSettings.import"
@@ -26,19 +32,27 @@
         </div>
       </form>
     </div>
-    <div class="row mr-4">
-      <p class="mb-0 center-center text-grey">
-        {{((page - 1)*show)+1}}-{{show*page}} dari {{total_data}}
-      </p>
-      <div class="ml-4 px-3 py-2 border-light row hover-light pointer align-items-center" (click)="exportData()">
-        <img src="assets/icon/icon-upload.svg">
-        <p class="text-grey mb-0 ml-2">Export Data</p>
+    <form [formGroup]="formSearch">
+      <div class="row mr-4">
+        <p class="mb-0 center-center text-grey">
+          {{((page - 1)*show)+1}}-{{show*page}} dari {{total_data}}
+        </p>
+        <div *ngIf="dataTableSettings.exportData"
+          class="ml-4 px-3 py-2 border-light row hover-light pointer align-items-center" (click)="exportData()">
+          <img src="assets/icon/icon-upload.svg">
+          <p class="text-grey mb-0 ml-2">Export Data</p>
+        </div>
+        <app-input-form class="ml-3 min-width-200 bg-white" *ngIf="dataTableSettings.rightSearch" typeInput="search"
+          placeholder="Cari" color="white" formControlName="search" background="grey"></app-input-form>
+        <div class="ml-4 mr-4 px-2 py-1 border-light row hover-light pointer " (click)="openFilter()">
+          <ion-icon name="icon-filter-2" class="p-0 center-center color-red"
+            style="width: 20px; height: 20px;"></ion-icon>
+        </div>
+        <ion-button *ngIf="dataTableSettings.add_penerbangan" color="red" class="non-capitalize"><ion-icon
+            name="add"></ion-icon> Jadwal Penerbangan</ion-button>
       </div>
-      <div class="ml-4 mr-4 px-2 py-1 border-light row hover-light pointer " (click)="openFilter()">
-        <ion-icon name="icon-filter" class="p-0 center-center color-red" style="width: 20px; height: 20px;"></ion-icon>
-      </div>
-      <ion-button *ngIf="dataTableSettings.add_penerbangan" color="red" class="non-capitalize"><ion-icon name="add"></ion-icon> Jadwal Penerbangan</ion-button>
-    </div>
+    </form>
+
   </div>
   <div *ngIf="type==='schedule-import'" class="col my-3" style="position: sticky; left: 0;">
     <div class="ml-4">
@@ -77,8 +91,6 @@
           Jadwal </p>
       </div>
     </div>
-
-
   </div>
   <div>
     <ion-content [style]="customCssContent">
@@ -221,6 +233,27 @@
                     {{p.mawb}}
                   </p>
                 </div>
+                <div *ngIf="dataTableSettings.no_resi" class="col center-center max-width-200">
+                  <p class="bold-text">
+                    {{p.no_resi}}
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.berat_tertagih" class="col center-center max-width-200">
+                  <p class="bold-text">
+                    {{p.berat_tertagih}} Kg
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.komoditas" class="col center-center max-width-200">
+                  <p class="bold-text">
+                    {{p.komoditas}}
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.date_flight" class="col center-center max-width-200"
+                  [style]="widthCol('','body','TANGGAL TERBANG')">
+                  <p class="text-grey">
+                    {{p.date_flight | timeFormatted}}
+                  </p>
+                </div>
                 <div *ngIf="dataTableSettings.date_flight" class="col center-center max-width-200"
                   [style]="widthCol('','body','TANGGAL TERBANG')">
                   <p class="text-grey">
@@ -334,6 +367,11 @@
                     {{p.created_at}}
                   </p>
                 </div>
+                <div class="col center-center max-width-200" *ngIf="dataTableSettings.diperbarui">
+                  <p class="text-dark">
+                    {{p.diperbarui | timeFormatted}}
+                  </p>
+                </div>
                 <div class="col center-center max-width-200" *ngIf="dataTableSettings.edited"
                   [style]="widthCol('','body','DIBUAT OLEH')">
                   <div>
@@ -373,6 +411,12 @@
                     class="border-light  p-1 pointer hover-light mr-2" color="dark" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
                   <ion-icon *ngIf="dataTableSettings.trash" (click)="openAlertTrash(p)" name="trash-outline"
+                    class="border-light  p-1 pointer hover-red-icon mr-2 icon-medium-20 color-grey" style="    position: relative !important;
+                    right: 6px !important;"></ion-icon>
+                  <ion-icon *ngIf="dataTableSettings.detail_bag" (click)="openRingkasanBag(p)" name="icon-detail-bag"
+                    class="border-light  p-1 pointer hover-red-icon mr-2 icon-medium-20 color-grey" style="    position: relative !important;
+                     right: 6px !important;"></ion-icon>
+                  <ion-icon *ngIf="dataTableSettings.trash_bag" (click)="openAlertTrashBag(p)" name="trash-outline"
                     class="border-light  p-1 pointer hover-red-icon mr-2 icon-medium-20 color-grey" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
                   <ion-popover *ngIf="dataTableSettings.option" [trigger]="'pop-over-'+p.uuid" triggerAction="click">
@@ -446,3 +490,5 @@
 <app-modal-schedule (ok)="okEmit($event)" (cancel)="cancelEmit($event)"></app-modal-schedule>
 <app-filter></app-filter>
 <app-modal-keberangkatan> </app-modal-keberangkatan>
+<app-detail-bag hidden></app-detail-bag>
+<app-delete-bag hidden></app-delete-bag>

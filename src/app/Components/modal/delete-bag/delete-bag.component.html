@@ -1,0 +1,37 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <form [formGroup]="form">
+      <div class="wrapper mb-3">
+        <div class="border-bottom-light">
+          <p class="h5 p-2">Hapus Resi</p>
+        </div>
+        <div class="p-3 border-bottom-light">
+          <p class="mb-2">
+            Apakah kamu ingin menghapus resi <span class="bold-text"> AX0000001? </span>
+          </p>
+          <app-input-form placeholder="scan" typeInput="scan"></app-input-form>
+          <div class="bg-orange-light p-2 row align-items-center m-0 mt-2 border-radius-8">
+            <ion-icon name="icon-warning" class="mr-2">
+            </ion-icon>
+            <p class="color-orange w-92">
+              Silahkan ambil paket dan scan kembali nomor resi yang sesuai. Setelah validasi berhasil kamu dapat
+              menghaspus Resi tersebut.
+            </p>
+          </div>
+        </div>
+        <div class="row center-center justify-content-center mt-2">
+          <ion-button color="grey" style="width: 44%;" (click)="closeModal()">
+            <p class="color-white bold-text">
+              Hapus
+            </p>
+          </ion-button>
+          <ion-button color="red-light" style="width: 44%;" (click)="closeModal()">
+            <p class="color-red bold-text">
+              Batal
+            </p>
+          </ion-button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</ion-modal>

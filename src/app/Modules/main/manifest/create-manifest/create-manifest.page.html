@@ -1,0 +1,69 @@
+<ion-content [fullscreen]="true">
+  <app-dashboard-background>
+    <app-label-page title="Manifest Bag" subTitle="Buat Bag"></app-label-page>
+    <ion-card class="z102 position-relative mr-4 ml-4">
+      <div class="col bg-white p-0">
+        <ion-row class="align-items-center justify-content-between px-2 border-bottom-light">
+          <ion-col class="p-0">
+            <ion-row class="justify-content-between">
+              <ion-row class="align-items-center pr-2">
+                <ion-icon name="arrow-back" color="red" class="bg-grey-blue circle icon-medium p-1 mr-2 pointer"
+                  (click)="back()"></ion-icon>
+                <img src="assets/icon/profileDummy.svg" style="height: 30px; width: 30px;" class="circle">
+                <ion-col class="ml-1">
+                  <p class="text-grey">
+                    Taiwanss
+                  </p>
+                  <p class="bold-text text-dark">
+                    MINA
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-col class="ml-1">
+                <p class="text-grey">
+                  No MAWB
+                </p>
+                <p class="bold-text  text-dark">
+                  888-0000001
+                </p>
+              </ion-col>
+              <ion-col class="ml-1">
+                <p class="text-grey">
+                  Tanggal Terbang
+                </p>
+                <p class="bold-text  text-dark">
+                  {{today|timeFormatted}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col>
+            <ion-row class="float-right">
+
+              <ion-button color="red" class="non-capitalize" (click)="confirm()"> Simpan <ion-icon
+                  name="add"></ion-icon></ion-button>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row class="align-items-center mt-2">
+          <ion-icon name="icon-bag" class="icon-medium ml-4 mr-2"></ion-icon>
+          <p class="h6 text-dark bold-text">
+            757G2000
+          </p>
+          <p class="color-grey p-1 bg-grey-blue border-radius-8 ml-2 bold-text">
+            0 Resi • 0 Kg
+          </p>
+        </ion-row>
+        <div class="p-3 border-bottom-light">
+          <app-input-form typeInput="scan" placeholder="Scan/Input Resi"></app-input-form>
+        </div>
+        <div class="bg-blue-light p-3">
+          <div class="bg-white border-radius-8 border-light">
+            <app-table-custom></app-table-custom>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </app-dashboard-background>
+  <app-confirm-bag hidden></app-confirm-bag>
+</ion-content>
