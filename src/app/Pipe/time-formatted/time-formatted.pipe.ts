@@ -5,29 +5,33 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeFormattedPipe implements PipeTransform {
 
-  transform(dateString: string, isWithTime: boolean = false, type: string = ''): String {
-    console.log(dateString);
+  transform(dateString: string | Date, isWithTime: boolean = false, type: string = ''): String {
 
-    let date = new Date(dateString)
-    if (!date) {
-      console.log('sss');
-      
-      const dateString = "25-09-2022 13:45";
-      const parts = dateString.split(" ");
-      const datePart = parts[0];
-      const timePart = parts[1];
+    console.log(dateString, 'wwww');
+    if (dateString instanceof Date) {
+      // date = dateString;
+    } else {
+      if (!isWithTime) {
+        dateString = dateString.substring(0, 10)
+      }
+      console.log(dateString);
+      const parts = dateString.split('-');
+      console.log(parts);
 
-      const dateComponents = datePart.split("-");
-      const year = parseInt(dateComponents[2]);
-      const month = parseInt(dateComponents[1]) - 1; // Months are 0-based
-      const day = parseInt(dateComponents[0]);
+      // if (parts.length === 3) {
+      // Assuming parts[0] is day, parts[1] is month, and parts[2] is year
+      const [day, month, year] = parts;
 
-      const timeComponents = timePart.split(":");
-      const hours = parseInt(timeComponents[0]);
-      const minutes = parseInt(timeComponents[1]);
-
-      date = new Date(year, month, day, hours, minutes);
+      // Check if the parts are in 'dd-mm-yyyy' format
+      if (day.length === 2 && month.length === 2 && year.length === 4) {
+        // Convert to 'yyyy-mm-dd' format
+        dateString = `${year}-${month}-${day}`;
+      }
     }
+
+
+    // }
+    let date = new Date(dateString)
     date.setHours(date.getHours() + 7);
     const formattedDate = date.toLocaleDateString("id-ID", {
       weekday: "long",

@@ -5,7 +5,7 @@
 }
 
 .hover-light:hover {
-    background: #f4f5f8;
+    background: #f4f5f8 !important;
 }
 
 .border-bottom-blue {
@@ -16,16 +16,17 @@
     border-bottom: 3px solid #5B40F6;
 }
 
+.h8 {
+
+    font-size: 10px !important;
+}
+
 .h6 {
     font-size: 1.2rem !important;
 }
 
 .h7 {
     font-size: 1.03rem !important;
-}
-
-.h8 {
-    font-size: 0.92rem !important;
 }
 
 .small-icon {
@@ -42,6 +43,15 @@
 .icon-medium {
     height: 20px !important;
     width: 20px !important;
+}
+
+.icon-medium-32 {
+    height: 32px !important;
+    width: 32px !important;
+}
+
+.w-auto {
+    width: auto !important;
 }
 
 .popover-country {
@@ -191,6 +201,7 @@ ion-alert.custom-alert {
     padding: 8px;
     min-width: 300px;
 }
+
 .progress-bar {
     height: 10px;
     width: 100%;
@@ -206,6 +217,7 @@ ion-alert.custom-alert {
     overflow: hidden;
     margin: 20px 0;
 }
+
 .alert-title.sc-ion-alert-md {
     font-weight: 600;
 }
@@ -236,6 +248,30 @@ button.alert-button.alert-button-cancel {
 
 .ios .custom-alert button.alert-button {
     border: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+}
+
+.my-custom-popover {
+    /* Set your desired width and height */
+    width: 100px;
+    height: 320px;
+    padding: 0 !important;
+    /* Add other styling as needed */
+}
+
+.popover-pick-time {
+    /* Set your desired width and height */
+    width: 100px;
+    height: 320px;
+    padding: 0 !important;
+    /* Add other styling as needed */
+}
+
+.popover-calendar {
+    /* Set your desired width and height */
+    width: 400px;
+    height: 420px;
+    padding: 0 !important;
+    /* Add other styling as needed */
 }
 
 .ios button.alert-button.alert-button-cancel {

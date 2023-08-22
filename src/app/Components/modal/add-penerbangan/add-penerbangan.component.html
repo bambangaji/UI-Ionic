@@ -1,0 +1,64 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-col style="position: relative; height: 260px; display: block;" class="p-0">
+
+        <img src="assets/img/penerbangan.png" style="position: absolute; bottom: 0px; max-height: 225px;">
+        <ion-row class="justify-content-between center-center align-items-center bg-red px-3 py-2">
+          <p class="mb-0 bold-text h7 text-white">
+            Jadwal Penerbangan
+          </p>
+          <div class="row center-center align-items-center">
+            <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer text-white"
+              (click)="closeModal()">
+            </ion-icon>
+          </div>
+        </ion-row>
+      </ion-col>
+      <div class="shadow-none m-2 p-2 border-light bg-white" style="    position: absolute;
+      width: 96%;
+      top: 165px;">
+        <ion-row>
+          <ion-col class="border-bottom-light">
+            <p class="text-grey">
+              Terbang ke
+            </p>
+            <ion-row class="align-items-center">
+              <ion-icon name="icon-airplane-2" class="icon-medium">
+              </ion-icon>
+              <p class="bold-text text-dark">
+                Taiwan
+              </p>
+            </ion-row>
+          </ion-col>
+          <div class="border-bottom-light ml-2 ">
+            <p class="text-grey">
+              Tanggal Terbang
+            </p>
+            <ion-row class="align-items-center pointer" (click)="showTanggal = !showTanggal;">
+              <ion-icon name="calendar-outline" class="icon-medium">
+              </ion-icon>
+              <p class="bold-text text-dark">
+                {{tanggal? tanggal : today | timeFormatted }}
+              </p>
+            </ion-row>
+          </div>
+        </ion-row>
+        <app-calendar (onChange)="pickCalendar($event)" id="pick-calendar" content="" type=""
+          [show]="showTanggal"></app-calendar>
+        <div class="w-100 pointer hover-light bg-red-light p-2 text-center border-radius-8 mt-2">
+          <p class="color-red h7 bold-text">Cari Penerbangan</p>
+        </div>
+      </div>
+      <div class="border-light text-grey bg-white with-overflow border-bottom-light"
+        style="height: 100vh; margin-top: 3.5rem;">
+        <div class="row justify-content-between mx-3 center-center align-items-center my-2">
+          <p class="text-grey">
+            Hasil Pencarian Jadwal (3)
+          </p>
+        </div>
+       <app-card-penerbangan></app-card-penerbangan>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

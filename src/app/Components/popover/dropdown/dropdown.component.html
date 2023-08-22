@@ -1,5 +1,5 @@
 <ion-content class="ion-padding">
-  <app-input-form typeInput="search" placeholder="Cari Negara"></app-input-form>
+  <app-input-form typeInput="search" [placeholder]="'Cari'+type"></app-input-form>
   <ion-list>
     <div>
       <div *ngFor="let p of list_data" class="row hover-light pointer w-100 mt-2" (click)="selectCountry(p)">

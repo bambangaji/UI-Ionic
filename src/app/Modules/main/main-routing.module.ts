@@ -45,6 +45,10 @@ const routes: Routes = [
         path: 'manifest',
         children: [
           {
+            path: 'detail-manifest-bag',
+            loadChildren: () => import('../../Modules/main/manifest/detail-manifest-bag/detail-manifest-bag.module').then(m => m.DetailManifestBagPageModule)
+          },
+          {
             path: 'bag',
             loadChildren: () => import('./manifest/daftar-bag/daftar-bag.module').then(m => m.DaftarBagPageModule)
           },

@@ -1,0 +1,55 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper" style="min-height: 100vh;">
+      <ion-col class="p-0">
+        <ion-row class="justify-content-between center-center align-items-center px-3 py-2 border-bottom-light">
+          <p class="mb-0 bold-text h7 text-dark">
+            Buat Penerbangan
+          </p>
+          <div class="row center-center align-items-center">
+            <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer text-dark"
+              (click)="closeModal()">
+            </ion-icon>
+          </div>
+        </ion-row>
+      </ion-col>
+      <div class="shadow-none m-0 p-2" style="background: linear-gradient(0deg, #FDEFF0 0%, white 100%);">
+        <ion-row class="align-items-center">
+          <div class="align-self-center">
+            <img src="assets/icon/profileDummy.svg" class="icon-medium-32 circle">
+            <img src="assets/icon/airplane.svg" class="icon-medium-32 circle imgNimpa bg-red">
+          </div>
+          <p class="bold-text">
+            Taiwan
+          </p>
+        </ion-row>
+        <app-card-penerbangan></app-card-penerbangan>
+      </div>
+      <div class="m-2" style="position: absolute;width: 96%;">
+        <p class="">
+          Pilih Vendor
+        </p>
+        <div (click)="presentPopoverVendor($event)"
+          class="row justify-content-between bg-white border-light mx-2 p-1 pointer hover-light bold-text align-items-center">
+          <p class="text-grey pl-3" style="opacity: 0.62;font-weight: 400;">
+            {{vendor?vendor:'Pilih Vendor'}}
+          </p>
+          <ion-icon name="chevron-down" class="text-grey icon-medium">
+          </ion-icon>
+        </div>
+        <p class="mt-2">
+          Est. Jumlah Bag *
+        </p>
+        <div class="mx-2">
+          <app-input-form placeholder="Masukkan Est Berat" type="number" style="background: white;"></app-input-form>
+        </div>
+      </div>
+      <div class="position-absoulte bottom-0 w-100 pb-2" style="bottom: 0;position: absolute;">
+        <ion-button color="red" class="m-2" (click)="confirm()" style="    width: -webkit-fill-available !important;">
+          Buat Sekarang
+        </ion-button>
+      </div>
+
+    </div>
+  </ng-template>
+</ion-modal>

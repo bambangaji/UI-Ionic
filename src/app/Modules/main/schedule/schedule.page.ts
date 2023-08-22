@@ -71,7 +71,7 @@ export class SchedulePage implements OnInit {
     // }
     ,
     {
-      css: '',
+      css: 'right-header-table',
       label: 'DIBUAT',
       sort: true,
       sortASC: true,
@@ -163,7 +163,7 @@ export class SchedulePage implements OnInit {
         collie: 29,
         weight: 150,
         country: 'China',
-        created_at: '23-09-2022 13:45',
+        created_at: '2023-08-09 13:45',
         vendor: 'MD',
         uuid: '5',
         status: 'Terbang',

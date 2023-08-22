@@ -1,5 +1,27 @@
 ion-content{
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 350px;
     overflow: auto;
+    border-radius: 8px;
 }
+.custom-tooltip {
+    position: absolute;
+    // background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 9999;
+    // pointer-events: none;
+    // display: none;
+}
+
+.custom-tooltip {
+    display: block;
+    top: 60%;
+    right: 0;
+    transform: translateY(0px);
+}
+.custom-datetime {
+    width: 300px; /* Set the desired width */
+  }

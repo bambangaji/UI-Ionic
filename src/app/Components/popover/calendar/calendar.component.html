@@ -1,9 +1,12 @@
-<ion-content class="ion-padding">
-
-  <ion-datetime #datetime presentation="date" [(ngModel)]="date" (ionChange)="confirm(datetime.value)">
-    <!-- <ion-buttons slot="buttons">
-      <ion-button color="primary" (click)="datetime.cancel()">back</ion-button>
-      <ion-button color="primary" (click)="confirm()">All Set</ion-button>
-    </ion-buttons> -->
-  </ion-datetime>
-</ion-content>
+<div  *ngIf="show" class="custom-tooltip border-light-2 border-radius m-2 bg-white" [id]="id">
+  <div>
+    <ion-content>
+      <ion-datetime #datetime presentation="date" [(ngModel)]="date" size="fixed" (ionChange)="confirm(datetime.value)" class="custom-datetime">
+        <!-- <ion-buttons slot="buttons">
+          <ion-button color="primary" (click)="datetime.cancel()">back</ion-button>
+          <ion-button color="primary" (click)="confirm()">All Set</ion-button>
+        </ion-buttons> -->
+      </ion-datetime>
+    </ion-content>
+  </div>
+</div>

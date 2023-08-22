@@ -131,4 +131,8 @@ export interface ITableScheduleSettings {
     berat_tertagih?: boolean,
     trash_bag?: boolean,
     detail_bag?: boolean,
+    no_bag?: boolean,
+    total_resi?: boolean,
+    total_weight?: boolean,
+    detail_manifest_bag?: boolean,
 }

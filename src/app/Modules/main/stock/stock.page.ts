@@ -65,7 +65,9 @@ export class StockPage implements OnInit {
       est_weight: 1000,
       bag_send: 10,
       total_bag: 100,
-      bag_range: '1000-9000'
+      bag_range: '1000-9000',
+      PIC: 'Toha',
+      diperbarui: '2023-08-15T06:01:15.854Z'
     },
   ]
   constructor() { }

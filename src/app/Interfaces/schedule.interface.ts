@@ -13,6 +13,7 @@ export interface ISchedule {
     weight?: number;
     collie?: number;
     status?: string;
+    PIC?: string;
     isStatus?: boolean;
     created_at: string;
     country_image?: string;
@@ -35,8 +36,10 @@ export interface ISchedule {
     edited_at?: string;
     no_resi?: string;
     komoditas?: string;
-    berat_tertagih?: number
+    berat_tertagih?: number;
     diperbarui?: string;
+    no_bag?: string;
+    total_resi?: number;
 }
 
 export interface ILoadingBag {

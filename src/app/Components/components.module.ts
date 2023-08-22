@@ -45,6 +45,10 @@ import { HoverComponent } from './popover/hover/hover.component';
 import { DetailBagComponent } from './modal/detail-bag/detail-bag.component';
 import { DeleteBagComponent } from './modal/delete-bag/delete-bag.component';
 import { ConfirmBagComponent } from './modal/confirm-bag/confirm-bag.component';
+import { AddPenerbanganComponent } from './modal/add-penerbangan/add-penerbangan.component';
+import { CardPenerbanganComponent } from './card/card-penerbangan/card-penerbangan.component';
+import { PickPenerbanganComponent } from './modal/pick-penerbangan/pick-penerbangan.component';
+import { NotificationsUserComponent } from './modal/notifications-user/notifications-user.component';
 
 
 @NgModule({
@@ -89,7 +93,11 @@ import { ConfirmBagComponent } from './modal/confirm-bag/confirm-bag.component';
     HoverComponent,
     DetailBagComponent,
     DeleteBagComponent,
-    ConfirmBagComponent
+    ConfirmBagComponent,
+    AddPenerbanganComponent,
+    CardPenerbanganComponent,
+    PickPenerbanganComponent,
+    NotificationsUserComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -109,7 +117,7 @@ import { ConfirmBagComponent } from './modal/confirm-bag/confirm-bag.component';
     DropdownAddressComponent,
     ImageUploadComponent,
     InputFieldLabelComponent,
-    PickAddressComponent, 
+    PickAddressComponent,
     CreateAddressComponent,
     PickExpeditionComponent,
     InputFormPhoneNumberComponent,
@@ -144,6 +152,10 @@ import { ConfirmBagComponent } from './modal/confirm-bag/confirm-bag.component';
     DetailBagComponent,
     DeleteBagComponent,
     ConfirmBagComponent,
+    AddPenerbanganComponent,
+    CardPenerbanganComponent,
+    PickPenerbanganComponent,
+    NotificationsUserComponent
   ]
 })
 export class ComponentsModule { }

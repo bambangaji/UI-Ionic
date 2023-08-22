@@ -26,7 +26,7 @@ export enum ERoutePath {
   MANIFEST_HISTORY = '/main/dashboard/manifest/history',
   MANIFEST_TABLE = '/table',
   MANIFEST_CREATE = '/main/dashboard/manifest/create-manifest',
-
+  MANIFEST_DETAIL = '/main/dashboard/manifest/detail-manifest-bag',
   //regulasi
   REGULASI = '/main/dashboard/regulasi',
 
@@ -78,6 +78,9 @@ export class NavigationService {
 
   toDashboardPage() {
     this.setRoot(ERoutePath.DASHBOARD, undefined, undefined, true);
+  }
+  toDetailManifestPage() {
+    this.setRoot(ERoutePath.MANIFEST_DETAIL, undefined, undefined, true);
   }
 
   toSchedulePage() {

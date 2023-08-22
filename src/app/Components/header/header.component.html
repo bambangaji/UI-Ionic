@@ -13,7 +13,7 @@
       </p>
     </div>
     <div slot="end" class="mr-1">
-      <ion-icon name="notifications-outline" (click)="goToTroli()" class="pointer mr-2 border-light p-1" style="width: 24px; 
+      <ion-icon name="notifications-outline" (click)="openNotifications()" class="pointer mr-2 border-light p-1" style="width: 24px; 
     height: 24px;" slot="end">
       </ion-icon>
       <ion-badge id="notifications-badge" color="danger">5</ion-badge>
@@ -40,5 +40,8 @@
       </ion-item>
     </ion-list>
   </ion-item>
+  
+<app-detail-bag></app-detail-bag>
+<app-notifications-user></app-notifications-user>
 </ion-header>
 <!-- <ion-router-outlet id="main-content" style="background-color: aqua;"></ion-router-outlet> -->

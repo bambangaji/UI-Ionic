@@ -54,10 +54,6 @@ export class DropdownCustomComponent implements OnInit {
     if (type === 'with-image') {
 
     }
-    console.log(type);
-    console.log(data);
-    console.log(this.list_data);
-
   }
   selectCountry(p: any) {
     console.log(p);

@@ -48,8 +48,8 @@
           <ion-icon name="icon-filter-2" class="p-0 center-center color-red"
             style="width: 20px; height: 20px;"></ion-icon>
         </div>
-        <ion-button *ngIf="dataTableSettings.add_penerbangan" color="red" class="non-capitalize"><ion-icon
-            name="add"></ion-icon> Jadwal Penerbangan</ion-button>
+        <ion-button *ngIf="dataTableSettings.add_penerbangan" (click)="openAddPenerbangan()" color="red"
+          class="non-capitalize"><ion-icon name="add"></ion-icon> Jadwal Penerbangan</ion-button>
       </div>
     </form>
 
@@ -95,8 +95,8 @@
   <div>
     <ion-content [style]="customCssContent">
       <div>
-        <ion-item lines="full" class="header-table">
-          <div class="row pl-5 bg-grey-blue py-2 w-100">
+        <ion-item lines="none" class="header-table">
+          <div class="row bg-grey-blue py-2 w-100" style="padding-left: 2.5rem !important;">
             <div class="col" *ngFor="let p of listHeaderTabel; " [style]="widthCol(p.width)">
               <div class="row" [class]="p.css">
                 <p class="mb-0 text-grey bold-text" style="font-size: 10px !important;">
@@ -115,7 +115,6 @@
                     <img src="assets/icon/sort-bottom.svg" (click)="sortDataDescending(p)"
                       style="position: absolute; bottom: 1px; width: 10px;" class="pointer">
                   </div>
-
                 </div>
               </div>
             </div>
@@ -159,7 +158,6 @@
                     dari {{p.max_column}} Kolum
                   </p>
                 </div>
-
                 <div class="row center-center" style="min-width: 260px;justify-content: right;">
                   <ion-icon (click)="openManifest(p)" name="icon-edit"
                     class="border-light  p-1 pointer hover-light mr-2 icon-medium-20" color="grey" style="    position: relative !important;
@@ -189,6 +187,12 @@
                       </p>
                     </div>
                   </div>
+                </div>
+                <div *ngIf="dataTableSettings.no_bag" class="col center-center max-width-200 pointer"
+                  (click)="openRingkasan(p)" [style]="widthCol('','body','NO.BAG')">
+                  <p class="bold-text">
+                    {{p.no_bag}}
+                  </p>
                 </div>
                 <div *ngIf="dataTableSettings.loading_bag" class="col  center-center max-width-200 pointer"
                   [style]="widthCol('','body','LOADING BAG')">
@@ -227,12 +231,14 @@
                   </ion-row>
 
                 </div>
+
                 <div *ngIf="dataTableSettings.mawb" class="col center-center max-width-200 pointer"
                   (click)="openRingkasan(p)">
                   <p class="color-red bold-text">
                     {{p.mawb}}
                   </p>
                 </div>
+
                 <div *ngIf="dataTableSettings.no_resi" class="col center-center max-width-200">
                   <p class="bold-text">
                     {{p.no_resi}}
@@ -241,6 +247,18 @@
                 <div *ngIf="dataTableSettings.berat_tertagih" class="col center-center max-width-200">
                   <p class="bold-text">
                     {{p.berat_tertagih}} Kg
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.total_resi" class="col center-center max-width-200"
+                  [style]="widthCol('','body','TOTAL RESI')">
+                  <p class="bold-text">
+                    {{p.total_resi}}
+                  </p>
+                </div>
+                <div *ngIf="dataTableSettings.total_weight" class="col center-center max-width-200"
+                  [style]="widthCol('','body','TOTAL BERAT')">
+                  <p class="bold-text">
+                    {{p.total_weight}} Kg
                   </p>
                 </div>
                 <div *ngIf="dataTableSettings.komoditas" class="col center-center max-width-200">
@@ -362,15 +380,20 @@
                     {{p.collie}}
                   </p>
                 </div>
-                <div class="col center-center max-width-200" *ngIf="dataTableSettings.created_at">
-                  <p class="text-dark">
-                    {{p.created_at}}
+                <div class="col center-center max-width-200"  [style]="widthCol('','body','CREATED AT')" *ngIf="dataTableSettings.created_at">
+                  <p class="text-dark text-right">
+                    {{p.created_at | timeFormatted}}
                   </p>
                 </div>
-                <div class="col center-center max-width-200" *ngIf="dataTableSettings.diperbarui">
-                  <p class="text-dark">
-                    {{p.diperbarui | timeFormatted}}
-                  </p>
+                <div class="col center-center max-width-200 text-right" *ngIf="dataTableSettings.diperbarui">
+                  <div>
+                    <p class="text-dark">
+                      {{p.PIC}}
+                    </p>
+                    <p class="text-dark">
+                      {{p.diperbarui | timeFormatted}}
+                    </p>
+                  </div>
                 </div>
                 <div class="col center-center max-width-200" *ngIf="dataTableSettings.edited"
                   [style]="widthCol('','body','DIBUAT OLEH')">
@@ -409,6 +432,9 @@
                     right: 6px !important;"></ion-icon>
                   <ion-icon *ngIf="dataTableSettings.detail" (click)="openRingkasan(p)" name="eye"
                     class="border-light  p-1 pointer hover-light mr-2" color="dark" style="    position: relative !important;
+                    right: 6px !important;"></ion-icon>
+                  <ion-icon *ngIf="dataTableSettings.detail_manifest_bag" (click)="goToDetailManifest(p)" name="eye"
+                    class="border-light  p-1 pointer hover-light mr-2" color="grey" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
                   <ion-icon *ngIf="dataTableSettings.trash" (click)="openAlertTrash(p)" name="trash-outline"
                     class="border-light  p-1 pointer hover-red-icon mr-2 icon-medium-20 color-grey" style="    position: relative !important;
@@ -492,3 +518,4 @@
 <app-modal-keberangkatan> </app-modal-keberangkatan>
 <app-detail-bag hidden></app-detail-bag>
 <app-delete-bag hidden></app-delete-bag>
+<app-add-penerbangan hidden></app-add-penerbangan>

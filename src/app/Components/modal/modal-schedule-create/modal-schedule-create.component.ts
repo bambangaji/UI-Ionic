@@ -41,14 +41,17 @@ export class ModalScheduleCreateComponent implements OnInit {
     this.country = '34783264';
   }
   async presentPopover(e: Event, listData: string[], type: string, targetProperty: keyof ModalScheduleCreateComponent, component: Type<any> = DropdownCustomComponent, size: string = 'cover',) {
+    console.log(type);
+    // this.popoverController.dismiss();
     const popover = await this.popoverController.create({
       component: component,
       event: e,
-      size: size === 'auto' ? 'auto' : 'cover',
+      // size: size === 'auto' ? 'auto' : 'cover',
       componentProps: {
         list_data: listData,
         type: type
       },
+      cssClass: type === 'calendar' ? 'popover-calendar' : 'my-custom-popover',
       showBackdrop: false
     });
     popover.onDidDismiss().then((result) => {
@@ -56,9 +59,6 @@ export class ModalScheduleCreateComponent implements OnInit {
         console.log('Popover dismissed');
       } else {
         const selectedOption = result.data;
-        console.log(`Selected option: ${selectedOption}`);
-        console.log(targetProperty);
-        
         this[targetProperty] = selectedOption;
         // Handle the selected option here
       }
@@ -82,32 +82,32 @@ export class ModalScheduleCreateComponent implements OnInit {
   }
 
   async presentPopoverCalendar(e: Event) {
-    await this.presentPopover(e, [], 'inisial', 'departed', CalendarComponent,'auto');
+    await this.presentPopover(e, [], 'calendar', 'departed', CalendarComponent, 'auto');
   }
 
   async presentPopoverTime(e: Event) {
     await this.presentPopover(e, [], 'inisial', 'departed_time', TimeComponent, 'auto');
   }
   async presentPopoverArival(e: Event) {
-    await this.presentPopover(e, [], 'inisial', 'arival', CalendarComponent,'auto');
+    await this.presentPopover(e, [], 'calendar', 'arival', CalendarComponent, 'auto');
   }
 
   async presentPopoverArivalTime(e: Event) {
     await this.presentPopover(e, [], 'inisial', 'arival_time', TimeComponent, 'auto');
   }
   async presentPopoverTransit(e: Event) {
-    await this.presentPopover(e, [], 'inisial', 'transit', CalendarComponent,'auto');
+    await this.presentPopover(e, [], 'calendar', 'transit', CalendarComponent, 'auto');
   }
 
   async presentPopoverTransitTime(e: Event) {
     await this.presentPopover(e, [], 'inisial', 'transit_time', TimeComponent, 'auto');
   }
-  closeModal(){
+  closeModal() {
     this.globalService.closePopover();
     this.modal?.dismiss();
   }
-  submit(){
+  submit() {
     console.log('submit');
-    
+
   }
 }

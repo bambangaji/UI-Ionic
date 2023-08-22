@@ -16,6 +16,7 @@ import { HoverComponent } from '../../popover/hover/hover.component';
 import { GlobalService } from 'src/app/Services/global/global.service';
 import { DetailBagComponent } from '../../modal/detail-bag/detail-bag.component';
 import { DeleteBagComponent } from '../../modal/delete-bag/delete-bag.component';
+import { AddPenerbanganComponent } from '../../modal/add-penerbangan/add-penerbangan.component';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class TableCustomComponent implements OnInit {
   @ViewChild(ModalKeberangkatanComponent) keberangkatanComponent?: ModalKeberangkatanComponent;
   @ViewChild(DeleteBagComponent) deleteBagComponent?: DeleteBagComponent;
   @ViewChild(HoverComponent) hoverComponent?: HoverComponent;
+  @ViewChild(AddPenerbanganComponent) addPenerbanganComponent?: AddPenerbanganComponent;
   @Input() dataTable: any[] = [];
   @Input() type: string = 'schedule';
   @Input() import: boolean = true;
@@ -162,7 +164,7 @@ export class TableCustomComponent implements OnInit {
       }
 
     }
-    return this.customCssContent = `height: ${this.height} ;width: ${total_width}px; min-width: 93vw`
+    return this.customCssContent = `height: ${this.height} ;width: ${total_width}px; min-width: 100%;`
   }
   exportData() {
     this.excelService.convertToExcel(this.dataTable)
@@ -191,7 +193,7 @@ export class TableCustomComponent implements OnInit {
     if (!width) {
       return
     }
-    return `min-width: ${width}px; max-width: ${width}px;`
+    return `min-width: ${width}px; max-width: ${width}px !important;`
   }
 
   async openAlertKonfirmasi(val: any) {
@@ -272,12 +274,12 @@ export class TableCustomComponent implements OnInit {
     const [datePart, timePart] = data.split(' ');
     const [day, month, year] = datePart.split('-');
     const [hours, minutes] = timePart.split(':');
-
     const dateDeparted = new Date(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes));
     const today = new Date();
-
     return dateDeparted < today;
-
+  }
+  goToDetailManifest() {
+    this.navService.toDetailManifestPage();
   }
   sortDataDescending(value: any) {
     this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
@@ -322,13 +324,11 @@ export class TableCustomComponent implements OnInit {
     this.modalScheduleComponent?.setData('', 'openAlertKonfirmasi', 'delete')
   }
   async openRingkasan(p: any) {
-    console.log(p);
     this.popoverController.dismiss();
     await this.detailScheduleComponent?.setData(p);
     this.detailScheduleComponent?.modal?.present();
   }
   async openRingkasanBag(p: any) {
-    console.log(p);
     this.detailBagComponent?.setData(p);
   }
   deleteSchedule() {
@@ -337,6 +337,9 @@ export class TableCustomComponent implements OnInit {
   closeAllModal() {
     this.modalController?.dismiss();
     this.popoverController.dismiss();
+  }
+  openAddPenerbangan() {
+    this.addPenerbanganComponent?.modal?.present();
   }
   handleFile(event: any) {
     const file = event.target.files[0];
