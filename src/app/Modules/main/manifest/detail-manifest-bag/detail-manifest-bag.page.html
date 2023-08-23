@@ -39,9 +39,8 @@
           </ion-col>
           <ion-col>
             <ion-row class="float-right">
-
-              <ion-button color="red" class="non-capitalize" (click)="confirm()"> Simpan <ion-icon
-                  name="add"></ion-icon></ion-button>
+              <ion-button id="openModalBag" color="red" class="non-capitalize" (click)="confirm()"> Ajukan Perubahan
+                <ion-icon name="add"></ion-icon></ion-button>
             </ion-row>
           </ion-col>
         </ion-row>
@@ -54,7 +53,7 @@
             0 Resi • 0 Kg
           </p> -->
         </ion-row>
-        <ion-row class="mx-3 mb-3">
+        <ion-row class="mx-3">
           <ion-col size="1.4" class="border-right-light-thick mt-2">
             <p>
               Loading Bag
@@ -88,7 +87,7 @@
                 20 Kg
               </p>
               <p class="bg-grey-blue color-red bold-text pointer border-radius-8 p-1 ml-2">
-               Lihat Foto
+                Lihat Foto
               </p>
             </ion-row>
           </ion-col>
@@ -103,3 +102,36 @@
   </app-dashboard-background>
   <app-confirm-bag hidden></app-confirm-bag>
 </ion-content>
+<ion-modal id="example-modal" #openModalBag trigger="openModalBag">
+  <ng-template>
+    <form [formGroup]="form">
+      <div class="wrapper mb-3">
+        <div class="bold-text text-center">
+          <p class="h7 p-2">Pengajuan Perubahan</p>
+        </div>
+        <div class="pb-3 pl-3 pr-3 pt-1">
+          <p class="mb-2 text-center text-grey">
+            Apakah kamu yakin ingin melakukan perubahan <span class="bold-text text-dark">BAG AX0000001? </span>
+          </p>
+          <p class="text-grey">
+            Catatan <span class="color-red">*</span>
+          </p>
+          <ion-textarea placeholder="Berikan Alasan Perubahan" class="border-light p-1 mt-2"
+            [autoGrow]="true"></ion-textarea>
+        </div>
+        <div class="row center-center justify-content-center w-100 m-0 pt-2">
+          <ion-button color="red" (click)="closeModal()" class="non-capitalize w-50" style="width: 46% !important">
+            <p class="color-white bold-text">
+              Ajukan Perubahan
+            </p>
+          </ion-button>
+          <ion-button color="red-light" (click)="closeModal()" class="non-capitalize w-50" style="width: 46% !important">
+            <p class="color-red bold-text">
+              Batal
+            </p>
+          </ion-button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</ion-modal>

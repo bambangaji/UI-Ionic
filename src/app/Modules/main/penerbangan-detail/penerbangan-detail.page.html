@@ -1,0 +1,92 @@
+<ion-content [fullscreen]="true">
+  <app-dashboard-background>
+    <app-label-page title="Jadwal Penerbangan"></app-label-page>
+    <ion-row>
+      <ion-col size="3">
+        <ion-card class="z102 position-relative">
+          <ion-row class="justify-content-between text-dark p-2 align-items-center">
+            <ion-row class="align-items-center">
+              <ion-icon name="arrow-back" color="red"
+                class="bg-grey-light circle p-1 icon-medium pointer hover-light mr-1"></ion-icon>
+              <div class="align-self-center">
+                <img src="assets/icon/profileDummy.svg" class="icon-medium-32 circle">
+                <img src="assets/icon/airplane.svg" class="icon-medium-32 circle imgNimpa bg-red">
+              </div>
+              <div>
+                <p class="bold-text">
+                  Taiwan
+                </p>
+                <p class="text-grey">
+                  Vendor <span class="text-dark bold-text">HD</span>
+                </p>
+              </div>
+            </ion-row>
+            <app-label-status status="Open"></app-label-status>
+          </ion-row>
+          <div class="justify-content-between bg-grey-light m-2 border-radius-8 p-2 text-grey">
+            <p>
+              Total Bag
+            </p>
+            <ion-row class="pt-2 justify-content-between align-items-center">
+              <p class="h6 text-dark">
+                0 <span class="h7" style="font-weight: 400;"> 0 Kg</span>
+              </p>
+              <p>
+                Est.Leader <span class="bold-text"> 100 </span> Bag
+              </p>
+            </ion-row>
+          </div>
+          <div class="justify-content-between bg-grey-light m-2 border-radius-8 p-2 text-grey">
+            <p>
+              Total Bag
+            </p>
+            <ion-row class="pt-2 align-items-center">
+              <ion-row class="pr-5 align-items-center text-dark">
+                <ion-icon class="mr-3 icon-medium" name="box"> </ion-icon>
+                <p>0</p>
+              </ion-row>
+              <ion-row class="align-items-center text-dark">
+                <ion-icon class="mr-3 icon-medium" name="truck-fast"> 0 </ion-icon>
+                <p>0</p>
+              </ion-row>
+            </ion-row>
+          </div>
+          <app-card-penerbangan type="small"></app-card-penerbangan>
+          <ion-row class="align-items-center justify-content-between px-2">
+            <ion-col size="2" class="align-items-center align-self-center">
+              <ion-icon name="ellipsis-vertical" color="grey" class="p-2 border-light"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-button color="grey" class="non-capitalize w-100">
+                <p class="text-white">Closing</p>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+          <div class="border-top-light p-2 text-grey bg-grey-blue">
+            <ion-row class="justify-content-between">
+              <p>
+                Dibuat Oleh
+              </p>
+              <p>{{today|timeFormatted}}</p>
+            </ion-row>
+            <p class="bold-text">Toha</p>
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col size="9">
+        <ion-card class="z102 position-relative ">
+          <ion-row class="justify-content-between align-items-center pt-2">
+            <p class="h7 bold-text pl-3 text-dark">
+              Daftar Bag
+            </p>
+            <app-input-form typeInput="search" placeholder="cari" style="width: 240px;"></app-input-form>
+          </ion-row>
+          <app-table-custom></app-table-custom>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+  </app-dashboard-background>
+</ion-content>

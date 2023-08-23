@@ -1,4 +1,4 @@
-<div style="
+<div *ngIf="type !== 'small'" style="
 height: 210px;
 ">
   <ion-card class="shadow-none border-light-2 text-grey hover-light">
@@ -51,8 +51,7 @@ height: 210px;
         </ion-col>
       </ion-row>
 
-      <ion-row
-        class="justify-content-between mx-2 my-1 px-2 color-grey center-center align-items-center">
+      <ion-row class="justify-content-between mx-2 my-1 px-2 color-grey center-center align-items-center">
         <ion-row>
           <p class="text-grey mr-2">
             Est. Total Bag <span class="text-dark bold-text"> 100 </span>
@@ -72,11 +71,84 @@ height: 210px;
   </ion-card>
   <div class="bg-white circle icon-medium border-light-2" style="position: relative; top: -76px;left: 0;">
   </div>
-  <div class="bg-white icon-medium" style="position: relative; top: -96px; left: -8px;">
+  <div class="bg-white icon-medium" style="position: relative; top: -96px; left: -10px;">
   </div>
-  <div class="bg-white circle icon-medium border-light-2" style="position: relative; top: -115px; right: 0px; float: right;">
+  <div class="bg-white circle icon-medium border-light-2"
+    style="position: relative; top: -115px; right: 0px; float: right;">
   </div>
-  <div class="bg-white icon-medium" style="position: relative;top: -115px; right: -29px; float: right;">
+  <div class="bg-white icon-medium" style="position: relative;top: -115px; right: -30px; float: right;">
+  </div>
+</div>
+<div *ngIf="type === 'small'" style="height: 200px;">
+  <ion-card class="shadow-none border-light-2 text-grey hover-light">
+    <ion-card-content class="p-0">
+      <div class="border-bottom-light p-2">
+        <div class="justify-content-between center-center align-items-center">
+          <div class="col p-0" style="    margin-left: 0px;">
+            <p>MAWB
+              <span class="bold-text text-dark">ID-14045222</span>
+            </p>
+          </div>
+          <div class="col mx-2" style="text-align: -webkit-right;">
+            <!-- <app-label-status [status]="data.status"></app-label-status> -->
+          </div>
+        </div>
+      </div>
+      <ion-row class="row p-2" style="border-bottom: 1.8px dashed rgba(178, 174, 198, 0.568627451);">
+        <ion-col size="3.3" class="pl-3 h8">
+          <p>
+            Pergi
+          </p>
+          <p class="bold-text text-dark h7">
+            20:45
+          </p>
+          <p class="h8">
+            {{today | timeFormatted}}
+          </p>
+        </ion-col>
+        <ion-col class="col row center-center px-2 align-items-center">
+          <div style="width: 70%; position: relative; height: 2.3px; background: rgba(178, 174, 198, 0.568627451);">
+            <p style="text-decoration: underline;text-align: center; position: relative; top: 12px;">
+              1x Transit
+            </p>
+          </div>
+
+          <ion-icon name="icon-airplane-miring" color="grey" class="icon-medium"
+            style="margin: 0px 0px 0px 6px;"></ion-icon>
+        </ion-col>
+        <ion-col size="3.3" class="text-right pr-3 h8">
+          <p>
+            Tiba
+          </p>
+          <p class="bold-text text-dark h7">
+            20:45
+          </p>
+          <p class="h8">
+            {{today | timeFormatted}}
+          </p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="justify-content-between mx-2 my-1 px-2 pt-3 color-grey center-center align-items-center">
+        <ion-row>
+          <p class="text-grey mr-2" style="font-size: 10px;">
+            Est. Total Bag <span class="text-dark bold-text"> 100 </span>
+          </p>
+          <p class="text-grey" style="font-size: 10px;">
+            Est. Total Berat <span class="text-dark bold-text"> 3000 kg</span>
+          </p>
+        </ion-row>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <div class="bg-white circle icon-medium border-light-2" style="position: relative; top: -63px;left: 0;">
+  </div>
+  <div class="bg-white icon-medium" style="position: relative; top: -83px; left: -10px;">
+  </div>
+  <div class="bg-white circle icon-medium border-light-2"
+    style="position: relative; top: -102px; right: 0px; float: right;">
+  </div>
+  <div class="bg-white icon-medium" style="position: relative;top: -102px; right: -30px; float: right;">
   </div>
 </div>
 <app-pick-penerbangan></app-pick-penerbangan>

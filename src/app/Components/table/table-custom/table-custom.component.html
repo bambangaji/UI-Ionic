@@ -272,12 +272,6 @@
                     {{p.date_flight | timeFormatted}}
                   </p>
                 </div>
-                <div *ngIf="dataTableSettings.date_flight" class="col center-center max-width-200"
-                  [style]="widthCol('','body','TANGGAL TERBANG')">
-                  <p class="text-grey">
-                    {{p.date_flight | timeFormatted}}
-                  </p>
-                </div>
                 <div *ngIf="dataTableSettings.bagRanges" class="col center-center max-width-200"
                   [style]="widthCol('','body','BAG RANGE')">
                   <p class="text-dark">
@@ -380,12 +374,14 @@
                     {{p.collie}}
                   </p>
                 </div>
-                <div class="col center-center max-width-200"  [style]="widthCol('','body','CREATED AT')" *ngIf="dataTableSettings.created_at">
+                <div class="col center-center max-width-200" [style]="widthCol('','body','CREATED AT')"
+                  *ngIf="dataTableSettings.created_at">
                   <p class="text-dark text-right">
                     {{p.created_at | timeFormatted}}
                   </p>
                 </div>
-                <div class="col center-center max-width-200 text-right" *ngIf="dataTableSettings.diperbarui">
+                <div class="col center-center max-width-200 text-right" *ngIf="dataTableSettings.diperbarui"
+                  [style]="widthCol('','body','DIPERBARUI')">
                   <div>
                     <p class="text-dark">
                       {{p.PIC}}
@@ -433,9 +429,16 @@
                   <ion-icon *ngIf="dataTableSettings.detail" (click)="openRingkasan(p)" name="eye"
                     class="border-light  p-1 pointer hover-light mr-2" color="dark" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
+                  <ion-icon *ngIf="dataTableSettings.detail_penerbangan" (click)="goToDetailPenerbangan(p)" name="eye"
+                    class="border-radius-8 bg-red-light p-1 pointer hover-light mr-2" color="red" style="    position: relative !important;
+                    right: 6px !important;"></ion-icon>
                   <ion-icon *ngIf="dataTableSettings.detail_manifest_bag" (click)="goToDetailManifest(p)" name="eye"
                     class="border-light  p-1 pointer hover-light mr-2" color="grey" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>
+                  <ion-icon *ngIf="dataTableSettings.option_penerbangan" [id]="'pop-over-'+p.uuid"
+                    name="ellipsis-vertical" class="border-light  p-1 pointer hover-light mr-2 icon-medium-20"
+                    color="grey" style="    position: relative !important;
+                     right: 6px !important;"></ion-icon>
                   <ion-icon *ngIf="dataTableSettings.trash" (click)="openAlertTrash(p)" name="trash-outline"
                     class="border-light  p-1 pointer hover-red-icon mr-2 icon-medium-20 color-grey" style="    position: relative !important;
                     right: 6px !important;"></ion-icon>

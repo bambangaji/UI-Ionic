@@ -135,4 +135,7 @@ export interface ITableScheduleSettings {
     total_resi?: boolean,
     total_weight?: boolean,
     detail_manifest_bag?: boolean,
+    detail_penerbangan?: boolean,
+    option_penerbangan?: boolean,
+    total_bag?: boolean,
 }

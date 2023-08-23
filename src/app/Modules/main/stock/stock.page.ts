@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AddStockComponent } from 'src/app/Components/modal/add-stock/add-stock.component';
 import { TableCustomComponent } from 'src/app/Components/table/table-custom/table-custom.component';
 import { ISchedule } from 'src/app/Interfaces/schedule.interface';
 
@@ -12,6 +13,7 @@ export class StockPage implements OnInit {
   listTab = ['Vendor HD', 'Vendor MINA']
   currentTab = this.listTab[0]
   @ViewChild(TableCustomComponent) tableComponent?: TableCustomComponent;
+  @ViewChild(AddStockComponent) addStockComponent?: AddStockComponent;
 
   dataheader = [
     {
@@ -27,7 +29,7 @@ export class StockPage implements OnInit {
       width: 300,
     },
     {
-      css: '',
+      css: 'right-header-table',
       label: 'DIPERBARUI',
       sort: true,
       width: 300,
@@ -101,5 +103,8 @@ export class StockPage implements OnInit {
     },
       'stock'
     )
+  }
+  nambahStock() {
+    this.addStockComponent?.modal?.present();
   }
 }

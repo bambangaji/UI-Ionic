@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { PickPenerbanganComponent } from '../../modal/pick-penerbangan/pick-penerbangan.component';
 
 @Component({
@@ -8,6 +8,7 @@ import { PickPenerbanganComponent } from '../../modal/pick-penerbangan/pick-pene
 })
 export class CardPenerbanganComponent implements OnInit {
   @ViewChild(PickPenerbanganComponent) pickPenerbangan: PickPenerbanganComponent;
+  @Input() type: string = '';
   today: Date = new Date();
   constructor() { }
 

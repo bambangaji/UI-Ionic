@@ -32,6 +32,7 @@ export enum ERoutePath {
 
   //penerbangan
   PENERBANGAN = '/main/dashboard/penerbangan',
+  PENERBANGAN_DETAIL = '/main/dashboard/penerbangan-detail',
 
   //stock
   STOCK = '/main/dashboard/stock',
@@ -99,6 +100,9 @@ export class NavigationService {
   }
   toManifestBagPage() {
     this.setRoot(ERoutePath.MANIFEST_BAG, undefined, undefined, true);
+  }
+  toPenerbanganDetailPage() {
+    this.setRoot(ERoutePath.PENERBANGAN_DETAIL, undefined, undefined, true);
   }
   toManifestScheduledPage() {
     this.setRoot(ERoutePath.MANIFEST_SCHEDULED, undefined, undefined, true);

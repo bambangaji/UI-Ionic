@@ -7,7 +7,6 @@ export class TimeFormattedPipe implements PipeTransform {
 
   transform(dateString: string | Date, isWithTime: boolean = false, type: string = ''): String {
 
-    console.log(dateString, 'wwww');
     if (dateString instanceof Date) {
       // date = dateString;
     } else {
@@ -26,7 +25,7 @@ export class TimeFormattedPipe implements PipeTransform {
       if (day.length === 2 && month.length === 2 && year.length === 4) {
         // Convert to 'yyyy-mm-dd' format
         dateString = `${year}-${month}-${day}`;
-      }
+      } 
     }
 
 

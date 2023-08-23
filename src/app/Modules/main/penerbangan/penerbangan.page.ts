@@ -11,7 +11,6 @@ export class PenerbanganPage implements OnInit {
   listTab = ['Open', 'Close']
   currentTab = this.listTab[0]
   @ViewChild(TableCustomComponent) tableComponent?: TableCustomComponent;
-
   dataheader = [
     {
       css: '',
@@ -44,10 +43,10 @@ export class PenerbanganPage implements OnInit {
       width: 250
     },
     {
-      css: '',
+      css: 'right-header-table',
       label: 'DIBUAT OLEH ',
       sort: true,
-      width: 300
+      width: 210
     },
     {
       css: 'right-header-table',
@@ -86,7 +85,9 @@ export class PenerbanganPage implements OnInit {
           diangkut: 10,
           dibandara: 10,
           siap_diangkut: 100,
-        }
+        },
+        diperbarui: '2023-08-15T06:01:15.854Z',
+        PIC:'Toha'
       },
     ]
   constructor() { }
@@ -110,14 +111,18 @@ export class PenerbanganPage implements OnInit {
       importData: false,
       checkboxAll: false,
       checkbox: false,
-      trash: true,
-      print: true,
+      trash: false,
+      print: false,
       loading_bag: true,
       totalBag: true,
       created_at: false,
       date_flight: true,
-      edited:true,
+      total_bag: true,
+      diperbarui: true,
+      edited: false,
       add_penerbangan: true,
+      detail_penerbangan: true,
+      option_penerbangan: true,
     })
   }
 

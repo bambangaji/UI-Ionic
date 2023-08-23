@@ -49,6 +49,7 @@ import { AddPenerbanganComponent } from './modal/add-penerbangan/add-penerbangan
 import { CardPenerbanganComponent } from './card/card-penerbangan/card-penerbangan.component';
 import { PickPenerbanganComponent } from './modal/pick-penerbangan/pick-penerbangan.component';
 import { NotificationsUserComponent } from './modal/notifications-user/notifications-user.component';
+import { AddStockComponent } from './modal/add-stock/add-stock.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { NotificationsUserComponent } from './modal/notifications-user/notificat
     AddPenerbanganComponent,
     CardPenerbanganComponent,
     PickPenerbanganComponent,
-    NotificationsUserComponent
+    NotificationsUserComponent,
+    AddStockComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -155,7 +157,8 @@ import { NotificationsUserComponent } from './modal/notifications-user/notificat
     AddPenerbanganComponent,
     CardPenerbanganComponent,
     PickPenerbanganComponent,
-    NotificationsUserComponent
+    NotificationsUserComponent,
+    AddStockComponent
   ]
 })
 export class ComponentsModule { }

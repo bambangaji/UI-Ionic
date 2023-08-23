@@ -1,26 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableCustomComponent } from 'src/app/Components/table/table-custom/table-custom.component';
 import { ISchedule } from 'src/app/Interfaces/schedule.interface';
-import { NavigationService } from 'src/app/Services/navigation/navigation.service';
 
 @Component({
-  selector: 'app-schedule-penerbangan',
-  templateUrl: './schedule-penerbangan.page.html',
-  styleUrls: ['./schedule-penerbangan.page.scss'],
+  selector: 'app-penerbangan-detail',
+  templateUrl: './penerbangan-detail.page.html',
+  styleUrls: ['./penerbangan-detail.page.scss'],
 })
-export class SchedulePenerbanganPage implements OnInit {
+export class PenerbanganDetailPage implements OnInit {
 
-  constructor(private navigationService: NavigationService) { }
-  showTooltip: boolean = false;
-  showTooltipBerat: boolean = false;
+  listTab = ['Open', 'Close']
+  currentTab = this.listTab[0]
   today: Date = new Date();
-  days: string = '00';
-  hours: string = '00';
-  minutes: string = '00';
-  seconds: string = '00';
-  private countdownInterval: any
   @ViewChild(TableCustomComponent) tableComponent?: TableCustomComponent;
-
   dataheader = [
     {
       css: '',
@@ -36,18 +28,12 @@ export class SchedulePenerbanganPage implements OnInit {
     },
     {
       css: '',
-      label: 'TOTAL RESI',
-      sort: true,
-      width: 150,
-    },
-    {
-      css: '',
       label: 'TOTAL BERAT',
       sort: true,
       width: 150
     },
     {
-      css: 'right-header-table',
+      css: '',
       label: 'DIPERBARUI',
       sort: true,
       // width: 300
@@ -59,9 +45,6 @@ export class SchedulePenerbanganPage implements OnInit {
       width: 100
     }
   ]
-  dataTableSettings = {
-    status: true
-  }
   dataTable: ISchedule[] =
     [
       {
@@ -118,48 +101,13 @@ export class SchedulePenerbanganPage implements OnInit {
         status: 'Open'
       },
     ]
-  toggleTooltip() {
-
-  }
-
-  goToCreateManifest() {
-    this.navigationService.toCreateManifestPage();
-  }
+  constructor() { }
 
   ngOnInit() {
     this.setTable();
   }
   ionViewDidEnter() {
     this.setTable();
-    clearInterval(this.countdownInterval);
-    this.startCountdown();
-  }
-  startCountdown() {
-
-    const targetTime = new Date();
-    targetTime.setDate(targetTime.getDate() + 1);
-    targetTime.setHours(targetTime.getHours() + 4);
-    targetTime.setMinutes(targetTime.getMinutes() + 22);
-
-    this.countdownInterval = setInterval(() => {
-      const now = new Date();
-      const diff = targetTime.getTime() - now.getTime();
-      if (diff <= 0) {
-        clearInterval(this.countdownInterval);
-        this.days = '00';
-        this.hours = '00';
-        this.minutes = '00';
-        this.seconds = '00';
-      } else {
-        this.days = this.formatNumber(Math.floor(diff / (1000 * 60 * 60 * 24)));
-        this.hours = this.formatNumber(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        this.minutes = this.formatNumber(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-        this.seconds = this.formatNumber(Math.floor((diff % (1000 * 60)) / 1000));
-      }
-    }, 1000);
-  }
-  formatNumber(num: number): string {
-    return num < 10 ? `0${num}` : `${num}`;
   }
   setTable() {
     this.tableComponent?.setData(this.dataheader, this.dataTable, {
@@ -181,7 +129,7 @@ export class SchedulePenerbanganPage implements OnInit {
       created_at: false,
       diperbarui: true,
       total_weight: true,
-      total_resi: true,
+      total_resi: false,
       print: true,
       detail_manifest_bag: true,
     }, 'manifest')

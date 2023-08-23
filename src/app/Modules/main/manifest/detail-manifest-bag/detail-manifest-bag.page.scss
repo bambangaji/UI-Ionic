@@ -1,3 +1,36 @@
-p{
+p {
     margin-bottom: 0;
 }
+
+ion-textarea {
+    --font-size: 10px !important;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-bottom: 5px;
+    --padding-top: 5px;
+    --highlight-color-focused:none !important;
+    --highlight-color-invalid:none !important;
+    --highlight-color-valid:none !important;
+    --placeholder-color: #667085;;
+    // --placeholder-opacity: 0.8;
+    font-size: 10px;
+}
+ion-modal#example-modal {
+    --width: 100%;
+    --min-width: 250px;
+    --max-width: 360px;
+    --height: fit-content;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  }
+  
+  ion-modal#example-modal h1 {
+    margin: 20px 20px 10px 20px;
+  }
+  
+  ion-modal#example-modal .wrapper {
+    margin-bottom: 10px;
+  }
+  p{
+    margin-bottom: 0px;
+  }

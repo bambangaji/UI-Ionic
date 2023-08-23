@@ -35,8 +35,8 @@ export class CreateManifestPage implements OnInit {
       width: 200,
     },
     {
-      css: '',
-      label: 'diperbarui',
+      css: 'right-header-table',
+      label: 'DIPERBARUI',
       sort: true,
       width: 300
     },

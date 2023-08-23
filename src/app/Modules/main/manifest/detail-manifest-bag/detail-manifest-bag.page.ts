@@ -105,6 +105,6 @@ export class DetailManifestBagPage implements OnInit {
     })
   }
   confirm() {
-    this.confirmComponent?.setData("data");
+    // this.confirmComponent?.setData("data");
   }
 }

@@ -281,6 +281,9 @@ export class TableCustomComponent implements OnInit {
   goToDetailManifest() {
     this.navService.toDetailManifestPage();
   }
+  goToDetailPenerbangan(data: any) {
+    this.navService.toPenerbanganDetailPage();
+  }
   sortDataDescending(value: any) {
     this.listHeaderTabel!.map((data: any) => { data.sortASC = true })
     value.sortASC = false;

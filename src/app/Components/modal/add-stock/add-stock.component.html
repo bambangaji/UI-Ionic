@@ -1,0 +1,83 @@
+<ion-modal id="example-modal" #modal [trigger]="idModal">
+  <ng-template>
+    <div class="wrapper">
+      <ion-row class="justify-content-between center-center align-items-center p-2">
+        <p class="mb-0 bold-text h6">
+          Tambah Stok Bag
+        </p>
+        <div class="row mr-2 center-center align-items-center">
+          <ion-icon name="arrow-forward" style="height: 24px; width: 24px;" class="pointer" (click)="closeModal()">
+          </ion-icon>
+        </div>
+      </ion-row>
+      <div class="border-light text-grey bg-white with-overflow border-bottom-light" style="height: 94.5vh;">
+        <ion-row class="bg-orange-light p-2 row align-items-center m-0 mt-2 border-radius-8 m-2 border-light">
+          <ion-col size="1" class="center-center text-center">
+            <ion-icon name="icon-warning" class="mr-2 icon-medium-32">
+            </ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <p class="color-orange w-92 bold-text pl-2">
+              Pilih vendor dan masukkan range no.bag, lalu Pastikan Nomor Range yang diinput sesuai dengan yang
+              diinformasikan oleh vendor sebelum menambahkan stok.
+            </p>
+          </ion-col>
+        </ion-row>
+        <div class="p-2 " style="max-height: 97.5vh;height: fit-content; padding-bottom: 7vh;">
+          <p>
+            Pilih Vendor
+          </p>
+          <div (click)="presentPopoverVendor($event)"
+            class="row justify-content-between bg-white border-light mx-2 p-1 my-2 pointer hover-light bold-text align-items-center">
+            <p class="text-grey pl-3" style="opacity: 0.62;font-weight: 400;">
+              {{vendor?vendor:'Pilih Vendor'}}
+            </p>
+            <ion-icon name="chevron-down" class="text-grey icon-medium">
+            </ion-icon>
+          </div>
+          <div>
+            <ion-row *ngFor="let p of listBag">
+              <ion-col size="4">
+                <p>
+                  Kode Bag
+                </p>
+                <app-input-form></app-input-form>
+              </ion-col>
+              <ion-col size="8">
+                <p>
+                  Kode Bag
+                </p>
+                <app-input-form></app-input-form>
+              </ion-col>
+            </ion-row>
+            <ion-row class="justify-content-between">
+              <ion-button color="red-light" class="non-capitalize" (click)="addBag()">
+                <ion-icon name="add" color="red" class="mr-2 icon-medium"></ion-icon>
+                <p class="color-red bold-text">
+                  Kode Bag
+                </p>
+              </ion-button>
+
+              <ion-button color="red" class="non-capitalize">
+                Generate
+              </ion-button>
+            </ion-row>
+
+          </div>
+
+
+        </div>
+        <div style="position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 1rem;
+        background: white !important;
+        z-index: 999999;">
+          <ion-button color="red" class="non-capitalize w-100">
+            Simpan No. Bag
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
