@@ -50,7 +50,7 @@ export class SchedulePenerbanganPage implements OnInit {
       css: 'right-header-table',
       label: 'DIPERBARUI',
       sort: true,
-      // width: 300
+      width: 300
     },
     {
       css: 'right-header-table',
@@ -76,6 +76,26 @@ export class SchedulePenerbanganPage implements OnInit {
         no_bag: '234234244',
         loading_bag: {
           diangkut: 0,
+          dibandara: 0,
+          siap_diangkut: 100
+        },
+        total_resi: 5,
+        total_weight: 100,
+        PIC: 'Ahmad',
+        diperbarui: '2023-08-23T00:00:00'
+      },
+      {
+        country_image: 'assets/icon/profileDummy.svg',
+        initial_vendor: 'ZSALD',
+        country: 'Tingapore',
+        created_at: '20-09-2022 13:45',
+        uuid: '222',
+        show_column: '6',
+        max_column: '10',
+        mawb: '2325542542',
+        no_bag: '9999244',
+        loading_bag: {
+          diangkut: 10,
           dibandara: 0,
           siap_diangkut: 100
         },

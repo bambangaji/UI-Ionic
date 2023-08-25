@@ -21,26 +21,31 @@ export class RiwayatPage implements OnInit {
       css: '',
       label: 'MAWB',
       sort: true,
+      width: 200
     },
     {
       css: '',
       label: 'BAG RANGE',
       sort: true,
+      width: 200
     },
     {
       css: '',
-      label: 'TOT BAG',
+      label: 'TOTAL BAG',
       sort: true,
+      width: 200
     },
     {
       css: '',
-      label: 'TOT KOLI',
+      label: 'TOTAL KOLI',
       sort: true,
+      width: 200
     },
     {
-      css: '',
+      css: 'right-header-table',
       label: 'DIBUAT',
       sort: true,
+      width:230,
     },
     {
       css: '',

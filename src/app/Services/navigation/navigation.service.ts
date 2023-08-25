@@ -91,6 +91,9 @@ export class NavigationService {
   toScheduleLogPage() {
     this.setRoot(ERoutePath.SCHEDULE_LOG, undefined, undefined, true);
   }
+  toPenerbanganPage() {
+    this.setRoot(ERoutePath.PENERBANGAN, undefined, undefined, true);
+  }
 
   toScheduleImportPage() {
     this.setRoot(ERoutePath.SCHEDULE_IMPORT, undefined, undefined, true);

@@ -170,7 +170,9 @@
             <ion-row lines="none" class="border-light mx-2 py-2 pr-0 hover-light mb-2"
               *ngFor="let p of dataTable; let i = index">
               <div class="row pl-3 w-100 align-items-center">
-                <div class="col center-center max-width-200" *ngIf="dataTableSettings.destinasi">
+                <div class="col center-center max-width-200" *ngIf="dataTableSettings.destinasi"
+                [style]="widthCol('','body','DESTINASI')"
+                >
                   <div class="row pl-3 align-items-center">
                     <ion-checkbox *ngIf="dataTableSettings.checkbox" style="width: 30px;
                     align-self: center;"></ion-checkbox>
@@ -233,7 +235,7 @@
                 </div>
 
                 <div *ngIf="dataTableSettings.mawb" class="col center-center max-width-200 pointer"
-                  (click)="openRingkasan(p)">
+                  (click)="openRingkasan(p)" [style]="widthCol('','body','MWAB')">
                   <p class="color-red bold-text">
                     {{p.mawb}}
                   </p>

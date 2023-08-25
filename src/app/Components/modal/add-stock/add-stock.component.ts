@@ -23,6 +23,7 @@ export class AddStockComponent implements OnInit {
       kode_bag_range: ''
     }
   ]
+  generate: boolean = false;
   addBag() {
     this.listBag.push({ kode_bag: '', kode_bag_range: '' })
   }
@@ -53,7 +54,7 @@ export class AddStockComponent implements OnInit {
         const selectedOption = result.data;
         console.log(`Selected option: ${selectedOption}`);
         console.log(targetProperty);
-        this[targetProperty] = selectedOption;
+        this.vendor = selectedOption;
         // Handle the selected option here
       }
     });

@@ -44,7 +44,7 @@ export class DetailManifestBagPage implements OnInit {
       css: 'right-header-table',
       label: 'AKSI',
       sort: false,
-      width: 100
+      // width: 100
     }
   ]
   dataTableSettings = {
@@ -64,7 +64,7 @@ export class DetailManifestBagPage implements OnInit {
         diperbarui: '2023-08-15T06:01:15.854Z',
         berat_tertagih: 4,
         komoditas: 'Garment'
-      }
+      },
     ]
 
   ngOnInit() {

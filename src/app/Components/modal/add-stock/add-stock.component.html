@@ -17,55 +17,91 @@
             </ion-icon>
           </ion-col>
           <ion-col size="11">
-            <p class="color-orange w-92 bold-text pl-2">
+            <p class="color-orange bold-text pl-2">
               Pilih vendor dan masukkan range no.bag, lalu Pastikan Nomor Range yang diinput sesuai dengan yang
               diinformasikan oleh vendor sebelum menambahkan stok.
             </p>
           </ion-col>
         </ion-row>
-        <div class="p-2 " style="max-height: 97.5vh;height: fit-content; padding-bottom: 7vh;">
-          <p>
-            Pilih Vendor
-          </p>
-          <div (click)="presentPopoverVendor($event)"
-            class="row justify-content-between bg-white border-light mx-2 p-1 my-2 pointer hover-light bold-text align-items-center">
-            <p class="text-grey pl-3" style="opacity: 0.62;font-weight: 400;">
-              {{vendor?vendor:'Pilih Vendor'}}
+        <div class="p-0" style="max-height: 97.5vh;height: fit-content; padding-bottom: 7vh;">
+          <div class="p-2">
+            <p>
+              Pilih Vendor
             </p>
-            <ion-icon name="chevron-down" class="text-grey icon-medium">
-            </ion-icon>
+            <div (click)="presentPopoverVendor($event)"
+              class="row justify-content-between bg-white border-light mx-2 p-1 my-2 pointer hover-light bold-text align-items-center">
+              <p class="text-grey pl-3" style="opacity: 0.62;font-weight: 400;">
+                {{vendor?vendor:'Pilih Vendor'}}
+              </p>
+              <ion-icon name="chevron-down" class="text-grey icon-medium">
+              </ion-icon>
+            </div>
           </div>
+
           <div>
-            <ion-row *ngFor="let p of listBag">
-              <ion-col size="4">
-                <p>
-                  Kode Bag
-                </p>
-                <app-input-form></app-input-form>
-              </ion-col>
-              <ion-col size="8">
-                <p>
-                  Kode Bag
-                </p>
-                <app-input-form></app-input-form>
-              </ion-col>
-            </ion-row>
-            <ion-row class="justify-content-between">
-              <ion-button color="red-light" class="non-capitalize" (click)="addBag()">
-                <ion-icon name="add" color="red" class="mr-2 icon-medium"></ion-icon>
-                <p class="color-red bold-text">
-                  Kode Bag
-                </p>
-              </ion-button>
+            <div class="p-2 border-bottom-light">
+              <ion-row *ngFor="let p of listBag">
+                <ion-col size="4">
+                  <p>
+                    Kode Bag
+                  </p>
+                  <app-input-form></app-input-form>
+                </ion-col>
+                <ion-col size="8">
+                  <p>
+                    Kode Bag
+                  </p>
+                  <app-input-form></app-input-form>
+                </ion-col>
+              </ion-row>
+              <ion-row class="justify-content-between">
+                <ion-button color="red-light" class="non-capitalize" (click)="addBag()">
+                  <ion-icon name="add" color="red" class="mr-2 icon-medium"></ion-icon>
+                  <p class="color-red bold-text">
+                    Kode Bag
+                  </p>
+                </ion-button>
 
-              <ion-button color="red" class="non-capitalize">
-                Generate
-              </ion-button>
-            </ion-row>
+                <ion-button color="red" class="non-capitalize">
+                  Generate
+                </ion-button>
+              </ion-row>
+            </div>
 
+            <div class="bg-grey-light p-2">
+              <ion-card class="shadow-none text-dark">
+                <ion-card-content>
+                  <p class="bold-text">
+                    Ringkasan
+                  </p>
+                  <ion-row class="justify-content-between">
+                    <p>
+                      Bag Range
+                    </p>
+                    <p class="bold-text">
+                      7573657364-247234673
+                    </p>
+                  </ion-row>
+                  <ion-row class="justify-content-between">
+                    <p>
+                      Total Bag
+                    </p>
+                    <p class="bold-text">
+                     1000 Bag
+                    </p>
+                  </ion-row>
+                  <ion-row class="bg-red-light justify-content-between color-red p-2 border-radius-8 mt-2">
+                    <p class="h8">
+                      Unduh untuk melihat daftar bag
+                    </p>
+                    <p class="bold-text h8 pointer hover-light">
+                      Klik Disini
+                    </p>
+                  </ion-row>
+                </ion-card-content>
+              </ion-card>
+            </div>
           </div>
-
-
         </div>
         <div style="position: absolute;
         bottom: 0;

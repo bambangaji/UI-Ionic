@@ -7,7 +7,8 @@
           <ion-row class="justify-content-between text-dark p-2 align-items-center">
             <ion-row class="align-items-center">
               <ion-icon name="arrow-back" color="red"
-                class="bg-grey-light circle p-1 icon-medium pointer hover-light mr-1"></ion-icon>
+                class="bg-grey-light circle p-1 icon-medium pointer hover-light mr-1"
+                (click)="backToPenerbangan()"></ion-icon>
               <div class="align-self-center">
                 <img src="assets/icon/profileDummy.svg" class="icon-medium-32 circle">
                 <img src="assets/icon/airplane.svg" class="icon-medium-32 circle imgNimpa bg-red">
@@ -54,11 +55,12 @@
           <app-card-penerbangan type="small"></app-card-penerbangan>
           <ion-row class="align-items-center justify-content-between px-2">
             <ion-col size="2" class="align-items-center align-self-center">
-              <ion-icon name="ellipsis-vertical" color="grey" class="p-2 border-light"></ion-icon>
+              <ion-icon id="option-penerbangan" name="ellipsis-vertical" color="grey"
+                class="p-2 border-light pointer hover-light"></ion-icon>
             </ion-col>
             <ion-col size="10">
-              <ion-button color="grey" class="non-capitalize w-100">
-                <p class="text-white">Closing</p>
+              <ion-button [color]="status?'red':'grey'" (click)="status = !status" class="non-capitalize w-100">
+                <p class="text-white">{{status?'Simpan':'Closing'}}</p>
               </ion-button>
             </ion-col>
 
@@ -76,17 +78,153 @@
       </ion-col>
       <ion-col size="9">
         <ion-card class="z102 position-relative ">
-          <ion-row class="justify-content-between align-items-center pt-2">
+          <ion-row class="justify-content-between align-items-center pt-2 pr-2">
             <p class="h7 bold-text pl-3 text-dark">
               Daftar Bag
             </p>
             <app-input-form typeInput="search" placeholder="cari" style="width: 240px;"></app-input-form>
           </ion-row>
-          <app-table-custom></app-table-custom>
+          <!-- <ion-row lines="none" class="header-table"> -->
+          <div class="row bg-grey-blue py-2 w-100 pl-4 my-2 border-bottom-light-2">
+            <div class="col" *ngFor="let p of listHeaderTabel; " [style]="widthCol(p.width)">
+              <div class="row" [class]="p.css">
+                <p class="mb-0 text-grey bold-text" style="font-size: 10px !important;">
+                  {{p.label.toUpperCase()}}
+                </p>
+                <div class="ml-1" *ngIf="p.sort">
+                  <div *ngIf="!p.sortASC">
+                    <img src="assets/icon/sort-bottom.svg" (click)="sortDataAscending(p)"
+                      style="position: absolute; top: 1px; width: 10px;  transform: rotate(180deg)" class="pointer">
+                    <img src="assets/icon/sort-bottom-e.svg" (click)="sortDataDescending(p)"
+                      style="position: absolute; bottom: 1px; width: 10px;" class="pointer">
+                  </div>
+                  <div *ngIf="p.sortASC">
+                    <img src="assets/icon/sort-top-e.svg" (click)="sortDataAscending(p)"
+                      style="position: absolute; top: 1px; width: 10px;" class="pointer">
+                    <img src="assets/icon/sort-bottom.svg" (click)="sortDataDescending(p)"
+                      style="position: absolute; bottom: 1px; width: 10px;" class="pointer">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </ion-row> -->
+          <ion-content style="height: 80vh;">
+            <ion-list class="p-0">
+              <ion-row *ngFor="let p of dataTable">
+                <ion-col class="p-0">
+                  <ion-row class=" pl-2 align-items-center border-bottom-light">
+                    <ion-icon *ngIf="!p.extend" name="caret-down" (click)="p.extend=true;"
+                      class="icon-medium pointer hover-light" color="grey">
+                    </ion-icon>
+                    <ion-icon *ngIf="p.extend" name="caret-up" (click)="p.extend=false;"
+                      class="icon-medium pointer hover-light" color="grey">
+                    </ion-icon>
+                    <ion-col class="py-0" [style]="widthCol(125)">
+                      <p class="h7 bold-text">
+                        7564565
+                      </p>
+                      <p>
+                        Total <span class="text-grey">
+                          3 Resi
+                        </span>
+                      </p>
+                    </ion-col>
+                    <ion-col class="py-0" [style]="widthCol(150)">
+                      <p class=" bold-text">
+                        30 Kg
+                        <span class="p-1 text-grey  bg-blue-light p-1 border-radius-8 h8"> 30 Kg</span>
+                        <ion-icon name="information-outline" [id]="'pop-over-departed-'+p.uuid"
+                          class="color-red circle bg-red-light p-1 ml-1 pointer"
+                          style="position: relative; top: 7px; right:0px;" (mouseenter)="toggleTooltip(p.uuid, true)"
+                          (mouseleave)="toggleTooltip(p.uuid, false)"></ion-icon>
+                      </p>
+                      <p class="color-red">
+                        Lihat Foto
+                      </p>
+                    </ion-col>
+                    <ion-row [style]="widthCol(400)" class="align-items-center text-center">
+                      <ion-col class="py-0">
+                        <p class=" bold-text">
+                          6Kg
+                        </p>
+                      </ion-col>
+                      <ion-col class="py-0">
+                        <p class=" bold-text">
+                          6Kg
+                        </p>
+                      </ion-col>
+                      <ion-col class="py-0">
+                        <ion-row class="pt-2 align-items-center">
+                          <ion-icon name="box-red" class="bg-red-light circle p-1"></ion-icon>
+                          <div class="bg-red-light" style="width: 40px; height: 2.5px;">
+                          </div>
+                          <ion-icon name="truck-fast" class="bg-grey-blue2 circle p-1"></ion-icon>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-col class="py-0">
+                      <p class="bold-text">
+                        RISVO
+                      </p>
+                      <p class="text-grey">
+                        Senin,10 Desember 2023
+                      </p>
+                    </ion-col>
+                  </ion-row>
+                  <div *ngIf="p.extend">
+                    <ion-row *ngFor="let q of p.data_extend" class="py-2 pl-3 align-items-center border-bottom-light">
+                      <ion-icon name="icon-enter" class="icon-medium pointer hover-light" color="grey">
+                      </ion-icon>
+                      <ion-col class="py-0" [style]="widthCol(117)">
+                        <p class="bold-text">
+                          AX2328323
+                        </p>
+                      </ion-col>
+                      <ion-col class="py-0" [style]="widthCol(150)">
+                        <p class=" bold-text">
+                          10 Kg
+                        </p>
+                      </ion-col>
+                      <ion-row [style]="widthCol(400)" class="align-items-center text-center">
+                        <ion-col class="py-0">
+                          <p class=" bold-text">
+                            2Kg
+                          </p>
+                        </ion-col>
+                        <ion-col class="py-0">
+                          <p class=" bold-text">
+                            2Kg
+                          </p>
+                        </ion-col>
+                        <ion-col></ion-col>
+                      </ion-row>
+                    </ion-row>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-list>
+          </ion-content>
         </ion-card>
       </ion-col>
-
     </ion-row>
-
   </app-dashboard-background>
+  <ion-popover trigger="option-penerbangan" triggerAction="click">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-row class="pointer hover-light">
+          <ion-icon name="calendar-outline" class="text-grey center-center mr-2"></ion-icon>
+          <p> Ubah Est.Jumlah Bag</p>
+
+        </ion-row>
+        <ion-row class="pointer hover-light">
+          <ion-icon name="trash-outline" class="text-grey center-center mr-2"></ion-icon>
+          <p>
+            Hapus
+          </p>
+        </ion-row>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 </ion-content>
